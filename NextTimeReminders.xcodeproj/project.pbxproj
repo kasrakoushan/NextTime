@@ -1,0 +1,301 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		A120D0E81D17EA9400F0ACBE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A120D0E71D17EA9400F0ACBE /* AppDelegate.swift */; };
+		A120D0EF1D17EA9400F0ACBE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A120D0EE1D17EA9400F0ACBE /* Assets.xcassets */; };
+		A120D0F21D17EA9400F0ACBE /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A120D0F01D17EA9400F0ACBE /* LaunchScreen.storyboard */; };
+		A120D0FA1D17EB0700F0ACBE /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A120D0F91D17EB0600F0ACBE /* MapKit.framework */; };
+		A120D1011D17F70400F0ACBE /* LandingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A120D0FF1D17F70400F0ACBE /* LandingViewController.swift */; };
+		A120D1021D17F70400F0ACBE /* LandingViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A120D1001D17F70400F0ACBE /* LandingViewController.xib */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		A120D0E41D17EA9400F0ACBE /* NextTimeReminders.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NextTimeReminders.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		A120D0E71D17EA9400F0ACBE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		A120D0EE1D17EA9400F0ACBE /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		A120D0F11D17EA9400F0ACBE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		A120D0F31D17EA9400F0ACBE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		A120D0F91D17EB0600F0ACBE /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
+		A120D0FF1D17F70400F0ACBE /* LandingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LandingViewController.swift; sourceTree = "<group>"; };
+		A120D1001D17F70400F0ACBE /* LandingViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LandingViewController.xib; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		A120D0E11D17EA9400F0ACBE /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A120D0FA1D17EB0700F0ACBE /* MapKit.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		A120D0DB1D17EA9400F0ACBE = {
+			isa = PBXGroup;
+			children = (
+				A120D0F91D17EB0600F0ACBE /* MapKit.framework */,
+				A120D0E61D17EA9400F0ACBE /* NextTimeReminders */,
+				A120D0E51D17EA9400F0ACBE /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		A120D0E51D17EA9400F0ACBE /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				A120D0E41D17EA9400F0ACBE /* NextTimeReminders.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		A120D0E61D17EA9400F0ACBE /* NextTimeReminders */ = {
+			isa = PBXGroup;
+			children = (
+				A120D0E71D17EA9400F0ACBE /* AppDelegate.swift */,
+				A120D0EE1D17EA9400F0ACBE /* Assets.xcassets */,
+				A120D0F01D17EA9400F0ACBE /* LaunchScreen.storyboard */,
+				A120D0F31D17EA9400F0ACBE /* Info.plist */,
+				A120D0FF1D17F70400F0ACBE /* LandingViewController.swift */,
+				A120D1001D17F70400F0ACBE /* LandingViewController.xib */,
+			);
+			path = NextTimeReminders;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		A120D0E31D17EA9400F0ACBE /* NextTimeReminders */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = A120D0F61D17EA9400F0ACBE /* Build configuration list for PBXNativeTarget "NextTimeReminders" */;
+			buildPhases = (
+				A120D0E01D17EA9400F0ACBE /* Sources */,
+				A120D0E11D17EA9400F0ACBE /* Frameworks */,
+				A120D0E21D17EA9400F0ACBE /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = NextTimeReminders;
+			productName = NextTimeReminders;
+			productReference = A120D0E41D17EA9400F0ACBE /* NextTimeReminders.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		A120D0DC1D17EA9400F0ACBE /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 0730;
+				LastUpgradeCheck = 0730;
+				ORGANIZATIONNAME = "Kasra Koushan";
+				TargetAttributes = {
+					A120D0E31D17EA9400F0ACBE = {
+						CreatedOnToolsVersion = 7.3.1;
+						DevelopmentTeam = 67454K9MGU;
+						SystemCapabilities = {
+							com.apple.Maps.iOS = {
+								enabled = 1;
+							};
+							com.apple.Push = {
+								enabled = 1;
+							};
+						};
+					};
+				};
+			};
+			buildConfigurationList = A120D0DF1D17EA9400F0ACBE /* Build configuration list for PBXProject "NextTimeReminders" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = A120D0DB1D17EA9400F0ACBE;
+			productRefGroup = A120D0E51D17EA9400F0ACBE /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				A120D0E31D17EA9400F0ACBE /* NextTimeReminders */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		A120D0E21D17EA9400F0ACBE /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A120D1021D17F70400F0ACBE /* LandingViewController.xib in Resources */,
+				A120D0F21D17EA9400F0ACBE /* LaunchScreen.storyboard in Resources */,
+				A120D0EF1D17EA9400F0ACBE /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		A120D0E01D17EA9400F0ACBE /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A120D1011D17F70400F0ACBE /* LandingViewController.swift in Sources */,
+				A120D0E81D17EA9400F0ACBE /* AppDelegate.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		A120D0F01D17EA9400F0ACBE /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				A120D0F11D17EA9400F0ACBE /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		A120D0F41D17EA9400F0ACBE /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		A120D0F51D17EA9400F0ACBE /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		A120D0F71D17EA9400F0ACBE /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				INFOPLIST_FILE = NextTimeReminders/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.example.NextTimeApp;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		A120D0F81D17EA9400F0ACBE /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				INFOPLIST_FILE = NextTimeReminders/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.example.NextTimeApp;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		A120D0DF1D17EA9400F0ACBE /* Build configuration list for PBXProject "NextTimeReminders" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A120D0F41D17EA9400F0ACBE /* Debug */,
+				A120D0F51D17EA9400F0ACBE /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		A120D0F61D17EA9400F0ACBE /* Build configuration list for PBXNativeTarget "NextTimeReminders" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A120D0F71D17EA9400F0ACBE /* Debug */,
+				A120D0F81D17EA9400F0ACBE /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = A120D0DC1D17EA9400F0ACBE /* Project object */;
+}
