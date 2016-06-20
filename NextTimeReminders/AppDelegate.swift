@@ -12,6 +12,7 @@ import UIKit
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
+    var mainNavigationController: UINavigationController?
 
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
@@ -22,10 +23,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             print("notification received upon launch: \(aps)")
         }
         
+        
+        // set up window
         self.window = UIWindow(frame: UIScreen.mainScreen().bounds)
-        self.window?.rootViewController = LandingViewController(nibName: "LandingViewController", bundle: nil)
         self.window?.makeKeyAndVisible()
+        
+        // register for push notifications
         self.registerForPushNotifications(application)
+        
+        // set up view controllers
+        self.window?.rootViewController = LandingViewController(nibName: "LandingViewController", bundle: nil)
+        let reminderViewController = ReminderViewController(nibName: "ReminderViewController", bundle: nil)
+        self.mainNavigationController = UINavigationController(rootViewController: reminderViewController)
         
         return true
     }
@@ -51,6 +60,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func applicationWillTerminate(application: UIApplication) {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
     }
+    
+    // *************** PUSH NOTIFICATION FUNCTIONS ***************
     
     // registers the push notification settings we want
     func registerForPushNotifications(application: UIApplication) {
@@ -80,6 +91,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func application(application: UIApplication, didReceiveRemoteNotification userInfo: [NSObject : AnyObject]) {
         print("received remote notification: \(userInfo)")
+    }
+    
+    // *************** APP NAVIGATION FUNCTIONS ***************
+    func navigateToLoggedInViewController() {
+        self.window?.rootViewController = self.mainNavigationController
+    }
+    
+    func navigateToLoggedOutViewController() {
+        self.window?.rootViewController = LandingViewController(nibName: "LandingViewController", bundle: nil)
     }
 
 

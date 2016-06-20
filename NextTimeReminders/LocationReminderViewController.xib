@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10117" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="LocationReminderViewController" customModule="NextTimeReminders" customModuleProvider="target">
+            <connections>
+                <outlet property="locationTextField" destination="DVb-i0-xaI" id="od0-c0-m4H"/>
+                <outlet property="reminderDescriptionTextField" destination="o20-x9-dTa" id="KXC-h8-L9P"/>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Location" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="DVb-i0-xaI">
+                    <rect key="frame" x="48" y="80" width="503" height="30"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <textInputTraits key="textInputTraits"/>
+                </textField>
+                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Reminder" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="o20-x9-dTa">
+                    <rect key="frame" x="48" y="125" width="503" height="30"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <textInputTraits key="textInputTraits"/>
+                </textField>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NZ9-9H-5rA">
+                    <rect key="frame" x="285" y="170" width="31" height="33"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <state key="normal" title="Add"/>
+                    <connections>
+                        <action selector="addButtonTapped:" destination="-1" eventType="touchUpInside" id="p2H-0R-xbV"/>
+                    </connections>
+                </button>
+            </subviews>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstItem="NZ9-9H-5rA" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="IpJ-O6-vrC"/>
+                <constraint firstItem="o20-x9-dTa" firstAttribute="top" secondItem="DVb-i0-xaI" secondAttribute="bottom" constant="15" id="Jvg-5q-peM"/>
+                <constraint firstAttribute="trailing" secondItem="o20-x9-dTa" secondAttribute="trailing" constant="49" id="O9S-qO-amQ"/>
+                <constraint firstItem="DVb-i0-xaI" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="48" id="Rlo-qN-vB5"/>
+                <constraint firstItem="NZ9-9H-5rA" firstAttribute="top" secondItem="o20-x9-dTa" secondAttribute="bottom" constant="15" id="hF1-b5-mbi"/>
+                <constraint firstAttribute="trailing" secondItem="DVb-i0-xaI" secondAttribute="trailing" constant="49" id="hqG-kL-NcB"/>
+                <constraint firstItem="DVb-i0-xaI" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="80" id="jSx-IC-wtj"/>
+                <constraint firstItem="o20-x9-dTa" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="48" id="me1-Su-awj"/>
+            </constraints>
+            <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
+        </view>
+    </objects>
+</document>

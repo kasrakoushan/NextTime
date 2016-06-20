@@ -5,7 +5,7 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
     </dependencies>
     <objects>
-        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="LandingViewController" customModule="NextTimeReminders" customModuleProvider="target">
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ReminderViewController" customModule="NextTimeReminders" customModuleProvider="target">
             <connections>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
@@ -15,19 +15,17 @@
             <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kDn-K1-O6G">
-                    <rect key="frame" x="274" y="68" width="52" height="35"/>
-                    <fontDescription key="fontDescription" type="system" pointSize="19"/>
-                    <state key="normal" title="Log in"/>
-                    <connections>
-                        <action selector="loginButtonTapped:" destination="-1" eventType="touchUpInside" id="WbZ-tp-WMb"/>
-                    </connections>
-                </button>
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="QM7-62-ZV0">
+                    <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                </tableView>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
-                <constraint firstItem="kDn-K1-O6G" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="68" id="GUs-9r-dyx"/>
-                <constraint firstItem="kDn-K1-O6G" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="Q8i-PS-fl7"/>
+                <constraint firstItem="QM7-62-ZV0" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="K9L-G5-osL"/>
+                <constraint firstItem="QM7-62-ZV0" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="k4c-UR-MOJ"/>
+                <constraint firstAttribute="bottom" secondItem="QM7-62-ZV0" secondAttribute="bottom" id="vdC-sA-zOZ"/>
+                <constraint firstAttribute="trailing" secondItem="QM7-62-ZV0" secondAttribute="trailing" id="ym7-tp-Y0b"/>
             </constraints>
         </view>
     </objects>

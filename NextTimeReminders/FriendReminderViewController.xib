@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10117" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="FriendReminderViewController" customModule="NextTimeReminders" customModuleProvider="target">
+            <connections>
+                <outlet property="friendTextField" destination="IUG-4p-9a8" id="8Ue-co-6E9"/>
+                <outlet property="reminderDescriptionTextField" destination="Qou-JB-ggf" id="OIr-P6-9tX"/>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Friend" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="IUG-4p-9a8">
+                    <rect key="frame" x="48" y="80" width="503" height="30"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <textInputTraits key="textInputTraits"/>
+                </textField>
+                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Reminder" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Qou-JB-ggf">
+                    <rect key="frame" x="48" y="125" width="503" height="30"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <textInputTraits key="textInputTraits"/>
+                </textField>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eX4-y7-Zkh">
+                    <rect key="frame" x="285" y="170" width="31" height="33"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <state key="normal" title="Add"/>
+                    <connections>
+                        <action selector="addButtonTapped:" destination="-1" eventType="touchUpInside" id="Xhu-3m-JO2"/>
+                    </connections>
+                </button>
+            </subviews>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstAttribute="trailing" secondItem="IUG-4p-9a8" secondAttribute="trailing" constant="49" id="9lc-MY-c5f"/>
+                <constraint firstAttribute="trailing" secondItem="Qou-JB-ggf" secondAttribute="trailing" constant="49" id="DGM-k3-viv"/>
+                <constraint firstItem="eX4-y7-Zkh" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="ZVM-3Q-59e"/>
+                <constraint firstItem="eX4-y7-Zkh" firstAttribute="top" secondItem="Qou-JB-ggf" secondAttribute="bottom" constant="15" id="Zau-WU-qG4"/>
+                <constraint firstItem="IUG-4p-9a8" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="80" id="fYn-7i-87f"/>
+                <constraint firstItem="Qou-JB-ggf" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="48" id="ge2-OH-DXN"/>
+                <constraint firstItem="Qou-JB-ggf" firstAttribute="top" secondItem="IUG-4p-9a8" secondAttribute="bottom" constant="15" id="tjn-yX-EO2"/>
+                <constraint firstItem="IUG-4p-9a8" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="48" id="xQ8-fU-wMT"/>
+            </constraints>
+            <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
+        </view>
+    </objects>
+</document>
