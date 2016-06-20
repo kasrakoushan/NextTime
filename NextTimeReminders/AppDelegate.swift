@@ -17,9 +17,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         // Override point for customization after application launch.
         
+        if let notification = launchOptions?[UIApplicationLaunchOptionsRemoteNotificationKey] as? [String: AnyObject] {
+            let aps = notification["aps"] as! [String: AnyObject]
+            print("notification received upon launch: \(aps)")
+        }
+        
         self.window = UIWindow(frame: UIScreen.mainScreen().bounds)
         self.window?.rootViewController = LandingViewController(nibName: "LandingViewController", bundle: nil)
         self.window?.makeKeyAndVisible()
+        self.registerForPushNotifications(application)
         
         return true
     }
@@ -44,6 +50,36 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func applicationWillTerminate(application: UIApplication) {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
+    }
+    
+    // registers the push notification settings we want
+    func registerForPushNotifications(application: UIApplication) {
+        let notificationSettings = UIUserNotificationSettings(
+            forTypes: [.Badge, .Sound, .Alert], categories: nil)
+        application.registerUserNotificationSettings(notificationSettings)
+    }
+    
+    // handler for when the user accepts notification permissions
+    func application(application: UIApplication, didRegisterUserNotificationSettings notificationSettings: UIUserNotificationSettings) {
+        if notificationSettings.types != UIUserNotificationType.None {
+            print("registering for remote notifications")
+            application.registerForRemoteNotifications()
+        }
+    }
+    
+    // handler for when the app has registered for push notifications with success
+    func application(application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: NSData) {
+        print("device token is \(deviceToken)")
+    }
+    
+    
+    // handler for when the app fails in registering for push notifications
+    func application(application: UIApplication, didFailToRegisterForRemoteNotificationsWithError error: NSError) {
+        print("Failed to register: \(error)")
+    }
+    
+    func application(application: UIApplication, didReceiveRemoteNotification userInfo: [NSObject : AnyObject]) {
+        print("received remote notification: \(userInfo)")
     }
 
 
