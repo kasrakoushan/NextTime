@@ -8,11 +8,12 @@
 
 import UIKit
 import FBSDKLoginKit
+import MapKit
 
 class ReminderViewController: UIViewController {
     
-    var logOutButton: FBSDKLoginButton?
     @IBOutlet var tableView: UITableView!
+    @IBOutlet var mapView: MKMapView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -21,6 +22,8 @@ class ReminderViewController: UIViewController {
         self.title = "Reminders"
         self.navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Log out", style: .Plain, target: self, action: #selector(ReminderViewController.logOutButtonTapped))
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "New", style: .Plain, target: self, action: #selector(ReminderViewController.newReminderButtonTapped))
+        self.mapView.showsUserLocation = true
+        
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -30,11 +33,10 @@ class ReminderViewController: UIViewController {
         request.startWithCompletionHandler() {(connection, result, error) in
             if error == nil {
                 if let name = result["first_name"] {
-                    print("Current user: \(name!)")
                     self.title = "\(name!)'s Reminders"
                 }
             } else {
-                print("error: \(error)")
+                print("Error in current user's name request from ReminderViewController: \(error)")
             }
             
         }

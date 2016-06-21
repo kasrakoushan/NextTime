@@ -3,10 +3,12 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ReminderViewController" customModule="NextTimeReminders" customModuleProvider="target">
             <connections>
+                <outlet property="mapView" destination="NUV-Lc-nA9" id="rDL-Vc-i7Z"/>
                 <outlet property="tableView" destination="QM7-62-ZV0" id="5a0-Zo-Kkx"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
@@ -17,14 +19,21 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="QM7-62-ZV0">
-                    <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                    <rect key="frame" x="0.0" y="300" width="600" height="300"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                 </tableView>
+                <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="NUV-Lc-nA9">
+                    <rect key="frame" x="0.0" y="0.0" width="600" height="300"/>
+                </mapView>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
+                <constraint firstItem="NUV-Lc-nA9" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="FNU-8Q-rF6"/>
+                <constraint firstItem="QM7-62-ZV0" firstAttribute="height" secondItem="i5M-Pr-FkT" secondAttribute="height" multiplier="0.5" id="Ft2-U8-UHg"/>
                 <constraint firstItem="QM7-62-ZV0" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="K9L-G5-osL"/>
-                <constraint firstItem="QM7-62-ZV0" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="k4c-UR-MOJ"/>
+                <constraint firstItem="NUV-Lc-nA9" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="Q4y-0u-pI7"/>
+                <constraint firstAttribute="trailing" secondItem="NUV-Lc-nA9" secondAttribute="trailing" id="dmr-bD-yXP"/>
+                <constraint firstItem="NUV-Lc-nA9" firstAttribute="height" secondItem="i5M-Pr-FkT" secondAttribute="height" multiplier="0.5" id="kPV-BX-Z7n"/>
                 <constraint firstAttribute="bottom" secondItem="QM7-62-ZV0" secondAttribute="bottom" id="vdC-sA-zOZ"/>
                 <constraint firstAttribute="trailing" secondItem="QM7-62-ZV0" secondAttribute="trailing" id="ym7-tp-Y0b"/>
             </constraints>
