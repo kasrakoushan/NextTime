@@ -8,6 +8,7 @@
 
 import UIKit
 import FBSDKLoginKit
+import Firebase
 
 class LandingViewController: UIViewController, FBSDKLoginButtonDelegate {
 
@@ -31,14 +32,23 @@ class LandingViewController: UIViewController, FBSDKLoginButtonDelegate {
     
     // FBSDKLoginButtonDelegate function
     func loginButton(loginButton: FBSDKLoginButton!, didCompleteWithResult result: FBSDKLoginManagerLoginResult!, error: NSError!) {
-        // will have to do something with the login token (add it to UserController)
+        
         if error == nil {
             print("logged in")
+            let credential = FIRFacebookAuthProvider.credentialWithAccessToken(result.token.tokenString)
+            FIRAuth.auth()?.signInWithCredential(credential) {(user, error) in
+                if error == nil {
+                    print("signed in successfully: user \(user!.email)")
+                } else {
+                    print("error signing in: error \(error!.localizedDescription)")
+                }
+                // will have to do something with the database
+            }
             let app = UIApplication.sharedApplication().delegate as! AppDelegate
             app.navigateToLoggedInViewController()
         } else {
             print("did not log in")
-            print("error: \(error)")
+            print("error: \(error.localizedDescription)")
         }
     }
     

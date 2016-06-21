@@ -10,4 +10,7 @@ target 'NextTimeReminders' do
   pod 'FBSDKShareKit'
   pod 'FBSDKLoginKit'
   pod 'Firebase'
+  pod 'Firebase/Messaging' # for notifications
+  pod 'Firebase/Auth' # for authorization
+  pod 'Firebase/Database' # for database
 end

@@ -9,6 +9,7 @@
 import UIKit
 import FBSDKLoginKit
 import MapKit
+import Firebase
 
 class ReminderViewController: UIViewController {
     
@@ -48,7 +49,9 @@ class ReminderViewController: UIViewController {
     }
     
     func logOutButtonTapped() {
+        // do we need to sign out of Facebook and Firebase? probably yes
         FBSDKLoginManager().logOut()
+        try! FIRAuth.auth()!.signOut()
         let app = UIApplication.sharedApplication().delegate as! AppDelegate
         app.navigateToLoggedOutViewController()
     }
