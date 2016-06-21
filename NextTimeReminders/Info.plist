@@ -2,6 +2,8 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>FirebaseAppDelegateProxyEnabled</key>
+	<string>NO</string>
 	<key>NSLocationAlwaysUsageDescription</key>
 	<string>NextTime will need your location to send you reminders.</string>
 	<key>CFBundleDevelopmentRegion</key>

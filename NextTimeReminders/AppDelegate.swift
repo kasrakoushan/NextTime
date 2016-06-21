@@ -97,8 +97,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
     }
     
     // handler for when the app has registered for push notifications with success (UIApplicationDelegate function)
+    // for some reason this function is called twice
     func application(application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: NSData) {
-        print("Registered: device token is \(deviceToken)")
+        print("Registered: APNS device token is \(deviceToken)")
+        print("Registered: Firebase ACM token is \(FIRInstanceID.instanceID().token())")
         
         // now that we have completed notification registration, request location services
         self.locationManager = CLLocationManager()
