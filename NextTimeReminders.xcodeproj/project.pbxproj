@@ -21,6 +21,7 @@
 		A15DC4591D18537800CC9006 /* LocationReminderViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A15DC4571D18537800CC9006 /* LocationReminderViewController.xib */; };
 		A15DC45C1D18546D00CC9006 /* FriendReminderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A15DC45A1D18546D00CC9006 /* FriendReminderViewController.swift */; };
 		A15DC45D1D18546D00CC9006 /* FriendReminderViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A15DC45B1D18546D00CC9006 /* FriendReminderViewController.xib */; };
+		A2497E8B7404A4E4167C55A1 /* Pods_NextTimeReminders.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DDB64DFEF21ADDDFF1CDF5EE /* Pods_NextTimeReminders.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -40,6 +41,9 @@
 		A15DC4571D18537800CC9006 /* LocationReminderViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LocationReminderViewController.xib; sourceTree = "<group>"; };
 		A15DC45A1D18546D00CC9006 /* FriendReminderViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FriendReminderViewController.swift; sourceTree = "<group>"; };
 		A15DC45B1D18546D00CC9006 /* FriendReminderViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FriendReminderViewController.xib; sourceTree = "<group>"; };
+		C8F9A48805320CBA2D2533A1 /* Pods-NextTimeReminders.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NextTimeReminders.release.xcconfig"; path = "Pods/Target Support Files/Pods-NextTimeReminders/Pods-NextTimeReminders.release.xcconfig"; sourceTree = "<group>"; };
+		DDB64DFEF21ADDDFF1CDF5EE /* Pods_NextTimeReminders.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_NextTimeReminders.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		FE9DB73B7DA890776BEF179B /* Pods-NextTimeReminders.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NextTimeReminders.debug.xcconfig"; path = "Pods/Target Support Files/Pods-NextTimeReminders/Pods-NextTimeReminders.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -48,18 +52,29 @@
 			buildActionMask = 2147483647;
 			files = (
 				A120D0FA1D17EB0700F0ACBE /* MapKit.framework in Frameworks */,
+				A2497E8B7404A4E4167C55A1 /* Pods_NextTimeReminders.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		63927449CBAAFEB15683E183 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				DDB64DFEF21ADDDFF1CDF5EE /* Pods_NextTimeReminders.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		A120D0DB1D17EA9400F0ACBE = {
 			isa = PBXGroup;
 			children = (
 				A120D0F91D17EB0600F0ACBE /* MapKit.framework */,
 				A120D0E61D17EA9400F0ACBE /* NextTimeReminders */,
 				A120D0E51D17EA9400F0ACBE /* Products */,
+				C21CD4326457695171F28B90 /* Pods */,
+				63927449CBAAFEB15683E183 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -100,6 +115,15 @@
 			name = Screens;
 			sourceTree = "<group>";
 		};
+		C21CD4326457695171F28B90 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				FE9DB73B7DA890776BEF179B /* Pods-NextTimeReminders.debug.xcconfig */,
+				C8F9A48805320CBA2D2533A1 /* Pods-NextTimeReminders.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -107,9 +131,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = A120D0F61D17EA9400F0ACBE /* Build configuration list for PBXNativeTarget "NextTimeReminders" */;
 			buildPhases = (
+				ECF5FFCBDF21CEEE1FC59945 /* [CP] Check Pods Manifest.lock */,
 				A120D0E01D17EA9400F0ACBE /* Sources */,
 				A120D0E11D17EA9400F0ACBE /* Frameworks */,
 				A120D0E21D17EA9400F0ACBE /* Resources */,
+				65E333C6A8D1BF2F7C82769D /* [CP] Embed Pods Frameworks */,
+				E5D7AC9FF22DB51796DCAFA9 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -178,6 +205,54 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		65E333C6A8D1BF2F7C82769D /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-NextTimeReminders/Pods-NextTimeReminders-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		E5D7AC9FF22DB51796DCAFA9 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-NextTimeReminders/Pods-NextTimeReminders-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		ECF5FFCBDF21CEEE1FC59945 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		A120D0E01D17EA9400F0ACBE /* Sources */ = {
@@ -292,6 +367,7 @@
 		};
 		A120D0F71D17EA9400F0ACBE /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = FE9DB73B7DA890776BEF179B /* Pods-NextTimeReminders.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
@@ -304,6 +380,7 @@
 		};
 		A120D0F81D17EA9400F0ACBE /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = C8F9A48805320CBA2D2533A1 /* Pods-NextTimeReminders.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
