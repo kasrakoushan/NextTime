@@ -7,13 +7,21 @@
 //
 
 import UIKit
+import FBSDKLoginKit
 
-class LandingViewController: UIViewController {
+class LandingViewController: UIViewController, FBSDKLoginButtonDelegate {
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+        // set up Facebook login button
+        let screenFrame = UIScreen.mainScreen().bounds
+        let frame = CGRectMake(screenFrame.midX - 50, screenFrame.midY - 20, 100, 40)
+        let loginButton = FBSDKLoginButton(frame: frame)
+        loginButton.readPermissions = ["public_profile", "email", "user_friends"]
+        loginButton.delegate = self
+        self.view.addSubview(loginButton)
     }
 
     override func didReceiveMemoryWarning() {
@@ -21,9 +29,23 @@ class LandingViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-    @IBAction func loginButtonTapped(sender: UIButton) {
-        let app = UIApplication.sharedApplication().delegate as! AppDelegate
-        app.navigateToLoggedInViewController()
+    // FBSDKLoginButtonDelegate function
+    func loginButton(loginButton: FBSDKLoginButton!, didCompleteWithResult result: FBSDKLoginManagerLoginResult!, error: NSError!) {
+        // will have to do something with the login token (add it to UserController)
+        if error == nil {
+            print("logged in")
+            let app = UIApplication.sharedApplication().delegate as! AppDelegate
+            app.navigateToLoggedInViewController()
+        } else {
+            print("did not log in")
+            print("error: \(error)")
+        }
+    }
+    
+    // FBSDKLoginButtonDelegate function
+    func loginButtonDidLogOut(loginButton: FBSDKLoginButton!) {
+        // set logged out user in UserController
+        print("logged out")
     }
 
 }

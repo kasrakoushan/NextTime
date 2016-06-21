@@ -107,12 +107,20 @@
 				A15DC44E1D18461E00CC9006 /* ReminderViewController.xib */,
 				A15DC4521D184BEB00CC9006 /* NewReminderViewController.swift */,
 				A15DC4531D184BEB00CC9006 /* NewReminderViewController.xib */,
+				A19F14BB1D198DE3003D3FE7 /* NewReminders */,
+			);
+			name = Screens;
+			sourceTree = "<group>";
+		};
+		A19F14BB1D198DE3003D3FE7 /* NewReminders */ = {
+			isa = PBXGroup;
+			children = (
 				A15DC4561D18537800CC9006 /* LocationReminderViewController.swift */,
 				A15DC4571D18537800CC9006 /* LocationReminderViewController.xib */,
 				A15DC45A1D18546D00CC9006 /* FriendReminderViewController.swift */,
 				A15DC45B1D18546D00CC9006 /* FriendReminderViewController.xib */,
 			);
-			name = Screens;
+			name = NewReminders;
 			sourceTree = "<group>";
 		};
 		C21CD4326457695171F28B90 /* Pods */ = {

@@ -7,12 +7,14 @@
 //
 
 import UIKit
+import FBSDKLoginKit
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
     var mainNavigationController: UINavigationController?
+    var landingViewController: LandingViewController?
 
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
@@ -23,18 +25,28 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             print("notification received upon launch: \(aps)")
         }
         
+        // launch the Facebook app
+        FBSDKApplicationDelegate.sharedInstance().application(application, didFinishLaunchingWithOptions: launchOptions)
         
         // set up window
         self.window = UIWindow(frame: UIScreen.mainScreen().bounds)
-        self.window?.makeKeyAndVisible()
         
         // register for push notifications
         self.registerForPushNotifications(application)
         
-        // set up view controllers
-        self.window?.rootViewController = LandingViewController(nibName: "LandingViewController", bundle: nil)
+        // initialize App Delegate's view controller properties
+        self.landingViewController = LandingViewController(nibName: "LandingViewController", bundle: nil)
         let reminderViewController = ReminderViewController(nibName: "ReminderViewController", bundle: nil)
         self.mainNavigationController = UINavigationController(rootViewController: reminderViewController)
+        
+        // navigate to the correct view controller
+        if let token = FBSDKAccessToken.currentAccessToken() {
+            self.window?.rootViewController = self.mainNavigationController
+            print("currently logged in with user ID:\(token.userID)")
+        } else {
+            self.window?.rootViewController = self.landingViewController
+        }
+        self.window?.makeKeyAndVisible()
         
         return true
     }
@@ -63,14 +75,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     // *************** PUSH NOTIFICATION FUNCTIONS ***************
     
-    // registers the push notification settings we want
+    // registers the push notification settings we want (helper function)
     func registerForPushNotifications(application: UIApplication) {
         let notificationSettings = UIUserNotificationSettings(
             forTypes: [.Badge, .Sound, .Alert], categories: nil)
         application.registerUserNotificationSettings(notificationSettings)
     }
     
-    // handler for when the user accepts notification permissions
+    // handler for when the user accepts notification permissions (UIApplicationDelegate function)
     func application(application: UIApplication, didRegisterUserNotificationSettings notificationSettings: UIUserNotificationSettings) {
         if notificationSettings.types != UIUserNotificationType.None {
             print("registering for remote notifications")
@@ -78,17 +90,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }
     }
     
-    // handler for when the app has registered for push notifications with success
+    // handler for when the app has registered for push notifications with success (UIApplicationDelegate function)
     func application(application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: NSData) {
-        print("device token is \(deviceToken)")
+        print("Registered: device token is \(deviceToken)")
     }
     
     
-    // handler for when the app fails in registering for push notifications
+    // handler for when the app fails in registering for push notifications (UIApplicationDelegate function)
     func application(application: UIApplication, didFailToRegisterForRemoteNotificationsWithError error: NSError) {
         print("Failed to register: \(error)")
     }
     
+    // handler for receiving remote notification (UIApplicationDelegate function)
     func application(application: UIApplication, didReceiveRemoteNotification userInfo: [NSObject : AnyObject]) {
         print("received remote notification: \(userInfo)")
     }
@@ -99,7 +112,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     func navigateToLoggedOutViewController() {
-        self.window?.rootViewController = LandingViewController(nibName: "LandingViewController", bundle: nil)
+        self.window?.rootViewController = self.landingViewController
+    }
+    
+    // *************** FB SDK LOGIN BUTTON DELEGATE ***************
+    
+    // UIApplicationDelegate function that responds to calls to open a certain URL
+    func application(application: UIApplication, openURL url: NSURL, sourceApplication: String?, annotation: AnyObject) -> Bool {
+        return FBSDKApplicationDelegate.sharedInstance().application(application, openURL: url, sourceApplication: sourceApplication, annotation: annotation)
     }
 
 

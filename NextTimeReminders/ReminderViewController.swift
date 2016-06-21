@@ -7,16 +7,37 @@
 //
 
 import UIKit
+import FBSDKLoginKit
 
 class ReminderViewController: UIViewController {
-
+    
+    var logOutButton: FBSDKLoginButton?
+    @IBOutlet var tableView: UITableView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         // Set up the navigation bar
         self.title = "Reminders"
-        self.navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Log Out", style: .Plain, target: self, action: #selector(ReminderViewController.logOutButtonTapped))
+        self.navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Log out", style: .Plain, target: self, action: #selector(ReminderViewController.logOutButtonTapped))
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "New", style: .Plain, target: self, action: #selector(ReminderViewController.newReminderButtonTapped))
+    }
+    
+    override func viewWillAppear(animated: Bool) {
+        // print current log in status
+        let token = FBSDKAccessToken.currentAccessToken()
+        let request = FBSDKGraphRequest(graphPath: "me", parameters: ["fields":"first_name"], tokenString: token.tokenString, version: nil, HTTPMethod: "GET")
+        request.startWithCompletionHandler() {(connection, result, error) in
+            if error == nil {
+                if let name = result["first_name"] {
+                    print("Current user: \(name!)")
+                    self.title = "\(name!)'s Reminders"
+                }
+            } else {
+                print("error: \(error)")
+            }
+            
+        }
     }
 
     override func didReceiveMemoryWarning() {
@@ -25,6 +46,7 @@ class ReminderViewController: UIViewController {
     }
     
     func logOutButtonTapped() {
+        FBSDKLoginManager().logOut()
         let app = UIApplication.sharedApplication().delegate as! AppDelegate
         app.navigateToLoggedOutViewController()
     }
