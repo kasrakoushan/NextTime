@@ -21,6 +21,7 @@
 		A15DC4591D18537800CC9006 /* LocationReminderViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A15DC4571D18537800CC9006 /* LocationReminderViewController.xib */; };
 		A15DC45C1D18546D00CC9006 /* FriendReminderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A15DC45A1D18546D00CC9006 /* FriendReminderViewController.swift */; };
 		A15DC45D1D18546D00CC9006 /* FriendReminderViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A15DC45B1D18546D00CC9006 /* FriendReminderViewController.xib */; };
+		A19F14BD1D19D38D003D3FE7 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = A19F14BC1D19D38D003D3FE7 /* GoogleService-Info.plist */; };
 		A2497E8B7404A4E4167C55A1 /* Pods_NextTimeReminders.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DDB64DFEF21ADDDFF1CDF5EE /* Pods_NextTimeReminders.framework */; };
 /* End PBXBuildFile section */
 
@@ -41,6 +42,7 @@
 		A15DC4571D18537800CC9006 /* LocationReminderViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LocationReminderViewController.xib; sourceTree = "<group>"; };
 		A15DC45A1D18546D00CC9006 /* FriendReminderViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FriendReminderViewController.swift; sourceTree = "<group>"; };
 		A15DC45B1D18546D00CC9006 /* FriendReminderViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FriendReminderViewController.xib; sourceTree = "<group>"; };
+		A19F14BC1D19D38D003D3FE7 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		C8F9A48805320CBA2D2533A1 /* Pods-NextTimeReminders.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NextTimeReminders.release.xcconfig"; path = "Pods/Target Support Files/Pods-NextTimeReminders/Pods-NextTimeReminders.release.xcconfig"; sourceTree = "<group>"; };
 		DDB64DFEF21ADDDFF1CDF5EE /* Pods_NextTimeReminders.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_NextTimeReminders.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		FE9DB73B7DA890776BEF179B /* Pods-NextTimeReminders.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NextTimeReminders.debug.xcconfig"; path = "Pods/Target Support Files/Pods-NextTimeReminders/Pods-NextTimeReminders.debug.xcconfig"; sourceTree = "<group>"; };
@@ -89,6 +91,7 @@
 		A120D0E61D17EA9400F0ACBE /* NextTimeReminders */ = {
 			isa = PBXGroup;
 			children = (
+				A19F14BC1D19D38D003D3FE7 /* GoogleService-Info.plist */,
 				A120D0E71D17EA9400F0ACBE /* AppDelegate.swift */,
 				A120D0EE1D17EA9400F0ACBE /* Assets.xcassets */,
 				A120D0F01D17EA9400F0ACBE /* LaunchScreen.storyboard */,
@@ -203,6 +206,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				A15DC4501D18461E00CC9006 /* ReminderViewController.xib in Resources */,
+				A19F14BD1D19D38D003D3FE7 /* GoogleService-Info.plist in Resources */,
 				A15DC4551D184BEB00CC9006 /* NewReminderViewController.xib in Resources */,
 				A120D1021D17F70400F0ACBE /* LandingViewController.xib in Resources */,
 				A15DC45D1D18546D00CC9006 /* FriendReminderViewController.xib in Resources */,

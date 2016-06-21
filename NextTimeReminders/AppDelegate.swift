@@ -9,6 +9,7 @@
 import UIKit
 import FBSDKLoginKit
 import MapKit
+import Firebase
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate {
@@ -30,6 +31,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
         
         // launch the Facebook app
         FBSDKApplicationDelegate.sharedInstance().application(application, didFinishLaunchingWithOptions: launchOptions)
+        
+        // launch Firebase
+        FIRApp.configure()
         
         // set up window
         self.window = UIWindow(frame: UIScreen.mainScreen().bounds)
@@ -99,7 +103,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
         // now that we have completed notification registration, request location services
         self.locationManager = CLLocationManager()
         self.locationManager?.delegate = self
-        self.locationManager?.requestAlwaysAuthorization()    }
+        self.locationManager?.requestAlwaysAuthorization()
+    }
     
     
     // handler for when the app fails in registering for push notifications (UIApplicationDelegate function)
@@ -134,19 +139,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
             self.locationManager?.desiredAccuracy = kCLLocationAccuracyBest
             self.locationManager?.startUpdatingLocation()
         } else {
-            print("location authorization not always:")
-            switch status {
-            case CLAuthorizationStatus.Authorized:
-                print("authorized")
-            case CLAuthorizationStatus.AuthorizedWhenInUse:
-                print("authorized when in use")
-            case CLAuthorizationStatus.Denied:
-                print("denied")
-            case CLAuthorizationStatus.NotDetermined:
-                print("not determined")
-            case CLAuthorizationStatus.Restricted:
-                print("restricted")
-            }
+            print("location authorization not always")
         }
     }
     
