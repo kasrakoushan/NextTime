@@ -26,8 +26,8 @@ class ReminderController {
     
     var reminders = [Reminder]()
     
-    func addLocationReminder(description: String, searchQuery: String) {
-        let reminder = Reminder(description: description, type: .Location, searchQuery: searchQuery)
+    func addLocationReminder(description: String, locations: [CLLocation]) {
+        let reminder = Reminder(description: description, type: .Location, locationList: locations)
         self.reminders.append(reminder)
     }
     
@@ -57,6 +57,7 @@ class ReminderController {
         
         // if no one is logged in, don't send notifications
         if FBSDKAccessToken.currentAccessToken() == nil {
+            print("no logged in user")
             return
         }
         
@@ -96,10 +97,11 @@ class ReminderController {
         var activated = 0
         for reminder in self.reminders {
             if reminder.state == .Active {
+                print("increment activated, reminder: \(reminder.reminderDescription)")
                 activated += 1
             }
         }
-        notification.applicationIconBadgeNumber = activated
+//        notification.applicationIconBadgeNumber = activated
         UIApplication.sharedApplication().presentLocalNotificationNow(notification)
     }
     

@@ -7,17 +7,17 @@
 //
 
 import UIKit
+import MapKit
 
 class LocationReminderViewController: UIViewController {
-    
-    
-    @IBOutlet var locationTextField: UITextField!
+
     @IBOutlet var reminderDescriptionTextField: UITextField!
+    var locationsToSave = [CLLocation]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
+        // set up navigation bar
         self.title = "Location Reminder"
         self.navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Back", style: .Plain, target: self, action: #selector(LocationReminderViewController.backButtonTapped))
     }
@@ -34,9 +34,23 @@ class LocationReminderViewController: UIViewController {
     
     
     @IBAction func addButtonTapped(sender: UIButton) {
-        print("adding new reminder to the shared instance with written text")
-        ReminderController.sharedInstance.addLocationReminder(reminderDescriptionTextField.text!, searchQuery: locationTextField.text!)
-        self.navigationController?.dismissViewControllerAnimated(true, completion: nil)
+        self.view.endEditing(true)
+        if self.locationsToSave.count != 0 {
+            print("adding new reminder to the shared instance with written text")
+            ReminderController.sharedInstance.addLocationReminder(reminderDescriptionTextField.text!, locations: self.locationsToSave)
+            self.navigationController?.dismissViewControllerAnimated(true, completion: nil)
+        } else {
+            // present an alert saying "No matching locations nearby"
+            print("no locations provided")
+        }
     }
+    
+    @IBAction func searchForLocationsTapped(sender: UIButton) {
+        self.locationsToSave = []
+        let mapPopUpViewController = MapPopUpViewController(nibName: "MapPopUpViewController", bundle: nil)
+        mapPopUpViewController.parentLocationReminderViewController = self
+        self.presentViewController(mapPopUpViewController, animated: true, completion: nil)
+    }
+    
 
 }

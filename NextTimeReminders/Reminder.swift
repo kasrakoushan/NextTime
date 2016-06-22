@@ -31,12 +31,12 @@ class Reminder: NSObject, NSCoding {
     var locations: [CLLocation]
     
     // initializer
-    init(description: String, type: ReminderType, searchQuery: String = "", friend: Friend? = nil) {
+    init(description: String, type: ReminderType, locationList: [CLLocation]?, friend: Friend? = nil) {
         self.reminderDescription = description
         self.state = .Saved
         self.type = type
         if self.type == .Location {
-            self.locations = Reminder.generateLocationListForQuery(searchQuery)
+            self.locations = locationList!
         } else {
             self.locations = Reminder.generateLocationFromFriend(friend)
         }
@@ -57,16 +57,16 @@ class Reminder: NSObject, NSCoding {
         self.locations = aDecoder.decodeObjectForKey("locations") as! [CLLocation]
     }
     
-    // class functions for generating location lists
-    class func generateLocationListForQuery(query: String?) -> [CLLocation] {
-        if let _ = query {
-            // do a search of apple maps for a list of locations
-            return [CLLocation(latitude: -33.907772, longitude: 18.4069913),
-                    CLLocation(latitude: -33.9072776, longitude: 18.4187435)]
-        } else {
-            return []
-        }
-    }
+//    // class functions for generating location lists
+//    class func generateLocationListForQuery(query: String?) -> [CLLocation] {
+//        if let _ = query {
+//            // do a search of apple maps for a list of locations
+//            return [CLLocation(latitude: -33.907772, longitude: 18.4069913),
+//                    CLLocation(latitude: -33.9072776, longitude: 18.4187435)]
+//        } else {
+//            return []
+//        }
+//    }
     
     class func generateLocationFromFriend(friend: Friend?) -> [CLLocation] {
         // make some calls to the server to obtain friend's location

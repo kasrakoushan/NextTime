@@ -18,18 +18,18 @@
             <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
+                <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="NUV-Lc-nA9">
+                    <rect key="frame" x="0.0" y="0.0" width="600" height="300"/>
+                </mapView>
                 <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="QM7-62-ZV0">
                     <rect key="frame" x="0.0" y="300" width="600" height="300"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                 </tableView>
-                <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="NUV-Lc-nA9">
-                    <rect key="frame" x="0.0" y="0.0" width="600" height="300"/>
-                </mapView>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
+                <constraint firstItem="QM7-62-ZV0" firstAttribute="top" secondItem="NUV-Lc-nA9" secondAttribute="bottom" id="2Wr-E1-DMQ"/>
                 <constraint firstItem="NUV-Lc-nA9" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="FNU-8Q-rF6"/>
-                <constraint firstItem="QM7-62-ZV0" firstAttribute="height" secondItem="i5M-Pr-FkT" secondAttribute="height" multiplier="0.5" id="Ft2-U8-UHg"/>
                 <constraint firstItem="QM7-62-ZV0" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="K9L-G5-osL"/>
                 <constraint firstItem="NUV-Lc-nA9" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="Q4y-0u-pI7"/>
                 <constraint firstAttribute="trailing" secondItem="NUV-Lc-nA9" secondAttribute="trailing" id="dmr-bD-yXP"/>
