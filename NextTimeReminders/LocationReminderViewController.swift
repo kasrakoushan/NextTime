@@ -31,8 +31,12 @@ class LocationReminderViewController: UIViewController {
     func backButtonTapped() {
         self.navigationController?.popViewControllerAnimated(true)
     }
+    
+    
     @IBAction func addButtonTapped(sender: UIButton) {
-        print("new location reminder created")
+        print("adding new reminder to the shared instance with written text")
+        ReminderController.sharedInstance.addLocationReminder(reminderDescriptionTextField.text!, searchQuery: locationTextField.text!)
+        self.navigationController?.dismissViewControllerAnimated(true, completion: nil)
     }
 
 }

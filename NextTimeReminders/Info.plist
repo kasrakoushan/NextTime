@@ -4,6 +4,8 @@
 <dict>
 	<key>FirebaseAppDelegateProxyEnabled</key>
 	<string>NO</string>
+	<key>FIREBASE_ANALYTICS_COLLECTION_DEACTIVATED</key>
+	<string>YES</string>
 	<key>NSLocationAlwaysUsageDescription</key>
 	<string>NextTime will need your location to send you reminders.</string>
 	<key>CFBundleDevelopmentRegion</key>

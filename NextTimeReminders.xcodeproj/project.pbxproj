@@ -22,6 +22,9 @@
 		A15DC45C1D18546D00CC9006 /* FriendReminderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A15DC45A1D18546D00CC9006 /* FriendReminderViewController.swift */; };
 		A15DC45D1D18546D00CC9006 /* FriendReminderViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A15DC45B1D18546D00CC9006 /* FriendReminderViewController.xib */; };
 		A19F14BD1D19D38D003D3FE7 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = A19F14BC1D19D38D003D3FE7 /* GoogleService-Info.plist */; };
+		A1B9EA811D1AAB7500DDE19A /* Reminder.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1B9EA801D1AAB7500DDE19A /* Reminder.swift */; };
+		A1B9EA831D1AAE0800DDE19A /* ReminderController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1B9EA821D1AAE0800DDE19A /* ReminderController.swift */; };
+		A1B9EA851D1AB4FD00DDE19A /* PersistenceManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1B9EA841D1AB4FD00DDE19A /* PersistenceManager.swift */; };
 		A2497E8B7404A4E4167C55A1 /* Pods_NextTimeReminders.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DDB64DFEF21ADDDFF1CDF5EE /* Pods_NextTimeReminders.framework */; };
 /* End PBXBuildFile section */
 
@@ -43,6 +46,9 @@
 		A15DC45A1D18546D00CC9006 /* FriendReminderViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FriendReminderViewController.swift; sourceTree = "<group>"; };
 		A15DC45B1D18546D00CC9006 /* FriendReminderViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FriendReminderViewController.xib; sourceTree = "<group>"; };
 		A19F14BC1D19D38D003D3FE7 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		A1B9EA801D1AAB7500DDE19A /* Reminder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Reminder.swift; sourceTree = "<group>"; };
+		A1B9EA821D1AAE0800DDE19A /* ReminderController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReminderController.swift; sourceTree = "<group>"; };
+		A1B9EA841D1AB4FD00DDE19A /* PersistenceManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PersistenceManager.swift; sourceTree = "<group>"; };
 		C8F9A48805320CBA2D2533A1 /* Pods-NextTimeReminders.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NextTimeReminders.release.xcconfig"; path = "Pods/Target Support Files/Pods-NextTimeReminders/Pods-NextTimeReminders.release.xcconfig"; sourceTree = "<group>"; };
 		DDB64DFEF21ADDDFF1CDF5EE /* Pods_NextTimeReminders.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_NextTimeReminders.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		FE9DB73B7DA890776BEF179B /* Pods-NextTimeReminders.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NextTimeReminders.debug.xcconfig"; path = "Pods/Target Support Files/Pods-NextTimeReminders/Pods-NextTimeReminders.debug.xcconfig"; sourceTree = "<group>"; };
@@ -97,6 +103,7 @@
 				A120D0F01D17EA9400F0ACBE /* LaunchScreen.storyboard */,
 				A120D0F31D17EA9400F0ACBE /* Info.plist */,
 				A15DC4511D184BD800CC9006 /* Screens */,
+				A1B9EA861D1ABE4D00DDE19A /* Model */,
 			);
 			path = NextTimeReminders;
 			sourceTree = "<group>";
@@ -124,6 +131,16 @@
 				A15DC45B1D18546D00CC9006 /* FriendReminderViewController.xib */,
 			);
 			name = NewReminders;
+			sourceTree = "<group>";
+		};
+		A1B9EA861D1ABE4D00DDE19A /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				A1B9EA801D1AAB7500DDE19A /* Reminder.swift */,
+				A1B9EA841D1AB4FD00DDE19A /* PersistenceManager.swift */,
+				A1B9EA821D1AAE0800DDE19A /* ReminderController.swift */,
+			);
+			name = Model;
 			sourceTree = "<group>";
 		};
 		C21CD4326457695171F28B90 /* Pods */ = {
@@ -272,9 +289,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				A15DC4581D18537800CC9006 /* LocationReminderViewController.swift in Sources */,
+				A1B9EA811D1AAB7500DDE19A /* Reminder.swift in Sources */,
 				A120D1011D17F70400F0ACBE /* LandingViewController.swift in Sources */,
 				A15DC45C1D18546D00CC9006 /* FriendReminderViewController.swift in Sources */,
 				A15DC4541D184BEB00CC9006 /* NewReminderViewController.swift in Sources */,
+				A1B9EA831D1AAE0800DDE19A /* ReminderController.swift in Sources */,
+				A1B9EA851D1AB4FD00DDE19A /* PersistenceManager.swift in Sources */,
 				A120D0E81D17EA9400F0ACBE /* AppDelegate.swift in Sources */,
 				A15DC44F1D18461E00CC9006 /* ReminderViewController.swift in Sources */,
 			);

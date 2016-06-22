@@ -38,7 +38,7 @@ class LandingViewController: UIViewController, FBSDKLoginButtonDelegate {
             let credential = FIRFacebookAuthProvider.credentialWithAccessToken(result.token.tokenString)
             FIRAuth.auth()?.signInWithCredential(credential) {(user, error) in
                 if error == nil {
-                    print("signed in successfully: user \(user!.email)")
+                    print("signed in successfully: user \(user!.email!)")
                 } else {
                     print("error signing in: error \(error!.localizedDescription)")
                 }

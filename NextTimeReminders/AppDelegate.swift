@@ -29,6 +29,21 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
             print("notification received upon launch: \(aps)")
         }
         
+        // load reminders
+        ReminderController.sharedInstance.loadReminders()
+        
+        // set up location manager
+        self.locationManager = CLLocationManager()
+        self.locationManager?.delegate = self
+        self.locationManager?.desiredAccuracy = kCLLocationAccuracyBest
+        self.locationManager?.requestAlwaysAuthorization()
+        // check if app was launched by a location change
+        if let _ = launchOptions?[UIApplicationLaunchOptionsLocationKey] {
+            // register with ReminderController
+            // location manager's last location should already be populated
+            ReminderController.sharedInstance.checkReminders(withRecentLocation: locationManager!.location!)
+        }
+        
         // launch the Facebook app
         FBSDKApplicationDelegate.sharedInstance().application(application, didFinishLaunchingWithOptions: launchOptions)
         
@@ -78,6 +93,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
 
     func applicationWillTerminate(application: UIApplication) {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
+        print("-------------------------------SAVING REMINDERS-------------------------------")
+        ReminderController.sharedInstance.saveReminders()
     }
     
     // *************** PUSH NOTIFICATION FUNCTIONS ***************
@@ -100,23 +117,20 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
     // for some reason this function is called twice
     func application(application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: NSData) {
         print("Registered: APNS device token is \(deviceToken)")
-        print("Registered: Firebase ACM token is \(FIRInstanceID.instanceID().token())")
-        
-        // now that we have completed notification registration, request location services
-        self.locationManager = CLLocationManager()
-        self.locationManager?.delegate = self
-        self.locationManager?.requestAlwaysAuthorization()
+        if let token = FIRInstanceID.instanceID().token() {
+            print("Firebase token: \(token)")
+        }
     }
     
     
     // handler for when the app fails in registering for push notifications (UIApplicationDelegate function)
     func application(application: UIApplication, didFailToRegisterForRemoteNotificationsWithError error: NSError) {
-        print("Failed to register: \(error)")
+        print("Failed to register for remote notifications: \(error)")
     }
     
     // handler for receiving remote notification (UIApplicationDelegate function)
     func application(application: UIApplication, didReceiveRemoteNotification userInfo: [NSObject : AnyObject]) {
-        print("received remote notification: \(userInfo)")
+        print("Received remote notification: \(userInfo)")
     }
     
     // *************** APP NAVIGATION FUNCTIONS ***************
@@ -138,7 +152,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
     // *************** LOCATION MANAGER DELEGATE ***************
     func locationManager(manager: CLLocationManager, didChangeAuthorizationStatus status: CLAuthorizationStatus) {
         if status == CLAuthorizationStatus.AuthorizedAlways {
-            self.locationManager?.desiredAccuracy = kCLLocationAccuracyBest
+            // for tracking significant changes, regardless of app state
+            self.locationManager?.startMonitoringSignificantLocationChanges()
+            // to update locations for when the app is running
             self.locationManager?.startUpdatingLocation()
         } else {
             print("location authorization not always")
@@ -146,14 +162,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
     }
     
     func locationManager(manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        // must send something to the server
+        // check reminders with this new location
+//        print("location updated")
+        ReminderController.sharedInstance.checkReminders(withRecentLocation: locations.last!)
+        // send new location to server
     }
     
     func locationManager(manager: CLLocationManager, didFailWithError error: NSError) {
         print("location update failed")
         // send nothing to server
     }
-    
 
 }
 

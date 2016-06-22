@@ -11,7 +11,7 @@ import FBSDKLoginKit
 import MapKit
 import Firebase
 
-class ReminderViewController: UIViewController {
+class ReminderViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
     @IBOutlet var tableView: UITableView!
     @IBOutlet var mapView: MKMapView!
@@ -24,6 +24,10 @@ class ReminderViewController: UIViewController {
         self.navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Log out", style: .Plain, target: self, action: #selector(ReminderViewController.logOutButtonTapped))
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "New", style: .Plain, target: self, action: #selector(ReminderViewController.newReminderButtonTapped))
         self.mapView.showsUserLocation = true
+        
+        // table
+        self.tableView.delegate = self
+        self.tableView.dataSource = self
         
     }
     
@@ -41,6 +45,12 @@ class ReminderViewController: UIViewController {
             }
             
         }
+        
+        // reload the table
+        self.tableView.reloadData()
+        
+        // check on reminder list
+        print("\(ReminderController.sharedInstance.reminders)")
     }
 
     override func didReceiveMemoryWarning() {
@@ -60,6 +70,19 @@ class ReminderViewController: UIViewController {
         let newReminderViewController = NewReminderViewController(nibName: "NewReminderViewController", bundle: nil)
         let newReminderNavigationController = UINavigationController(rootViewController: newReminderViewController)
         self.navigationController?.presentViewController(newReminderNavigationController, animated: true, completion: nil)
+    }
+    
+    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        // just one section
+        // maybe eventually, divide into friend and location sections
+        return ReminderController.sharedInstance.reminders.count
+    }
+    
+    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+        let cell = UITableViewCell()
+        cell.textLabel?.text = ReminderController.sharedInstance.reminders[indexPath.row].reminderDescription
+        
+        return cell
     }
 
 }
