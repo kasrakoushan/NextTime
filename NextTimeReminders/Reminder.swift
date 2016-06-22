@@ -20,25 +20,6 @@ enum ReminderType: String {
     case Friend = "FRIEND"
 }
 
-// a wrapper class for the CLLocationCoordinate2D struct, allowing for encoding of locations
-//class Location: NSObject, NSCoding {
-//    var location: CLLocationCoordinate2D
-//    
-//    func encodeWithCoder(aCoder: NSCoder) {
-//        aCoder.encodeObject(self.location.latitude, forKey: "latitude")
-//        aCoder.encodeObject(self.location.longitude, forKey: "longitude")
-//    }
-//    
-//    init(location: CLLocationCoordinate2D) {
-//        self.location = location
-//    }
-//    
-//    required init?(coder aDecoder: NSCoder) {
-//        self.location = CLLocationCoordinate2D(latitude: aDecoder.decodeDoubleForKey("latitude"),
-//                                               longitude: aDecoder.decodeDoubleForKey("longitude"))
-//    }
-//}
-
 class Friend {
     var name: String = "kasra"
 }
