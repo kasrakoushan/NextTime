@@ -34,20 +34,23 @@ class LandingViewController: UIViewController, FBSDKLoginButtonDelegate {
     func loginButton(loginButton: FBSDKLoginButton!, didCompleteWithResult result: FBSDKLoginManagerLoginResult!, error: NSError!) {
         
         if error == nil {
-            print("logged in")
-            let credential = FIRFacebookAuthProvider.credentialWithAccessToken(result.token.tokenString)
-            FIRAuth.auth()?.signInWithCredential(credential) {(user, error) in
-                if error == nil {
-                    print("signed in successfully: user \(user!.email!)")
-                } else {
-                    print("error signing in: error \(error!.localizedDescription)")
+            print("FBAuth: no errors, will attempt to log in now")
+            if let token = result?.token?.tokenString {
+                let credential = FIRFacebookAuthProvider.credentialWithAccessToken(token)
+                FIRAuth.auth()?.signInWithCredential(credential) {(user, error) in
+                    if error == nil {
+                        print("signed in successfully: user \(user!.email!)")
+                    } else {
+                        print("error signing in: error \(error!.localizedDescription)")
+                    }
+                    // will have to do something with the database
                 }
-                // will have to do something with the database
+                let app = UIApplication.sharedApplication().delegate as! AppDelegate
+                app.navigateToLoggedInViewController()
+                
             }
-            let app = UIApplication.sharedApplication().delegate as! AppDelegate
-            app.navigateToLoggedInViewController()
         } else {
-            print("did not log in")
+            print("FBAuth: did not log in")
             print("error: \(error.localizedDescription)")
         }
     }
@@ -55,7 +58,8 @@ class LandingViewController: UIViewController, FBSDKLoginButtonDelegate {
     // FBSDKLoginButtonDelegate function
     func loginButtonDidLogOut(loginButton: FBSDKLoginButton!) {
         // set logged out user in UserController
-        print("logged out")
+        // this function /should/ never be called
+        print("FBAuth: logged out")
     }
 
 }
