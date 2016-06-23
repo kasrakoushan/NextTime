@@ -166,7 +166,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
     
     func locationManager(manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         // check reminders with this new location
-//        print("location updated")
         ReminderController.sharedInstance.checkReminders(withRecentLocation: locations.last!)
         // send new location to server
     }

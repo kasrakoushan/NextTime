@@ -12,10 +12,12 @@ import MapKit
 class MapPopUpViewController: UIViewController, UISearchBarDelegate {
     
     @IBOutlet var mapView: MKMapView!
+    var locationMessage: String = ""
     
     // location search variables
     var annotationsToAdd = [MKAnnotation]()
     var searchController:UISearchController!
+    var regionToSave: MKCoordinateRegion!
 
     // a reference for the parent view controller
     var parentLocationReminderViewController: LocationReminderViewController!
@@ -59,48 +61,39 @@ class MapPopUpViewController: UIViewController, UISearchBarDelegate {
         // create search request
         let localSearchRequest = MKLocalSearchRequest()
         localSearchRequest.naturalLanguageQuery = searchBar.text
+        self.locationMessage = searchBar.text!
         localSearchRequest.region = self.mapView.region
         // create search
         let localSearch = MKLocalSearch(request: localSearchRequest)
-        // start search
+        // execute search
         localSearch.startWithCompletionHandler() {(searchResponse, error) in
-            if searchResponse == nil {
+            if error != nil {
                 print("search response error")
-                print("error: \(error?.localizedDescription)")
+                print("error: \(error!.localizedDescription)")
                 return
             }
             
             // set the region of the map to cover the search results
-            let paddedLatitudeDelta = searchResponse!.boundingRegion.span.latitudeDelta * 1.15
-            let paddedLongitudeDelta = searchResponse!.boundingRegion.span.longitudeDelta * 1.15
-            let paddedRegion = MKCoordinateRegion(center: searchResponse!.boundingRegion.center,
-                span: MKCoordinateSpan(latitudeDelta: paddedLatitudeDelta, longitudeDelta: paddedLongitudeDelta))
-            self.mapView.setRegion(paddedRegion, animated: true)
-            
-            // annotate all of the search results on the map
-            // there's probably a syntactically cleaner way to do this
-            var annotations = [MKAnnotation]()
-            print("map items count: \(searchResponse!.mapItems.count)")
-            for item in searchResponse!.mapItems {
-                let annotation = MKPointAnnotation()
-                annotation.coordinate = item.placemark.coordinate
-                annotation.title = item.name
-                annotations.append(annotation)
+            if let response = searchResponse {
+                self.mapView.setRegion(response.createRegionWithPadding(), animated: true)
+                print("map items count: \(searchResponse!.mapItems.count)")
+                // annotate all of the search results on the map
+                self.mapView.addAnnotations(response.mapItems.map({$0.convertToPointAnnotation()}))
+                self.annotationsToAdd = response.mapItems.map({$0.convertToPointAnnotation()})
+                self.regionToSave = response.createRegionWithPadding()
             }
-            self.mapView.addAnnotations(annotations)
-            self.annotationsToAdd = annotations
         }
     }
     
     
     @IBAction func doneButtonTapped(sender: UIButton) {
-        if let parent = self.parentLocationReminderViewController {
+        if let parent = self.parentLocationReminderViewController,
+            region = self.regionToSave {
             // if parent is a LocationReminderViewController, pass along the found locations
-            for annotation in self.annotationsToAdd {
-                let location = CLLocation(latitude: annotation.coordinate.latitude, longitude: annotation.coordinate.longitude)
-                parent.locationsToSave.append(location)
-            }
-        } 
+            parent.annotationsToSave = self.annotationsToAdd
+            parent.regionToSave = region
+            parent.locationMessage = self.locationMessage
+        }
         self.presentingViewController?.dismissViewControllerAnimated(true, completion: nil)
     }
     
@@ -114,4 +107,11 @@ class MapPopUpViewController: UIViewController, UISearchBarDelegate {
         self.presentingViewController?.dismissViewControllerAnimated(true, completion: nil)
     }
 
+    @IBAction func recentreButtonTapped(sender: UIButton) {
+        if let centre = (UIApplication.sharedApplication().delegate as? AppDelegate)?.locationManager?.location?.coordinate {
+            // #CanadianSpelling
+            let region = MKCoordinateRegion(center: centre, span: MKCoordinateSpan(latitudeDelta: 0.015, longitudeDelta: 0.015))
+            self.mapView.setRegion(region, animated: true)
+        }
+    }
 }

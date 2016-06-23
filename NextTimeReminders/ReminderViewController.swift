@@ -17,6 +17,7 @@ class ReminderViewController: UIViewController, UITableViewDataSource, UITableVi
     @IBOutlet var reminderTableView: UITableView!
     @IBOutlet var mapView: MKMapView!
     
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -105,7 +106,18 @@ class ReminderViewController: UIViewController, UITableViewDataSource, UITableVi
     }
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        // show the mapView belonging to the given location reminder
+        if let annotations = ReminderController.sharedInstance.reminders[indexPath.row].annotations,
+            region = ReminderController.sharedInstance.reminders[indexPath.row].region {
+            // reminder type is location
+            let viewController = UIViewController()
+            let map = MKMapView(frame: viewController.view.bounds)
+            viewController.view.addSubview(map)
+            map.addAnnotations(annotations)
+            map.setRegion(region, animated: true)
+            map.showsUserLocation = true
+            self.navigationController?.pushViewController(viewController, animated: true)
+            
+        }
     }
     
     // ---------------------- SW Cell Functions ----------------------

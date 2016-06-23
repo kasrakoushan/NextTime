@@ -24,17 +24,19 @@ class ReminderController {
         return Static.instance!
     }
     
+    // the threshold distance at which locations reminders will be sent
+    static let NEARBY_THRESHOLD = 100.0
+    
     var reminders = [Reminder]()
     
-    func addLocationReminder(description: String, locations: [CLLocation]) {
-        let reminder = Reminder(description: description, type: .Location, locationList: locations)
+    func addLocationReminder(description: String, annotations: [MKAnnotation], region: MKCoordinateRegion) {
+        let reminder = Reminder(description: description, type: .Location, annotationList: annotations, region: region)
         self.reminders.append(reminder)
     }
     
     func loadReminders() {
         let file = PersistenceManager.documentsDirectory().stringByAppendingString("/reminders.archive")
         if let reminders = NSKeyedUnarchiver.unarchiveObjectWithFile(file) as? [Reminder] {
-            print("--------------------------LOADED REMINDERS-------------------------- \n \(reminders)")
             self.reminders = reminders
         }
         
@@ -42,7 +44,6 @@ class ReminderController {
     
     func saveReminders() {
         let file = PersistenceManager.documentsDirectory().stringByAppendingString("/reminders.archive")
-        print("--------------------------SAVED REMINDERS-------------------------- \n \(file)")
         NSKeyedArchiver.archiveRootObject(self.reminders, toFile: file)
     }
     
@@ -70,13 +71,18 @@ class ReminderController {
         var anyLocation: Bool // whether any of the reminder's locations is nearby
         for reminder in self.reminders {
             anyLocation = false
-            specificReminderLoop: for location in reminder.locations {
+            specificReminderLoop: for annotation in reminder.annotations! {
                 // check distance from current location
-                if lastLocation.distanceFromLocation(location) < 100 {
+                if lastLocation.distanceFromLocation(annotation.convertToCLLocation()) < ReminderController.NEARBY_THRESHOLD {
                     anyLocation = true
                     // generate notification
                     notification = UILocalNotification()
-                    notification.alertBody = "Reminder: \(reminder.reminderDescription)"
+                    if let first = annotation.title, second = first {
+                        notification.alertTitle = "Reminder: \(second)"
+                    } else {
+                        notification.alertTitle = "Reminder"
+                    }
+                    notification.alertBody = "\(reminder.reminderDescription)"
                     notification.soundName = "default"
                     
                     // only send a notification if the reminder is not already in notified state

@@ -11,8 +11,12 @@ import MapKit
 
 class LocationReminderViewController: UIViewController {
 
+    @IBOutlet var locationDescriptionLabel: UILabel!
+    // the text field for the reminder description
     @IBOutlet var reminderDescriptionTextField: UITextField!
-    var locationsToSave = [CLLocation]()
+    var annotationsToSave = [MKAnnotation]()
+    var regionToSave = MKCoordinateRegion()
+    var locationMessage = "Tap to find locations"
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -24,6 +28,10 @@ class LocationReminderViewController: UIViewController {
         // set up tap gesture recognizer (for dismissing keyboard)
         let gestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(LocationReminderViewController.hideKeyboard))
         self.view.addGestureRecognizer(gestureRecognizer)
+    }
+    
+    override func viewWillAppear(animated: Bool) {
+        self.locationDescriptionLabel.text = self.locationMessage
     }
 
     override func didReceiveMemoryWarning() {
@@ -39,18 +47,17 @@ class LocationReminderViewController: UIViewController {
     
     @IBAction func addButtonTapped(sender: UIButton) {
         self.view.endEditing(true)
-        if self.locationsToSave.count != 0 {
-            print("adding new reminder to the shared instance with written text")
-            ReminderController.sharedInstance.addLocationReminder(reminderDescriptionTextField.text!, locations: self.locationsToSave)
+        if self.annotationsToSave.count != 0 {
+            ReminderController.sharedInstance.addLocationReminder(reminderDescriptionTextField.text!,
+                                                                  annotations: self.annotationsToSave, region: self.regionToSave)
             self.navigationController?.dismissViewControllerAnimated(true, completion: nil)
         } else {
-            // present an alert saying "No matching locations nearby"
-            print("no locations provided")
+            self.locationDescriptionLabel.text = "No locations found"
         }
     }
     
     @IBAction func searchForLocationsTapped(sender: UIButton) {
-        self.locationsToSave = []
+        self.annotationsToSave = []
         let mapPopUpViewController = MapPopUpViewController(nibName: "MapPopUpViewController", bundle: nil)
         mapPopUpViewController.parentLocationReminderViewController = self
         self.presentViewController(mapPopUpViewController, animated: true, completion: nil)

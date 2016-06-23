@@ -28,49 +28,45 @@ class Reminder: NSObject, NSCoding {
     var reminderDescription:String
     var state: ReminderState
     var type: ReminderType
-    var locations: [CLLocation]
-    var map: MKMapView?
+    var annotations: [MKAnnotation]?
+    var region: MKCoordinateRegion?
     
     // initializer
-    init(description: String, type: ReminderType, locationList: [CLLocation]?, friend: Friend? = nil) {
+    init(description: String, type: ReminderType, annotationList: [MKAnnotation]? = nil, region: MKCoordinateRegion? = nil, friend: Friend? = nil) {
         self.reminderDescription = description
         self.state = .Saved
         self.type = type
-        if self.type == .Location {
-            self.locations = locationList!
-        } else {
-            self.locations = Reminder.generateLocationFromFriend(friend)
+        if type == .Location {
+            // this should always execute if the reminder is of type location
+            self.annotations = annotationList!
+            self.region = region!
         }
     }
     
     // NSCoding functions
     func encodeWithCoder(aCoder: NSCoder) {
-        aCoder.encodeObject(self.reminderDescription, forKey: "description")
+        aCoder.encodeObject(self.reminderDescription, forKey: "reminderDescription")
         aCoder.encodeObject(self.state.rawValue, forKey: "state")
         aCoder.encodeObject(self.type.rawValue, forKey: "type")
-        aCoder.encodeObject(self.locations, forKey: "locations")
+        if self.type == .Location {
+            aCoder.encodeObject(self.annotations!.map({$0.produceWrapper()}), forKey: "annotations")
+            aCoder.encodeDouble(self.region!.center.latitude, forKey: "latitude")
+            aCoder.encodeDouble(self.region!.center.longitude, forKey: "longitude")
+            aCoder.encodeDouble(self.region!.span.latitudeDelta, forKey: "latitudeDelta")
+            aCoder.encodeDouble(self.region!.span.longitudeDelta, forKey: "longitudeDelta")
+        }
     }
     
     required init?(coder aDecoder: NSCoder) {
-        self.reminderDescription = aDecoder.decodeObjectForKey("description") as! String
+        self.reminderDescription = aDecoder.decodeObjectForKey("reminderDescription") as! String
         self.state = ReminderState(rawValue: aDecoder.decodeObjectForKey("state") as! String)!
         self.type = ReminderType(rawValue: aDecoder.decodeObjectForKey("type") as! String)!
-        self.locations = aDecoder.decodeObjectForKey("locations") as! [CLLocation]
-    }
-    
-//    // class functions for generating location lists
-//    class func generateLocationListForQuery(query: String?) -> [CLLocation] {
-//        if let _ = query {
-//            // do a search of apple maps for a list of locations
-//            return [CLLocation(latitude: -33.907772, longitude: 18.4069913),
-//                    CLLocation(latitude: -33.9072776, longitude: 18.4187435)]
-//        } else {
-//            return []
-//        }
-//    }
-    
-    class func generateLocationFromFriend(friend: Friend?) -> [CLLocation] {
-        // make some calls to the server to obtain friend's location
-        return []
+        if self.type == .Location {
+            self.annotations = (aDecoder.decodeObjectForKey("annotations") as! [AnnotationWrapper]).map({$0.annotation})
+            self.region = MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: aDecoder.decodeDoubleForKey("latitude"),
+                                                                            longitude: aDecoder.decodeDoubleForKey("longitude")),
+                                             span: MKCoordinateSpan(latitudeDelta: aDecoder.decodeDoubleForKey("latitudeDelta"),
+                                                                    longitudeDelta: aDecoder.decodeDoubleForKey("longitudeDelta")))
+        }
     }
 }

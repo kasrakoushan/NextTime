@@ -21,6 +21,7 @@
 		A15DC4591D18537800CC9006 /* LocationReminderViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A15DC4571D18537800CC9006 /* LocationReminderViewController.xib */; };
 		A15DC45C1D18546D00CC9006 /* FriendReminderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A15DC45A1D18546D00CC9006 /* FriendReminderViewController.swift */; };
 		A15DC45D1D18546D00CC9006 /* FriendReminderViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A15DC45B1D18546D00CC9006 /* FriendReminderViewController.xib */; };
+		A1708BDA1D1C0DEA00AC4B5B /* LocationExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1708BD91D1C0DEA00AC4B5B /* LocationExtensions.swift */; };
 		A19F14BD1D19D38D003D3FE7 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = A19F14BC1D19D38D003D3FE7 /* GoogleService-Info.plist */; };
 		A1B9EA811D1AAB7500DDE19A /* Reminder.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1B9EA801D1AAB7500DDE19A /* Reminder.swift */; };
 		A1B9EA831D1AAE0800DDE19A /* ReminderController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1B9EA821D1AAE0800DDE19A /* ReminderController.swift */; };
@@ -47,6 +48,7 @@
 		A15DC4571D18537800CC9006 /* LocationReminderViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LocationReminderViewController.xib; sourceTree = "<group>"; };
 		A15DC45A1D18546D00CC9006 /* FriendReminderViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FriendReminderViewController.swift; sourceTree = "<group>"; };
 		A15DC45B1D18546D00CC9006 /* FriendReminderViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FriendReminderViewController.xib; sourceTree = "<group>"; };
+		A1708BD91D1C0DEA00AC4B5B /* LocationExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationExtensions.swift; sourceTree = "<group>"; };
 		A19F14BC1D19D38D003D3FE7 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		A1B9EA801D1AAB7500DDE19A /* Reminder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Reminder.swift; sourceTree = "<group>"; };
 		A1B9EA821D1AAE0800DDE19A /* ReminderController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReminderController.swift; sourceTree = "<group>"; };
@@ -143,8 +145,9 @@
 			isa = PBXGroup;
 			children = (
 				A1B9EA801D1AAB7500DDE19A /* Reminder.swift */,
-				A1B9EA841D1AB4FD00DDE19A /* PersistenceManager.swift */,
 				A1B9EA821D1AAE0800DDE19A /* ReminderController.swift */,
+				A1708BD91D1C0DEA00AC4B5B /* LocationExtensions.swift */,
+				A1B9EA841D1AB4FD00DDE19A /* PersistenceManager.swift */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -301,6 +304,7 @@
 				A120D1011D17F70400F0ACBE /* LandingViewController.swift in Sources */,
 				A15DC45C1D18546D00CC9006 /* FriendReminderViewController.swift in Sources */,
 				A15DC4541D184BEB00CC9006 /* NewReminderViewController.swift in Sources */,
+				A1708BDA1D1C0DEA00AC4B5B /* LocationExtensions.swift in Sources */,
 				A1B9EA831D1AAE0800DDE19A /* ReminderController.swift in Sources */,
 				A1B9EA851D1AB4FD00DDE19A /* PersistenceManager.swift in Sources */,
 				A120D0E81D17EA9400F0ACBE /* AppDelegate.swift in Sources */,

@@ -7,6 +7,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="LocationReminderViewController" customModule="NextTimeReminders" customModuleProvider="target">
             <connections>
+                <outlet property="locationDescriptionLabel" destination="90G-QY-ADt" id="7lG-yB-QEf"/>
                 <outlet property="reminderDescriptionTextField" destination="o20-x9-dTa" id="KXC-h8-L9P"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
@@ -16,38 +17,57 @@
             <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Reminder" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="o20-x9-dTa">
-                    <rect key="frame" x="48" y="125" width="503" height="30"/>
+                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Remind me to..." textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="o20-x9-dTa">
+                    <rect key="frame" x="49" y="84" width="503" height="30"/>
                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                     <textInputTraits key="textInputTraits"/>
                 </textField>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NZ9-9H-5rA">
-                    <rect key="frame" x="285" y="170" width="31" height="33"/>
-                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                    <state key="normal" title="Add"/>
-                    <connections>
-                        <action selector="addButtonTapped:" destination="-1" eventType="touchUpInside" id="p2H-0R-xbV"/>
-                    </connections>
-                </button>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lJB-d3-RNK">
-                    <rect key="frame" x="232" y="79" width="137" height="30"/>
-                    <state key="normal" title="Search for locations"/>
+                    <rect key="frame" x="236" y="160" width="128" height="128"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <state key="normal" backgroundImage="find_location"/>
                     <connections>
                         <action selector="searchForLocationsTapped:" destination="-1" eventType="touchUpInside" id="Fch-1D-VCO"/>
+                    </connections>
+                </button>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Tap to search for locations" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="90G-QY-ADt">
+                    <rect key="frame" x="210" y="134" width="182" height="18"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                    <color key="textColor" red="0.7019608021" green="0.7019608021" blue="0.7019608021" alpha="1" colorSpace="calibratedRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NZ9-9H-5rA">
+                    <rect key="frame" x="251" y="304" width="99" height="33"/>
+                    <color key="backgroundColor" red="0.90196079019999997" green="0.90196079019999997" blue="0.90196079019999997" alpha="1" colorSpace="calibratedRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="99" id="sM8-wE-1fq"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <state key="normal" title="Add">
+                        <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                    </state>
+                    <connections>
+                        <action selector="addButtonTapped:" destination="-1" eventType="touchUpInside" id="p2H-0R-xbV"/>
                     </connections>
                 </button>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
-                <constraint firstItem="lJB-d3-RNK" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="EHZ-xf-MJR"/>
-                <constraint firstItem="lJB-d3-RNK" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="79" id="G5i-0y-Tlz"/>
-                <constraint firstItem="NZ9-9H-5rA" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="IpJ-O6-vrC"/>
-                <constraint firstAttribute="trailing" secondItem="o20-x9-dTa" secondAttribute="trailing" constant="49" id="O9S-qO-amQ"/>
-                <constraint firstItem="o20-x9-dTa" firstAttribute="top" secondItem="lJB-d3-RNK" secondAttribute="bottom" constant="16" id="cfc-ip-cM6"/>
-                <constraint firstItem="NZ9-9H-5rA" firstAttribute="top" secondItem="o20-x9-dTa" secondAttribute="bottom" constant="15" id="hF1-b5-mbi"/>
-                <constraint firstItem="o20-x9-dTa" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="48" id="me1-Su-awj"/>
+                <constraint firstItem="NZ9-9H-5rA" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="3EE-qM-YPd"/>
+                <constraint firstItem="lJB-d3-RNK" firstAttribute="top" secondItem="90G-QY-ADt" secondAttribute="bottom" constant="8" id="90u-Sm-2AX"/>
+                <constraint firstAttribute="trailing" secondItem="o20-x9-dTa" secondAttribute="trailing" constant="48" id="EBe-cb-tDg"/>
+                <constraint firstItem="90G-QY-ADt" firstAttribute="top" secondItem="o20-x9-dTa" secondAttribute="bottom" constant="20" id="Hnn-MP-l72"/>
+                <constraint firstItem="NZ9-9H-5rA" firstAttribute="top" secondItem="lJB-d3-RNK" secondAttribute="bottom" constant="16" id="MCY-sX-h0Z"/>
+                <constraint firstItem="lJB-d3-RNK" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="Wuf-an-PNo"/>
+                <constraint firstItem="o20-x9-dTa" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="84" id="dvq-Dl-D5K"/>
+                <constraint firstItem="o20-x9-dTa" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="49" id="tIM-R4-hxY"/>
+                <constraint firstItem="90G-QY-ADt" firstAttribute="centerX" secondItem="o20-x9-dTa" secondAttribute="centerX" id="waW-Ke-uxv"/>
+                <constraint firstItem="o20-x9-dTa" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="xed-jY-bmo"/>
             </constraints>
             <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
         </view>
     </objects>
+    <resources>
+        <image name="find_location" width="128" height="128"/>
+    </resources>
 </document>
