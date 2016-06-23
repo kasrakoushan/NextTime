@@ -10,10 +10,11 @@ import UIKit
 import FBSDKLoginKit
 import MapKit
 import Firebase
+import SWTableViewCell
 
-class ReminderViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
+class ReminderViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, SWTableViewCellDelegate {
     
-    @IBOutlet var tableView: UITableView!
+    @IBOutlet var reminderTableView: UITableView!
     @IBOutlet var mapView: MKMapView!
     
     override func viewDidLoad() {
@@ -26,8 +27,8 @@ class ReminderViewController: UIViewController, UITableViewDataSource, UITableVi
         self.mapView.showsUserLocation = true
         
         // table
-        self.tableView.delegate = self
-        self.tableView.dataSource = self
+        self.reminderTableView.delegate = self
+        self.reminderTableView.dataSource = self
         
     }
     
@@ -47,7 +48,7 @@ class ReminderViewController: UIViewController, UITableViewDataSource, UITableVi
         }
         
         // reload the table
-        self.tableView.reloadData()
+        self.reminderTableView.reloadData()
         
         // check on reminder list
         print("\(ReminderController.sharedInstance.reminders)")
@@ -72,17 +73,78 @@ class ReminderViewController: UIViewController, UITableViewDataSource, UITableVi
         self.navigationController?.presentViewController(newReminderNavigationController, animated: true, completion: nil)
     }
     
+    // ---------------------- TableView functions ----------------------
+    
+    // return number of reminders
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // just one section
         // maybe eventually, divide into friend and location sections
         return ReminderController.sharedInstance.reminders.count
     }
     
+    // return the cell at the given row
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = UITableViewCell()
+        let cellIdentifier = "Cell"
+        var cell: SWTableViewCell! = tableView.dequeueReusableCellWithIdentifier(cellIdentifier) as? SWTableViewCell
+        if cell == nil {
+            cell = SWTableViewCell(style: .Value1, reuseIdentifier: cellIdentifier)
+            cell.rightUtilityButtons = self.getRightUtilityButtons()
+            cell.leftUtilityButtons = self.getLeftUtilityButtons()
+            cell.delegate = self
+        }
         cell.textLabel?.text = ReminderController.sharedInstance.reminders[indexPath.row].reminderDescription
+        if ReminderController.sharedInstance.reminders[indexPath.row].state == ReminderState.Active {
+            cell.detailTextLabel?.text = "Nearby"
+            cell.detailTextLabel?.textColor = UIColor.redColor()
+        } else {
+            cell.detailTextLabel?.text = "Saved"
+            cell.detailTextLabel?.textColor = UIColor.lightGrayColor()
+        }
         
         return cell
     }
+    
+    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        // show the mapView belonging to the given location reminder
+    }
+    
+    // ---------------------- SW Cell Functions ----------------------
+    
+    // helper function for SW table cell
+    func getRightUtilityButtons() -> [AnyObject] {
+        let rightUtilityButtons = NSMutableArray()
+        rightUtilityButtons.sw_addUtilityButtonWithColor(UIColor.whiteColor(), icon: UIImage(named: "edit_button"))
+        return rightUtilityButtons as [AnyObject]
+    }
+    
+    // helper function for SW table cell
+    func getLeftUtilityButtons() -> [AnyObject] {
+        let leftUtilityButtons = NSMutableArray()
+        leftUtilityButtons.sw_addUtilityButtonWithColor(UIColor.whiteColor(), icon: UIImage(named: "complete_button"))
+        return leftUtilityButtons as [AnyObject]
+    }
+    
+    // SWTableViewCellDelegate function
+    func swipeableTableViewCell(cell: SWTableViewCell!, didTriggerLeftUtilityButtonWithIndex index: Int) {
+        // complete button
+        if let indexPath = self.reminderTableView.indexPathForCell(cell) {
+            ReminderController.sharedInstance.reminders.removeAtIndex(indexPath.row)
+            self.reminderTableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: UITableViewRowAnimation.Fade)
+        } else {
+            // the index path is somehow invalid
+            print("delete cell: cell is not in the table")
+        }
+    }
+    
+    // SWTableViewCellDelegate function
+    func swipeableTableViewCell(cell: SWTableViewCell!, didTriggerRightUtilityButtonWithIndex index: Int) {
+        // edit button
+        if let indexPath = self.reminderTableView.indexPathForCell(cell) {
+            // open the location reminder view controller with edit state
+            print(indexPath.row)
+        }
+    }
+    
+    
 
 }

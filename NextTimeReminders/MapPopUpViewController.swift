@@ -59,6 +59,7 @@ class MapPopUpViewController: UIViewController, UISearchBarDelegate {
         // create search request
         let localSearchRequest = MKLocalSearchRequest()
         localSearchRequest.naturalLanguageQuery = searchBar.text
+        localSearchRequest.region = self.mapView.region
         // create search
         let localSearch = MKLocalSearch(request: localSearchRequest)
         // start search

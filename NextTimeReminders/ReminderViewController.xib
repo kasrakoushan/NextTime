@@ -9,7 +9,7 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ReminderViewController" customModule="NextTimeReminders" customModuleProvider="target">
             <connections>
                 <outlet property="mapView" destination="NUV-Lc-nA9" id="rDL-Vc-i7Z"/>
-                <outlet property="tableView" destination="QM7-62-ZV0" id="5a0-Zo-Kkx"/>
+                <outlet property="reminderTableView" destination="QM7-62-ZV0" id="TIU-5e-mAy"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>

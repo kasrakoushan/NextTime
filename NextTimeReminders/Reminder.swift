@@ -29,6 +29,7 @@ class Reminder: NSObject, NSCoding {
     var state: ReminderState
     var type: ReminderType
     var locations: [CLLocation]
+    var map: MKMapView?
     
     // initializer
     init(description: String, type: ReminderType, locationList: [CLLocation]?, friend: Friend? = nil) {

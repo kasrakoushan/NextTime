@@ -20,6 +20,10 @@ class LocationReminderViewController: UIViewController {
         // set up navigation bar
         self.title = "Location Reminder"
         self.navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Back", style: .Plain, target: self, action: #selector(LocationReminderViewController.backButtonTapped))
+        
+        // set up tap gesture recognizer (for dismissing keyboard)
+        let gestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(LocationReminderViewController.hideKeyboard))
+        self.view.addGestureRecognizer(gestureRecognizer)
     }
 
     override func didReceiveMemoryWarning() {
@@ -50,6 +54,10 @@ class LocationReminderViewController: UIViewController {
         let mapPopUpViewController = MapPopUpViewController(nibName: "MapPopUpViewController", bundle: nil)
         mapPopUpViewController.parentLocationReminderViewController = self
         self.presentViewController(mapPopUpViewController, animated: true, completion: nil)
+    }
+    
+    func hideKeyboard() {
+        self.reminderDescriptionTextField.resignFirstResponder()
     }
     
 

@@ -61,6 +61,11 @@ class ReminderController {
             return
         }
         
+        // save all current states
+        // reload table if any state changed
+        // reload the table data
+        let currentStates = self.reminders.map({$0.state})
+        
         // send appropriate notifications
         var anyLocation: Bool // whether any of the reminder's locations is nearby
         for reminder in self.reminders {
@@ -92,17 +97,14 @@ class ReminderController {
             
         }
         
-        // update badge
-        notification = UILocalNotification()
-        var activated = 0
-        for reminder in self.reminders {
-            if reminder.state == .Active {
-                print("increment activated, reminder: \(reminder.reminderDescription)")
-                activated += 1
-            }
+        // update app icon badge number
+        UIApplication.sharedApplication().applicationIconBadgeNumber = self.reminders.filter({$0.state == .Active}).count
+        
+        // reload the table if any states changed
+        if self.reminders.map({$0.state}) != currentStates {
+            ((UIApplication.sharedApplication().delegate as? AppDelegate)?.mainNavigationController?.viewControllers.first as? ReminderViewController)?.reminderTableView.reloadData()
         }
-//        notification.applicationIconBadgeNumber = activated
-        UIApplication.sharedApplication().presentLocalNotificationNow(notification)
+        
     }
     
 }
