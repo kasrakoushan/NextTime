@@ -15,7 +15,6 @@ import SWTableViewCell
 class ReminderViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, SWTableViewCellDelegate {
     
     @IBOutlet var reminderTableView: UITableView!
-    @IBOutlet var mapView: MKMapView!
     
     
     override func viewDidLoad() {
@@ -25,7 +24,6 @@ class ReminderViewController: UIViewController, UITableViewDataSource, UITableVi
         self.title = "Reminders"
         self.navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Log out", style: .Plain, target: self, action: #selector(ReminderViewController.logOutButtonTapped))
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "New", style: .Plain, target: self, action: #selector(ReminderViewController.newReminderButtonTapped))
-        self.mapView.showsUserLocation = true
         
         // table
         self.reminderTableView.delegate = self
@@ -113,7 +111,17 @@ class ReminderViewController: UIViewController, UITableViewDataSource, UITableVi
             let map = MKMapView(frame: viewController.view.bounds)
             viewController.view.addSubview(map)
             map.addAnnotations(annotations)
-            map.setRegion(region, animated: true)
+            map.mapType = .HybridFlyover
+            if let currentCoord = (UIApplication.sharedApplication().delegate as? AppDelegate)?.locationManager?.location?.coordinate {
+                // if current location is accessible, ensure that the mapView shows this
+                let currentLocation = MKPointAnnotation()
+                currentLocation.coordinate = currentCoord
+                map.showAnnotations(annotations + [currentLocation], animated: true)
+                map.removeAnnotation(currentLocation)
+            } else {
+                // otherwise, just show all of the annotations (region calculated from original search)
+                map.setRegion(region, animated: true)
+            }
             map.showsUserLocation = true
             self.navigationController?.pushViewController(viewController, animated: true)
             

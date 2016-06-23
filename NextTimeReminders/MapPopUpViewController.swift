@@ -30,6 +30,7 @@ class MapPopUpViewController: UIViewController, UISearchBarDelegate {
             let region = MKCoordinateRegion(center: coordinate, span: MKCoordinateSpan(latitudeDelta: 0.05, longitudeDelta: 0.05))
             self.mapView.setRegion(region, animated: true)
             self.mapView.showsUserLocation = true
+            self.mapView.mapType = .HybridFlyover
         }
 
     }
