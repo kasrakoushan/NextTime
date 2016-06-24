@@ -19,21 +19,10 @@
                 <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="SwB-Vt-ffP">
                     <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                 </mapView>
-                <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="h8C-NO-HwU">
-                    <rect key="frame" x="21" y="532" width="45" height="45"/>
-                    <state key="normal" backgroundImage="recentre"/>
-                    <connections>
-                        <action selector="recentreButtonTapped:" destination="-1" eventType="touchUpInside" id="7tr-3A-xqR"/>
-                    </connections>
-                </button>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2EI-a5-eE2">
-                    <rect key="frame" x="451" y="501" width="126" height="34"/>
-                    <color key="backgroundColor" red="0.90196079019999997" green="0.90196079019999997" blue="0.90196079019999997" alpha="1" colorSpace="calibratedRGB"/>
-                    <constraints>
-                        <constraint firstAttribute="width" constant="126" id="mKl-gq-dxf"/>
-                    </constraints>
-                    <fontDescription key="fontDescription" type="system" pointSize="18"/>
-                    <state key="normal" title="Search again">
+                    <rect key="frame" x="422" y="511" width="64" height="64"/>
+                    <fontDescription key="fontDescription" name="KohinoorBangla-Regular" family="Kohinoor Bangla" pointSize="18"/>
+                    <state key="normal" backgroundImage="search">
                         <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                     </state>
                     <connections>
@@ -41,13 +30,9 @@
                     </connections>
                 </button>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YpT-25-MZg">
-                    <rect key="frame" x="451" y="543" width="126" height="34"/>
-                    <color key="backgroundColor" red="0.90196079019999997" green="0.90196079019999997" blue="0.90196079019999997" alpha="1" colorSpace="calibratedRGB"/>
-                    <constraints>
-                        <constraint firstAttribute="width" constant="126" id="qEk-XJ-i9N"/>
-                    </constraints>
-                    <fontDescription key="fontDescription" type="system" pointSize="18"/>
-                    <state key="normal" title="Cancel">
+                    <rect key="frame" x="25" y="25" width="64" height="64"/>
+                    <fontDescription key="fontDescription" name="KohinoorBangla-Regular" family="Kohinoor Bangla" pointSize="18"/>
+                    <state key="normal" backgroundImage="cancel_map">
                         <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                     </state>
                     <connections>
@@ -55,38 +40,44 @@
                     </connections>
                 </button>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PFI-6f-oPV">
-                    <rect key="frame" x="451" y="459" width="126" height="34"/>
-                    <color key="backgroundColor" red="0.90196079019999997" green="0.90196079019999997" blue="0.90196079019999997" alpha="1" colorSpace="calibratedRGB"/>
-                    <constraints>
-                        <constraint firstAttribute="width" constant="126" id="yOf-OL-I7b"/>
-                    </constraints>
-                    <fontDescription key="fontDescription" type="system" pointSize="18"/>
-                    <state key="normal" title="Save Places">
+                    <rect key="frame" x="511" y="511" width="64" height="64"/>
+                    <fontDescription key="fontDescription" name="KohinoorBangla-Regular" family="Kohinoor Bangla" pointSize="18"/>
+                    <state key="normal" backgroundImage="complete_map">
                         <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                     </state>
                     <connections>
                         <action selector="doneButtonTapped:" destination="-1" eventType="touchUpInside" id="QRP-fc-Ter"/>
                     </connections>
                 </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="h8C-NO-HwU">
+                    <rect key="frame" x="25" y="511" width="64" height="64"/>
+                    <state key="normal" backgroundImage="recentre"/>
+                    <connections>
+                        <action selector="recentreButtonTapped:" destination="-1" eventType="touchUpInside" id="7tr-3A-xqR"/>
+                    </connections>
+                </button>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
+                <constraint firstItem="YpT-25-MZg" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="25" id="0bJ-Cz-4Rl"/>
                 <constraint firstItem="SwB-Vt-ffP" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="6aH-d0-AkB"/>
                 <constraint firstAttribute="bottom" secondItem="SwB-Vt-ffP" secondAttribute="bottom" id="B0l-xY-Rom"/>
-                <constraint firstItem="h8C-NO-HwU" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="21" id="J4h-av-jAv"/>
-                <constraint firstAttribute="bottom" secondItem="PFI-6f-oPV" secondAttribute="bottom" constant="107" id="JzS-bK-fX2"/>
-                <constraint firstItem="2EI-a5-eE2" firstAttribute="top" secondItem="PFI-6f-oPV" secondAttribute="bottom" constant="8" id="Prc-tW-C1n"/>
+                <constraint firstItem="h8C-NO-HwU" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="25" id="J4h-av-jAv"/>
+                <constraint firstItem="YpT-25-MZg" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="25" id="LMp-KK-Fj3"/>
+                <constraint firstAttribute="bottom" secondItem="2EI-a5-eE2" secondAttribute="bottom" constant="25" id="Lik-gF-Cgy"/>
+                <constraint firstItem="PFI-6f-oPV" firstAttribute="leading" secondItem="2EI-a5-eE2" secondAttribute="trailing" constant="25" id="Q73-tK-opV"/>
+                <constraint firstAttribute="bottom" secondItem="PFI-6f-oPV" secondAttribute="bottom" constant="25" id="Yf5-iM-d61"/>
                 <constraint firstAttribute="trailing" secondItem="SwB-Vt-ffP" secondAttribute="trailing" id="a7z-fL-DY9"/>
                 <constraint firstItem="SwB-Vt-ffP" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="cKY-e0-9m8"/>
-                <constraint firstAttribute="bottom" secondItem="h8C-NO-HwU" secondAttribute="bottom" constant="23" id="cYQ-Pf-7nD"/>
-                <constraint firstAttribute="trailing" secondItem="2EI-a5-eE2" secondAttribute="trailing" constant="23" id="f9z-3Y-GGs"/>
-                <constraint firstItem="YpT-25-MZg" firstAttribute="top" secondItem="2EI-a5-eE2" secondAttribute="bottom" constant="8" id="oLU-tp-GZ7"/>
-                <constraint firstAttribute="trailing" secondItem="YpT-25-MZg" secondAttribute="trailing" constant="23" id="p2S-2H-9aC"/>
-                <constraint firstAttribute="trailing" secondItem="PFI-6f-oPV" secondAttribute="trailing" constant="23" id="unr-BR-p7G"/>
+                <constraint firstAttribute="bottom" secondItem="h8C-NO-HwU" secondAttribute="bottom" constant="25" id="cYQ-Pf-7nD"/>
+                <constraint firstAttribute="trailing" secondItem="PFI-6f-oPV" secondAttribute="trailing" constant="25" id="hLR-e1-bwj"/>
             </constraints>
         </view>
     </objects>
     <resources>
+        <image name="cancel_map" width="64" height="64"/>
+        <image name="complete_map" width="64" height="64"/>
         <image name="recentre" width="64" height="64"/>
+        <image name="search" width="64" height="64"/>
     </resources>
 </document>

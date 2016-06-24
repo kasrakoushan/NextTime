@@ -15,7 +15,7 @@ class NewReminderViewController: UIViewController {
         
         // set up navigation bar
         self.title = "New Reminder"
-        self.navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Cancel", style: .Plain, target: self, action: #selector(NewReminderViewController.cancelButtonTapped))
+        self.navigationItem.leftBarButtonItem = Helper.generateBarButtonWithImage(imageName: "cancel", action: #selector(NewReminderViewController.cancelButtonTapped), target: self)
     }
 
     override func didReceiveMemoryWarning() {
@@ -23,26 +23,20 @@ class NewReminderViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
+    // add a new location or friend reminder
     @IBAction func newReminderButtonTapped(sender: UIButton) {
         if sender.tag == 0 {
+            // location reminder
             let locationReminderViewController = LocationReminderViewController(nibName: "LocationReminderViewController", bundle: nil)
             self.navigationController?.pushViewController(locationReminderViewController, animated: true)
         } else {
+            // friend reminder
             let friendReminderViewController = FriendReminderViewController(nibName: "FriendReminderViewController", bundle: nil)
             self.navigationController?.pushViewController(friendReminderViewController, animated: true)
         }
     }
     
+    // dismiss this modal controller in the mainNavigationController, go back to reminder list
     func cancelButtonTapped() {
         self.presentingViewController?.dismissViewControllerAnimated(true, completion: nil)
     }

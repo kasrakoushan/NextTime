@@ -38,9 +38,10 @@ class MapPopUpViewController: UIViewController, UISearchBarDelegate {
     override func viewDidAppear(animated: Bool) {
         
         // set up map search bar
-        searchController = UISearchController(searchResultsController: nil)
-        searchController.hidesNavigationBarDuringPresentation = false
+        self.searchController = UISearchController(searchResultsController: nil)
+        self.searchController.hidesNavigationBarDuringPresentation = false
         self.searchController.searchBar.delegate = self
+        (self.searchController.searchBar.valueForKey("searchField") as? UITextField)?.font = UIFont(name: "Kohinoor Bangla", size: 16)
         self.presentViewController(self.searchController, animated: true, completion: nil)
     }
 

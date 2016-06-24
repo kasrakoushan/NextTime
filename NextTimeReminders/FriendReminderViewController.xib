@@ -7,7 +7,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="FriendReminderViewController" customModule="NextTimeReminders" customModuleProvider="target">
             <connections>
-                <outlet property="friendTextField" destination="IUG-4p-9a8" id="8Ue-co-6E9"/>
+                <outlet property="friendsDescriptionLabel" destination="fkT-pj-V96" id="Q2V-n2-uVq"/>
                 <outlet property="reminderDescriptionTextField" destination="Qou-JB-ggf" id="OIr-P6-9tX"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
@@ -17,37 +17,55 @@
             <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Friend" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="IUG-4p-9a8">
-                    <rect key="frame" x="48" y="80" width="503" height="30"/>
-                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Remind me to..." textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Qou-JB-ggf">
+                    <rect key="frame" x="48" y="81" width="503" height="30"/>
+                    <fontDescription key="fontDescription" name="KohinoorBangla-Regular" family="Kohinoor Bangla" pointSize="17"/>
                     <textInputTraits key="textInputTraits"/>
                 </textField>
-                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Reminder" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Qou-JB-ggf">
-                    <rect key="frame" x="48" y="125" width="503" height="30"/>
-                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                    <textInputTraits key="textInputTraits"/>
-                </textField>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eX4-y7-Zkh">
-                    <rect key="frame" x="285" y="170" width="31" height="33"/>
-                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                    <state key="normal" title="Add"/>
+                <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eX4-y7-Zkh">
+                    <rect key="frame" x="250" y="297" width="100" height="36"/>
+                    <color key="backgroundColor" red="0.90196079019999997" green="0.90196079019999997" blue="0.90196079019999997" alpha="1" colorSpace="calibratedRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="100" id="bf1-8m-REr"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" name="KohinoorBangla-Regular" family="Kohinoor Bangla" pointSize="17"/>
+                    <state key="normal" title="Add">
+                        <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                    </state>
                     <connections>
                         <action selector="addButtonTapped:" destination="-1" eventType="touchUpInside" id="Xhu-3m-JO2"/>
                     </connections>
                 </button>
+                <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tSA-I7-vYC">
+                    <rect key="frame" x="236" y="147" width="128" height="128"/>
+                    <state key="normal" image="find_friends"/>
+                    <connections>
+                        <action selector="findFriendsButtonFound:" destination="-1" eventType="touchUpInside" id="Xk2-bJ-SKW"/>
+                    </connections>
+                </button>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Tap to find friends" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fkT-pj-V96">
+                    <rect key="frame" x="238" y="128" width="124" height="21"/>
+                    <fontDescription key="fontDescription" name="KohinoorBangla-Regular" family="Kohinoor Bangla" pointSize="15"/>
+                    <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                    <nil key="highlightedColor"/>
+                </label>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
-                <constraint firstAttribute="trailing" secondItem="IUG-4p-9a8" secondAttribute="trailing" constant="49" id="9lc-MY-c5f"/>
+                <constraint firstItem="tSA-I7-vYC" firstAttribute="centerX" secondItem="fkT-pj-V96" secondAttribute="centerX" id="6mz-gX-iv0"/>
+                <constraint firstItem="tSA-I7-vYC" firstAttribute="top" secondItem="fkT-pj-V96" secondAttribute="bottom" constant="-2" id="AaQ-LK-DMi"/>
+                <constraint firstItem="fkT-pj-V96" firstAttribute="top" secondItem="Qou-JB-ggf" secondAttribute="bottom" constant="17" id="CJc-Tc-Cij"/>
                 <constraint firstAttribute="trailing" secondItem="Qou-JB-ggf" secondAttribute="trailing" constant="49" id="DGM-k3-viv"/>
+                <constraint firstItem="eX4-y7-Zkh" firstAttribute="top" secondItem="tSA-I7-vYC" secondAttribute="bottom" constant="22" id="TWf-18-r2z"/>
+                <constraint firstItem="fkT-pj-V96" firstAttribute="centerX" secondItem="Qou-JB-ggf" secondAttribute="centerX" id="X3y-mi-9KV"/>
                 <constraint firstItem="eX4-y7-Zkh" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="ZVM-3Q-59e"/>
-                <constraint firstItem="eX4-y7-Zkh" firstAttribute="top" secondItem="Qou-JB-ggf" secondAttribute="bottom" constant="15" id="Zau-WU-qG4"/>
-                <constraint firstItem="IUG-4p-9a8" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="80" id="fYn-7i-87f"/>
+                <constraint firstItem="Qou-JB-ggf" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="81" id="aX6-Wk-cHV"/>
                 <constraint firstItem="Qou-JB-ggf" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="48" id="ge2-OH-DXN"/>
-                <constraint firstItem="Qou-JB-ggf" firstAttribute="top" secondItem="IUG-4p-9a8" secondAttribute="bottom" constant="15" id="tjn-yX-EO2"/>
-                <constraint firstItem="IUG-4p-9a8" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="48" id="xQ8-fU-wMT"/>
             </constraints>
             <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
         </view>
     </objects>
+    <resources>
+        <image name="find_friends" width="128" height="128"/>
+    </resources>
 </document>

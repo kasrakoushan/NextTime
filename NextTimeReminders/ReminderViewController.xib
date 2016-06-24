@@ -28,6 +28,7 @@
                 <constraint firstAttribute="bottom" secondItem="QM7-62-ZV0" secondAttribute="bottom" id="vdC-sA-zOZ"/>
                 <constraint firstAttribute="trailing" secondItem="QM7-62-ZV0" secondAttribute="trailing" id="ym7-tp-Y0b"/>
             </constraints>
+            <nil key="simulatedTopBarMetrics"/>
         </view>
     </objects>
 </document>

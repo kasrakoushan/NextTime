@@ -23,7 +23,7 @@ class LocationReminderViewController: UIViewController {
 
         // set up navigation bar
         self.title = "Location Reminder"
-        self.navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Back", style: .Plain, target: self, action: #selector(LocationReminderViewController.backButtonTapped))
+        self.navigationItem.leftBarButtonItem = Helper.generateBarButtonWithImage(imageName: "back", action: #selector(LocationReminderViewController.backButtonTapped), target: self)
         
         // set up tap gesture recognizer (for dismissing keyboard)
         let gestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(LocationReminderViewController.hideKeyboard))
@@ -31,6 +31,7 @@ class LocationReminderViewController: UIViewController {
     }
     
     override func viewWillAppear(animated: Bool) {
+        // update the instructional message above the search for location button
         self.locationDescriptionLabel.text = self.locationMessage
     }
 

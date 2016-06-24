@@ -15,42 +15,67 @@
             <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Select the type of your new reminder:" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fV3-eX-aP7">
+                    <rect key="frame" x="33" y="77" width="534" height="24"/>
+                    <fontDescription key="fontDescription" name="KohinoorBangla-Regular" family="Kohinoor Bangla" pointSize="17"/>
+                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EpY-Vf-Nst">
-                    <rect key="frame" x="267" y="155" width="66" height="33"/>
-                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                    <state key="normal" title="Location"/>
+                    <rect key="frame" x="302" y="210" width="147" height="60"/>
+                    <color key="backgroundColor" red="0.90196079019999997" green="0.90196079019999997" blue="0.90196079019999997" alpha="1" colorSpace="calibratedRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="60" id="5bv-io-uYq"/>
+                        <constraint firstAttribute="width" constant="147" id="G9G-1n-OYt"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" name="KohinoorBangla-Regular" family="Kohinoor Bangla" pointSize="20"/>
+                    <state key="normal" title="Location">
+                        <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                    </state>
                     <connections>
                         <action selector="newReminderButtonTapped:" destination="-1" eventType="touchUpInside" id="jqA-w7-1kJ"/>
                     </connections>
                 </button>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Select the type of your new reminder:" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fV3-eX-aP7">
-                    <rect key="frame" x="33" y="77" width="534" height="70"/>
-                    <constraints>
-                        <constraint firstAttribute="height" constant="70" id="yrk-Fz-lHj"/>
-                    </constraints>
-                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                    <nil key="highlightedColor"/>
-                </label>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="friend" translatesAutoresizingMaskIntoConstraints="NO" id="zFR-wl-sL2">
+                    <rect key="frame" x="151" y="336" width="128" height="128"/>
+                </imageView>
                 <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="F7a-zM-hlz">
-                    <rect key="frame" x="276" y="196" width="49" height="33"/>
-                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                    <state key="normal" title="Friend"/>
+                    <rect key="frame" x="302" y="370" width="147" height="60"/>
+                    <color key="backgroundColor" red="0.90196079019999997" green="0.90196079019999997" blue="0.90196079019999997" alpha="1" colorSpace="calibratedRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="60" id="J8s-By-l15"/>
+                        <constraint firstAttribute="width" constant="147" id="N49-1X-UEF"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" name="KohinoorBangla-Regular" family="Kohinoor Bangla" pointSize="20"/>
+                    <state key="normal" title="Friend">
+                        <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                    </state>
                     <connections>
                         <action selector="newReminderButtonTapped:" destination="-1" eventType="touchUpInside" id="1jV-lO-4Gs"/>
                     </connections>
                 </button>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="location" translatesAutoresizingMaskIntoConstraints="NO" id="iVT-xF-4fX">
+                    <rect key="frame" x="151" y="176" width="128" height="128"/>
+                </imageView>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
+                <constraint firstItem="iVT-xF-4fX" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" constant="-85" id="1MM-VA-u5b"/>
                 <constraint firstAttribute="trailing" secondItem="fV3-eX-aP7" secondAttribute="trailing" constant="33" id="4Wa-Yn-va8"/>
-                <constraint firstItem="EpY-Vf-Nst" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="O03-Nq-K3l"/>
+                <constraint firstItem="iVT-xF-4fX" firstAttribute="centerY" secondItem="i5M-Pr-FkT" secondAttribute="centerY" constant="-60" id="93r-Dq-auR"/>
+                <constraint firstItem="zFR-wl-sL2" firstAttribute="centerY" secondItem="i5M-Pr-FkT" secondAttribute="centerY" constant="100" id="QVH-cw-J4v"/>
+                <constraint firstItem="F7a-zM-hlz" firstAttribute="centerY" secondItem="i5M-Pr-FkT" secondAttribute="centerY" constant="100" id="U2e-oN-uGk"/>
+                <constraint firstItem="EpY-Vf-Nst" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" constant="75" id="bSA-Yb-wJo"/>
                 <constraint firstItem="fV3-eX-aP7" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="77" id="d16-Ge-aF3"/>
-                <constraint firstItem="EpY-Vf-Nst" firstAttribute="top" secondItem="fV3-eX-aP7" secondAttribute="bottom" constant="8" id="ihn-x5-vQm"/>
-                <constraint firstItem="F7a-zM-hlz" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="l9N-6z-7go"/>
-                <constraint firstItem="F7a-zM-hlz" firstAttribute="top" secondItem="EpY-Vf-Nst" secondAttribute="bottom" constant="8" id="vFf-uy-eEC"/>
                 <constraint firstItem="fV3-eX-aP7" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="33" id="wIR-w0-aEy"/>
+                <constraint firstItem="zFR-wl-sL2" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" constant="-85" id="wbh-85-Ugd"/>
+                <constraint firstItem="EpY-Vf-Nst" firstAttribute="centerY" secondItem="i5M-Pr-FkT" secondAttribute="centerY" constant="-60" id="x22-aC-SCn"/>
+                <constraint firstItem="F7a-zM-hlz" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" constant="75" id="ydC-0d-kWg"/>
             </constraints>
         </view>
     </objects>
+    <resources>
+        <image name="friend" width="128" height="128"/>
+        <image name="location" width="128" height="128"/>
+    </resources>
 </document>

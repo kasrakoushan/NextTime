@@ -9,16 +9,18 @@
 import UIKit
 
 class FriendReminderViewController: UIViewController {
+    
+    
 
-    @IBOutlet var friendTextField: UITextField!
+    @IBOutlet var friendsDescriptionLabel: UILabel!
     @IBOutlet var reminderDescriptionTextField: UITextField!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        
+        // set up the navigation bar
         self.title = "Friend Reminder"
-        self.navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Back", style: .Plain, target: self, action: #selector(FriendReminderViewController.backButtonTapped))
+        self.navigationItem.leftBarButtonItem = Helper.generateBarButtonWithImage(imageName: "back", action: #selector(FriendReminderViewController.backButtonTapped), target: self)
     }
 
     override func didReceiveMemoryWarning() {
@@ -27,11 +29,16 @@ class FriendReminderViewController: UIViewController {
     }
     
 
+    // back button
     func backButtonTapped() {
+        // pop back to the new reminder view controller
         self.navigationController?.popViewControllerAnimated(true)
     }
 
     @IBAction func addButtonTapped(sender: UIButton) {
         print("new friend reminder created")
+    }
+    
+    @IBAction func findFriendsButtonFound(sender: UIButton) {
     }
 }

@@ -23,29 +23,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         // Override point for customization after application launch.
         
-        // check if notification was received before app launched
-        if let notification = launchOptions?[UIApplicationLaunchOptionsRemoteNotificationKey] as? [String: AnyObject] {
-            let aps = notification["aps"] as! [String: AnyObject]
-            print("notification received upon launch: \(aps)")
-        }
-        
         // load reminders
         ReminderController.sharedInstance.loadReminders()
         
-        // set up location manager
-        self.locationManager = CLLocationManager()
-        self.locationManager?.delegate = self
-        self.locationManager?.desiredAccuracy = kCLLocationAccuracyBest
-        self.locationManager?.requestAlwaysAuthorization()
-        // check if app was launched by a location change
-        if let _ = launchOptions?[UIApplicationLaunchOptionsLocationKey] {
-            // register with ReminderController
-            // location manager's last location should already be populated
-            ReminderController.sharedInstance.checkReminders(withRecentLocation: locationManager!.location!)
-        }
+        // set up location manager, request authorization
+        self.setUpLocationManager()
+        
+        // register for and request push notifications
+        self.registerForPushNotifications(application)
         
         // launch the Facebook app
-        FBSDKApplicationDelegate.sharedInstance().application(application, didFinishLaunchingWithOptions: launchOptions)
+        FBSDKApplicationDelegate.sharedInstance().application(application,
+                                                              didFinishLaunchingWithOptions: launchOptions)
         
         // launch Firebase
         FIRApp.configure()
@@ -53,19 +42,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
         // set up window
         self.window = UIWindow(frame: UIScreen.mainScreen().bounds)
         
-        // register for and request push notifications
-        self.registerForPushNotifications(application)
-        
         // initialize App Delegate's view controllers
         self.landingViewController = LandingViewController(nibName: "LandingViewController", bundle: nil)
         let reminderViewController = ReminderViewController(nibName: "ReminderViewController", bundle: nil)
         self.mainNavigationController = UINavigationController(rootViewController: reminderViewController)
         
-        // navigate to the correct view controller, depending on whether user is logged in
+        print("-----------------------Launched-----------------------")
+        // navigate to the correct view controller, depending on whether user is logged into FB
         if let token = FBSDKAccessToken.currentAccessToken() {
+            print("Launch: currently logged in with FB user ID:\(token.userID)")
             self.window?.rootViewController = self.mainNavigationController
-            print("currently logged in with user ID:\(token.userID)")
         } else {
+            print("Launch: no FB user logged in")
             self.window?.rootViewController = self.landingViewController
         }
         self.window?.makeKeyAndVisible()
@@ -81,7 +69,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
     func applicationDidEnterBackground(application: UIApplication) {
         // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later.
         // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
-        print("-------------------------------SAVING REMINDERS (BACKGROUND)-------------------------------")
+        print("-----------------------Saving reminders on background-----------------------")
         ReminderController.sharedInstance.saveReminders()
         
     }
@@ -96,83 +84,106 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
 
     func applicationWillTerminate(application: UIApplication) {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
-        print("-------------------------------SAVING REMINDERS (TERMINATE)-------------------------------")
+        print("-----------------------Saving reminders on terminate-----------------------")
         ReminderController.sharedInstance.saveReminders()
     }
     
-    // *************** PUSH NOTIFICATION FUNCTIONS ***************
+    // ************************** PUSH NOTIFICATION FUNCTIONS **************************
     
-    // registers and requests the push notification settings we want (helper function)
+    // *helper* function for registering push notification settings
     func registerForPushNotifications(application: UIApplication) {
+        // ask for Badge, Sound, and Alert notifications
         let notificationSettings = UIUserNotificationSettings(
             forTypes: [.Badge, .Sound, .Alert], categories: nil)
+        // register these settings
         application.registerUserNotificationSettings(notificationSettings)
     }
     
-    // handler for when the user accepts notification permissions (UIApplicationDelegate function)
+    // *UIApplicationDelegate* function called when the user accepts notification permissions
     func application(application: UIApplication, didRegisterUserNotificationSettings notificationSettings: UIUserNotificationSettings) {
         if notificationSettings.types != UIUserNotificationType.None {
+            // if the user registered for any notification settings, register for remote notifications
             application.registerForRemoteNotifications()
         }
     }
     
-    // handler for when the app has registered for push notifications with success (UIApplicationDelegate function)
+    // *UIApplicationDelegate* function called when the app has registered for remote notifications with success
     // for some reason this function is called twice
     func application(application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: NSData) {
-        print("Registered: APNS device token is \(deviceToken)")
+        print("-----------------------Registered for remote notifications-----------------------")
+        print("APNS device token is \(deviceToken)")
         if let token = FIRInstanceID.instanceID().token() {
-            print("Firebase token: \(token)")
+            print("Firebase token is \(token)")
         }
     }
     
     
-    // handler for when the app fails in registering for push notifications (UIApplicationDelegate function)
+    // *UIApplicationDelegate* function called when the app fails in registering for push notifications
     func application(application: UIApplication, didFailToRegisterForRemoteNotificationsWithError error: NSError) {
-        print("Failed to register for remote notifications: \(error)")
+        print("-----------------------Failed to register for remote notifications-----------------------")
+        print("Error is \(error.localizedDescription)")
     }
     
-    // handler for receiving remote notification (UIApplicationDelegate function)
+    // *UIApplicationDelegate* called when a remote notification is received
     func application(application: UIApplication, didReceiveRemoteNotification userInfo: [NSObject : AnyObject]) {
-        print("Received remote notification: \(userInfo)")
+        print("-----------------------Remote notification-----------------------")
+        print("Notification: \(userInfo)")
     }
     
-    // *************** APP NAVIGATION FUNCTIONS ***************
+    // ************************** APP LOGIN/LOGOUT NAVIGATION FUNCTIONS **************************
+    // navigate to the mainNavigationController when logging in
     func navigateToLoggedInViewController() {
         self.window?.rootViewController = self.mainNavigationController
     }
     
+    // navigate to the landingViewController when logging out
     func navigateToLoggedOutViewController() {
         self.window?.rootViewController = self.landingViewController
     }
     
-    // *************** FACEBOOK SDK ***************
+    // ************************** FACEBOOK SDK **************************
     
-    // UIApplicationDelegate function that responds to calls to open a certain URL
+    // *UIApplicationDelegate* function that responds to calls to open a given URL
+    // will use the FB app to open the URL
     func application(application: UIApplication, openURL url: NSURL, sourceApplication: String?, annotation: AnyObject) -> Bool {
         return FBSDKApplicationDelegate.sharedInstance().application(application, openURL: url, sourceApplication: sourceApplication, annotation: annotation)
     }
     
-    // *************** LOCATION MANAGER DELEGATE ***************
+    // ************************** LOCATION MANAGER DELEGATE **************************
+    
+    // *helper* function for setting up the location manager
+    func setUpLocationManager() {
+        // initialize location manager, set delegate, accuracy
+        self.locationManager = CLLocationManager()
+        self.locationManager?.delegate = self
+        self.locationManager?.desiredAccuracy = kCLLocationAccuracyBest
+        // request authorization from user
+        self.locationManager?.requestAlwaysAuthorization()
+    }
+    
+    // *CLLocationManagerDelegate* function called when the user's authorization status is updated
     func locationManager(manager: CLLocationManager, didChangeAuthorizationStatus status: CLAuthorizationStatus) {
         if status == CLAuthorizationStatus.AuthorizedAlways {
-            // for tracking significant changes, regardless of app state
+            // track significant changes, regardless of app state
+            // if app is terminated, will launch app upon significant location changes
             self.locationManager?.startMonitoringSignificantLocationChanges()
-            // to update locations for when the app is running
+            // update locations for when the app is running
             self.locationManager?.startUpdatingLocation()
         } else {
-            print("location authorization not always")
+            print("-----------------------Location authorization denied-----------------------")
         }
     }
     
+    // *CLLocationManagerDelegate* function called when location is updated
     func locationManager(manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         // check reminders with this new location
         ReminderController.sharedInstance.checkReminders(withRecentLocation: locations.last!)
-        // send new location to server
+        // TO-DO: send new location to server
     }
     
+    // *CLLocationManagerDelegate* function called when location fails to updates
     func locationManager(manager: CLLocationManager, didFailWithError error: NSError) {
-        print("location update failed")
-        // send nothing to server
+        print("-----------------------Location update failed-----------------------")
     }
 
 }
