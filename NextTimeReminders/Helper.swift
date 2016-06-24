@@ -20,3 +20,14 @@ class Helper {
         return UIBarButtonItem(customView: button)
     }
 }
+
+class UIViewControllerWithCustomBackButton: UIViewController {
+    
+    override func viewDidLoad() {
+        self.navigationItem.leftBarButtonItem = Helper.generateBarButtonWithImage(imageName: "back", action: #selector(UIViewControllerWithCustomBackButton.backButtonTapped), target: self)
+    }
+    
+    func backButtonTapped() {
+        self.navigationController?.popViewControllerAnimated(true)
+    }
+}

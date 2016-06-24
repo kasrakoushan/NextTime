@@ -112,8 +112,18 @@
 				A120D0F31D17EA9400F0ACBE /* Info.plist */,
 				A15DC4511D184BD800CC9006 /* Screens */,
 				A1B9EA861D1ABE4D00DDE19A /* Model */,
+				A153883D1D1D854700855E29 /* Extensions */,
 			);
 			path = NextTimeReminders;
+			sourceTree = "<group>";
+		};
+		A153883D1D1D854700855E29 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				A16641DC1D1D390C0071B0CF /* Helper.swift */,
+				A1708BD91D1C0DEA00AC4B5B /* LocationExtensions.swift */,
+			);
+			name = Extensions;
 			sourceTree = "<group>";
 		};
 		A15DC4511D184BD800CC9006 /* Screens */ = {
@@ -148,9 +158,7 @@
 			children = (
 				A1B9EA801D1AAB7500DDE19A /* Reminder.swift */,
 				A1B9EA821D1AAE0800DDE19A /* ReminderController.swift */,
-				A1708BD91D1C0DEA00AC4B5B /* LocationExtensions.swift */,
 				A1B9EA841D1AB4FD00DDE19A /* PersistenceManager.swift */,
-				A16641DC1D1D390C0071B0CF /* Helper.swift */,
 			);
 			name = Model;
 			sourceTree = "<group>";

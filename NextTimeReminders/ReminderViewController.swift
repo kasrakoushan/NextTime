@@ -134,7 +134,7 @@ class ReminderViewController: UIViewController, UITableViewDataSource, UITableVi
             // reminder type is location
             
             // generate map that covers the whole screen
-            let viewController = UIViewController()
+            let viewController = UIViewControllerWithCustomBackButton()
             let map = MKMapView(frame: viewController.view.bounds)
             viewController.view.addSubview(map)
             
