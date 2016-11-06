@@ -142,7 +142,7 @@ class ReminderViewController: UIViewController, UITableViewDataSource, UITableVi
             map.showsUserLocation = true
             
             // check if current location is accessible
-            if let currentCoord = (UIApplication.sharedApplication().delegate as? AppDelegate)?.locationManager?.location?.coordinate {
+            if let currentCoord = AppLocationManager.sharedInstance.locationManager.location?.coordinate {
                 // set the map's region to show the current location as well
                 let currentLocation = MKPointAnnotation()
                 currentLocation.coordinate = currentCoord

@@ -26,7 +26,7 @@ class MapPopUpViewController: UIViewController, UISearchBarDelegate {
         super.viewDidLoad()
         
         // set up map
-        if let coordinate = (UIApplication.sharedApplication().delegate as? AppDelegate)?.locationManager?.location?.coordinate {
+        if let coordinate = AppLocationManager.sharedInstance.locationManager.location?.coordinate {
             let region = MKCoordinateRegion(center: coordinate, span: MKCoordinateSpan(latitudeDelta: 0.05, longitudeDelta: 0.05))
             self.mapView.setRegion(region, animated: true)
             self.mapView.showsUserLocation = true
@@ -110,7 +110,7 @@ class MapPopUpViewController: UIViewController, UISearchBarDelegate {
     }
 
     @IBAction func recentreButtonTapped(sender: UIButton) {
-        if let centre = (UIApplication.sharedApplication().delegate as? AppDelegate)?.locationManager?.location?.coordinate {
+        if let centre = AppLocationManager.sharedInstance.locationManager.location?.coordinate {
             // #CanadianSpelling
             let region = MKCoordinateRegion(center: centre, span: MKCoordinateSpan(latitudeDelta: 0.015, longitudeDelta: 0.015))
             self.mapView.setRegion(region, animated: true)

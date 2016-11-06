@@ -16,7 +16,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
     var window: UIWindow?
     var mainNavigationController: UINavigationController?
     var landingViewController: LandingViewController?
-    var locationManager: CLLocationManager?
 
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
@@ -25,8 +24,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
         // load reminders
         ReminderController.sharedInstance.loadReminders()
         
-        // set up location manager, request authorization
-        self.setUpLocationManager()
+        // set up location manager
+        AppLocationManager.sharedInstance.locationManager.startUpdatingLocation()
         
         // register for and request push notifications
         self.registerForPushNotifications(application)
@@ -56,7 +55,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
         
         return true
     }
-
+    
     func applicationWillResignActive(application: UIApplication) {
         // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
         // Use this method to pause ongoing tasks, disable timers, and throttle down OpenGL ES frame rates. Games should use this method to pause the game.
@@ -66,12 +65,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
         // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later.
         // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
         print("-----------------------Saving reminders on background-----------------------")
+        AppLocationManager.sharedInstance.locationManager.stopUpdatingLocation()
         ReminderController.sharedInstance.saveReminders()
         
     }
 
     func applicationWillEnterForeground(application: UIApplication) {
         // Called as part of the transition from the background to the inactive state; here you can undo many of the changes made on entering the background.
+        AppLocationManager.sharedInstance.locationManager.startUpdatingLocation()
     }
 
     func applicationDidBecomeActive(application: UIApplication) {
@@ -135,42 +136,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
         return FBSDKApplicationDelegate.sharedInstance().application(application, openURL: url, sourceApplication: sourceApplication, annotation: annotation)
     }
     
-    // ************************** LOCATION MANAGER DELEGATE **************************
-    
-    // *helper* function for setting up the location manager
-    func setUpLocationManager() {
-        // initialize location manager, set delegate, accuracy
-        self.locationManager = CLLocationManager()
-        self.locationManager?.delegate = self
-        self.locationManager?.desiredAccuracy = kCLLocationAccuracyBest
-        // request authorization from user
-        self.locationManager?.requestAlwaysAuthorization()
-    }
-    
-    // *CLLocationManagerDelegate* function called when the user's authorization status is updated
-    func locationManager(manager: CLLocationManager, didChangeAuthorizationStatus status: CLAuthorizationStatus) {
-        if status == CLAuthorizationStatus.AuthorizedAlways {
-            // track significant changes, regardless of app state
-            // if app is terminated, will launch app upon significant location changes
-            self.locationManager?.startMonitoringSignificantLocationChanges()
-            // update locations for when the app is running
-            self.locationManager?.startUpdatingLocation()
-        } else {
-            print("-----------------------Location authorization denied-----------------------")
-        }
-    }
-    
-    // *CLLocationManagerDelegate* function called when location is updated
-    func locationManager(manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        // check reminders with this new location
-        ReminderController.sharedInstance.checkReminders(withRecentLocation: locations.last!)
-        // TO-DO: send new location to server
-    }
-    
-    // *CLLocationManagerDelegate* function called when location fails to updates
-    func locationManager(manager: CLLocationManager, didFailWithError error: NSError) {
-        print("-----------------------Location update failed-----------------------")
-    }
 
 }
 
