@@ -33,44 +33,40 @@ class AppLocationManager: NSObject, CLLocationManagerDelegate {
         // configure the location manager
         self.locationManager.delegate = self
         self.locationManager.desiredAccuracy = kCLLocationAccuracyHundredMeters
+        self.locationManager.startMonitoringSignificantLocationChanges()
         self.checkStatus()
     }
     
     func checkStatus() {
         // examine status
         let status = CLLocationManager.authorizationStatus()
-        if status == .Denied || status == .Restricted {
-            // print an error and return
-        } else if status == .NotDetermined {
+        if status == .NotDetermined {
             // request authorization from user
             self.locationManager.requestAlwaysAuthorization()
-        }
-        else {
-            print("location already authorized: status is \(status.rawValue)")
-            // if app is terminated, will launch app upon significant location changes
-            self.locationManager.startMonitoringSignificantLocationChanges()
-            // update locations for when the app is running
-            // self.locationManager.startUpdatingLocation()
         }
     }
     
     
     // *CLLocationManagerDelegate* function called when the user's authorization status is updated
-    func locationManager(manager: CLLocationManager, didChangeAuthorizationStatus status: CLAuthorizationStatus) {
-        self.checkStatus()
-    }
+//    func locationManager(manager: CLLocationManager, didChangeAuthorizationStatus status: CLAuthorizationStatus) {
+//        self.checkStatus()
+//    }
     
     // *CLLocationManagerDelegate* function called when location is updated
     func locationManager(manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         // check reminders with this new location
-        ReminderController.sharedInstance.checkReminders(withRecentLocation: locations.last!)
-        // save reminder status
-        ReminderController.sharedInstance.saveReminders()
+        if locations.last?.timestamp.timeIntervalSinceNow > -10 {
+            // only check recent location updates
+            ReminderController.sharedInstance.checkReminders(withRecentLocation: locations.last!)
+            // save reminder status
+            ReminderController.sharedInstance.saveReminders()
+        }
     }
     
-    // *CLLocationManagerDelegate* function called when location fails to updates
+    // *CLLocationManagerDelegate* function called when location fails to update
     func locationManager(manager: CLLocationManager, didFailWithError error: NSError) {
         print("-----------------------Location update failed-----------------------")
         print(error.localizedDescription)
+        self.checkStatus()
     }
 }

@@ -24,8 +24,6 @@ class ReminderViewController: UIViewController, UITableViewDataSource, UITableVi
         self.navigationItem.rightBarButtonItem = Helper.generateBarButtonWithImage(imageName: "add_new",
                                                                                    action: #selector(ReminderViewController.newReminderButtonTapped),
                                                                                    target: self)
-        
-        
         // set up the table's delegate and data source
         self.reminderTableView.delegate = self
         self.reminderTableView.dataSource = self
@@ -35,6 +33,16 @@ class ReminderViewController: UIViewController, UITableViewDataSource, UITableVi
     override func viewWillAppear(animated: Bool) {
         // reload the table
         self.reminderTableView.reloadData()
+    }
+    
+    override func viewDidAppear(animated: Bool) {
+        let status = CLLocationManager.authorizationStatus()
+        if status == CLAuthorizationStatus.Denied {
+            let msg = "NextTime can't send you reminders without your location. Go to Settings and enable location services for this app."
+            let alert = UIAlertController(title: "Location Unauthorized", message:msg, preferredStyle: .Alert)
+            alert.addAction(UIAlertAction(title: "OK", style: .Default, handler: nil))
+            self.presentViewController(alert, animated: true, completion: nil)
+        }
     }
 
     override func didReceiveMemoryWarning() {
