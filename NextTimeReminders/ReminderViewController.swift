@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import FBSDKLoginKit
 import MapKit
 import SWTableViewCell
 
@@ -22,9 +21,6 @@ class ReminderViewController: UIViewController, UITableViewDataSource, UITableVi
         
         // set up the navigation bar, with custom buttons
         self.title = "Reminders"
-        self.navigationItem.leftBarButtonItem = Helper.generateBarButtonWithImage(imageName: "logout",
-                                                                                  action: #selector(ReminderViewController.logOutButtonTapped),
-                                                                                  target: self)
         self.navigationItem.rightBarButtonItem = Helper.generateBarButtonWithImage(imageName: "add_new",
                                                                                    action: #selector(ReminderViewController.newReminderButtonTapped),
                                                                                    target: self)
@@ -37,24 +33,6 @@ class ReminderViewController: UIViewController, UITableViewDataSource, UITableVi
     }
     
     override func viewWillAppear(animated: Bool) {
-        // set the navigation bar title to the user's first name
-        // obtain the user's access token
-        let token = FBSDKAccessToken.currentAccessToken()
-        let request = FBSDKGraphRequest(graphPath: "me", parameters: ["fields":"first_name"], tokenString: token.tokenString, version: nil, HTTPMethod: "GET")
-        // make the graph request
-        request.startWithCompletionHandler() {(connection, result, error) in
-            // check for errors
-            if error == nil {
-                if let name = result["first_name"] {
-                    self.title = "\(name!)'s Reminders"
-                }
-            } else {
-                // display error message
-                print("ReminderList: failed in obtaining current user's name \(error.localizedDescription)")
-            }
-            
-        }
-        
         // reload the table
         self.reminderTableView.reloadData()
     }
@@ -62,15 +40,6 @@ class ReminderViewController: UIViewController, UITableViewDataSource, UITableVi
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
-    }
-    
-    // log out of Facebook
-    func logOutButtonTapped() {
-        // sign out of Facebook
-        // QUESTION: do we need to sign out of both?
-        FBSDKLoginManager().logOut()
-        let app = UIApplication.sharedApplication().delegate as! AppDelegate
-        app.navigateToLoggedOutViewController()
     }
     
     // add a new reminder

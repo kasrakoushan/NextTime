@@ -8,7 +8,6 @@
 
 import Foundation
 import MapKit
-import FBSDKLoginKit
 
 class ReminderController {
     // singleton design
@@ -57,8 +56,8 @@ class ReminderController {
         var notification: UILocalNotification
         
         // if no one is logged in, don't send notifications
-        if FBSDKAccessToken.currentAccessToken() == nil {
-            print("no logged in user")
+        if !NSUserDefaults.standardUserDefaults().boolForKey("tutorialFinished") {
+            print("tutorial not yet finished")
             return
         }
         

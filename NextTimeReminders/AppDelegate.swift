@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import FBSDKLoginKit
 import MapKit
 
 @UIApplicationMain
@@ -30,10 +29,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
         // register for and request push notifications
         self.registerForPushNotifications(application)
         
-        // launch the Facebook app
-        FBSDKApplicationDelegate.sharedInstance().application(application,
-                                                              didFinishLaunchingWithOptions: launchOptions)
-        
         // set up window
         self.window = UIWindow(frame: UIScreen.mainScreen().bounds)
         
@@ -42,13 +37,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
         let reminderViewController = ReminderViewController(nibName: "ReminderViewController", bundle: nil)
         self.mainNavigationController = UINavigationController(rootViewController: reminderViewController)
         
+        
+        // determine whether the user has finished the tutorial
+        
         print("-----------------------Launched-----------------------")
-        // navigate to the correct view controller, depending on whether user is logged into FB
-        if let token = FBSDKAccessToken.currentAccessToken() {
-            print("Launch: currently logged in with FB user ID:\(token.userID)")
+        if NSUserDefaults.standardUserDefaults().boolForKey("tutorialFinished") {
             self.window?.rootViewController = self.mainNavigationController
         } else {
-            print("Launch: no FB user logged in")
             self.window?.rootViewController = self.landingViewController
         }
         self.window?.makeKeyAndVisible()
@@ -98,23 +93,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
     
     // *UIApplicationDelegate* function called when the user accepts notification permissions
     func application(application: UIApplication, didRegisterUserNotificationSettings notificationSettings: UIUserNotificationSettings) {
-        if notificationSettings.types != UIUserNotificationType.None {
-            // if the user registered for any notification settings, register for remote notifications
-            application.registerForRemoteNotifications()
+        if notificationSettings.types == UIUserNotificationType.None {
+            print("user denied notifications")
         }
-    }
-    
-    
-    // *UIApplicationDelegate* function called when the app fails in registering for push notifications
-    func application(application: UIApplication, didFailToRegisterForRemoteNotificationsWithError error: NSError) {
-        print("-----------------------Failed to register for remote notifications-----------------------")
-        print("Error is \(error.localizedDescription)")
-    }
-    
-    // *UIApplicationDelegate* called when a remote notification is received
-    func application(application: UIApplication, didReceiveRemoteNotification userInfo: [NSObject : AnyObject]) {
-        print("-----------------------Remote notification-----------------------")
-        print("Notification: \(userInfo)")
     }
     
     // ************************** APP LOGIN/LOGOUT NAVIGATION FUNCTIONS **************************
@@ -127,15 +108,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
     func navigateToLoggedOutViewController() {
         self.window?.rootViewController = self.landingViewController
     }
-    
-    // ************************** FACEBOOK SDK **************************
-    
-    // *UIApplicationDelegate* function that responds to calls to open a given URL
-    // will use the FB app to open the URL
-    func application(application: UIApplication, openURL url: NSURL, sourceApplication: String?, annotation: AnyObject) -> Bool {
-        return FBSDKApplicationDelegate.sharedInstance().application(application, openURL: url, sourceApplication: sourceApplication, annotation: annotation)
-    }
-    
 
 }
 

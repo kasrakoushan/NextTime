@@ -6,8 +6,5 @@ target 'NextTimeReminders' do
   use_frameworks!
 
   # Pods for NextTimeReminders
-  pod 'FBSDKCoreKit'
-  pod 'FBSDKShareKit'
-  pod 'FBSDKLoginKit'
   pod 'SWTableViewCell', '~> 0.3.7' # custom table view cells
 end

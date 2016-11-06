@@ -1,31 +1,12 @@
 PODS:
-  - Bolts (1.7.0):
-    - Bolts/AppLinks (= 1.7.0)
-    - Bolts/Tasks (= 1.7.0)
-  - Bolts/AppLinks (1.7.0):
-    - Bolts/Tasks
-  - Bolts/Tasks (1.7.0)
-  - FBSDKCoreKit (4.13.0):
-    - Bolts (~> 1.7)
-  - FBSDKLoginKit (4.13.0):
-    - FBSDKCoreKit
-  - FBSDKShareKit (4.13.0):
-    - FBSDKCoreKit
   - SWTableViewCell (0.3.7)
 
 DEPENDENCIES:
-  - FBSDKCoreKit
-  - FBSDKLoginKit
-  - FBSDKShareKit
   - SWTableViewCell (~> 0.3.7)
 
 SPEC CHECKSUMS:
-  Bolts: a0058fa3b331c5a1e4402d534f2dae36dbff31e4
-  FBSDKCoreKit: 322234a989549a4594ddf02fdcf60bef80f97341
-  FBSDKLoginKit: 7a0ee41905a3e008a1b89aa26cd21717a45b9b9c
-  FBSDKShareKit: 4b714a6f381168908b2e7c0d302641897c69dcd6
   SWTableViewCell: 2a94aadc9d47b2b611fa064566bf57948b95b579
 
-PODFILE CHECKSUM: 48eb5dac0eb449504dbc4edb49c0d71a38ab303a
+PODFILE CHECKSUM: 428299241bfe4b851233fdd902ec5cdc418adbe0
 
 COCOAPODS: 1.1.1
