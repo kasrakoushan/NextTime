@@ -8,7 +8,6 @@
 
 import UIKit
 import FBSDKLoginKit
-import Firebase
 
 // the first view controller that the user will see, with a Facebook login button
 class LandingViewController: UIViewController, FBSDKLoginButtonDelegate {
@@ -44,20 +43,8 @@ class LandingViewController: UIViewController, FBSDKLoginButtonDelegate {
             print("Landing: no Facebook login errors, will obtain token now")
             
             // obtain the FB token from the result, if one exists
-            if let token = result?.token?.tokenString {
-                print("Landing: obtained Facebook token with user ID \(result.token.userID)")
-                // obtain the Firebase token from the Facebook token
-                let credential = FIRFacebookAuthProvider.credentialWithAccessToken(token)
-                // attempt to login to Firebase with the credential
-                FIRAuth.auth()?.signInWithCredential(credential) {(user, error) in
-                    // if Firebase login worked, send data to server
-                    if error == nil {
-                        print("Landing: obtained Firebase token with user email \(user!.email!)")
-                        // TO-DO: to do something with the database
-                    } else {
-                        print("Landing: failed to obtain Firebase token with error \(error!.localizedDescription)")
-                    }
-                }
+            if let userID = result?.token?.userID {
+                print("Landing: obtained Facebook token with user ID \(userID)")
                 
                 // navigate to the list of reminders
                 (UIApplication.sharedApplication().delegate as! AppDelegate).navigateToLoggedInViewController()

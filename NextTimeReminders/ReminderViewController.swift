@@ -9,7 +9,6 @@
 import UIKit
 import FBSDKLoginKit
 import MapKit
-import Firebase
 import SWTableViewCell
 
 // The main view controller of the app, displaying all of the reminders in a table
@@ -67,10 +66,9 @@ class ReminderViewController: UIViewController, UITableViewDataSource, UITableVi
     
     // log out of Facebook
     func logOutButtonTapped() {
-        // sign out of Facebook and Firebase
+        // sign out of Facebook
         // QUESTION: do we need to sign out of both?
         FBSDKLoginManager().logOut()
-        try! FIRAuth.auth()!.signOut()
         let app = UIApplication.sharedApplication().delegate as! AppDelegate
         app.navigateToLoggedOutViewController()
     }

@@ -9,9 +9,5 @@ target 'NextTimeReminders' do
   pod 'FBSDKCoreKit'
   pod 'FBSDKShareKit'
   pod 'FBSDKLoginKit'
-  pod 'Firebase'
-  pod 'Firebase/Messaging' # for notifications
-  pod 'Firebase/Auth' # for authorization
-  pod 'Firebase/Database' # for database
   pod 'SWTableViewCell', '~> 0.3.7' # custom table view cells
 end

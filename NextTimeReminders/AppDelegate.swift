@@ -9,7 +9,6 @@
 import UIKit
 import FBSDKLoginKit
 import MapKit
-import Firebase
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate {
@@ -35,9 +34,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
         // launch the Facebook app
         FBSDKApplicationDelegate.sharedInstance().application(application,
                                                               didFinishLaunchingWithOptions: launchOptions)
-        
-        // launch Firebase
-        FIRApp.configure()
         
         // set up window
         self.window = UIWindow(frame: UIScreen.mainScreen().bounds)
@@ -104,16 +100,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
         if notificationSettings.types != UIUserNotificationType.None {
             // if the user registered for any notification settings, register for remote notifications
             application.registerForRemoteNotifications()
-        }
-    }
-    
-    // *UIApplicationDelegate* function called when the app has registered for remote notifications with success
-    // for some reason this function is called twice
-    func application(application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: NSData) {
-        print("-----------------------Registered for remote notifications-----------------------")
-        print("APNS device token is \(deviceToken)")
-        if let token = FIRInstanceID.instanceID().token() {
-            print("Firebase token is \(token)")
         }
     }
     

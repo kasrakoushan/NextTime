@@ -23,7 +23,6 @@
 		A15DC45D1D18546D00CC9006 /* FriendReminderViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A15DC45B1D18546D00CC9006 /* FriendReminderViewController.xib */; };
 		A16641DD1D1D390C0071B0CF /* Helper.swift in Sources */ = {isa = PBXBuildFile; fileRef = A16641DC1D1D390C0071B0CF /* Helper.swift */; };
 		A1708BDA1D1C0DEA00AC4B5B /* LocationExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1708BD91D1C0DEA00AC4B5B /* LocationExtensions.swift */; };
-		A19F14BD1D19D38D003D3FE7 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = A19F14BC1D19D38D003D3FE7 /* GoogleService-Info.plist */; };
 		A1B9EA811D1AAB7500DDE19A /* Reminder.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1B9EA801D1AAB7500DDE19A /* Reminder.swift */; };
 		A1B9EA831D1AAE0800DDE19A /* ReminderController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1B9EA821D1AAE0800DDE19A /* ReminderController.swift */; };
 		A1B9EA851D1AB4FD00DDE19A /* PersistenceManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1B9EA841D1AB4FD00DDE19A /* PersistenceManager.swift */; };
@@ -51,7 +50,6 @@
 		A15DC45B1D18546D00CC9006 /* FriendReminderViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FriendReminderViewController.xib; sourceTree = "<group>"; };
 		A16641DC1D1D390C0071B0CF /* Helper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Helper.swift; sourceTree = "<group>"; };
 		A1708BD91D1C0DEA00AC4B5B /* LocationExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationExtensions.swift; sourceTree = "<group>"; };
-		A19F14BC1D19D38D003D3FE7 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		A1B9EA801D1AAB7500DDE19A /* Reminder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Reminder.swift; sourceTree = "<group>"; };
 		A1B9EA821D1AAE0800DDE19A /* ReminderController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReminderController.swift; sourceTree = "<group>"; };
 		A1B9EA841D1AB4FD00DDE19A /* PersistenceManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PersistenceManager.swift; sourceTree = "<group>"; };
@@ -105,7 +103,6 @@
 		A120D0E61D17EA9400F0ACBE /* NextTimeReminders */ = {
 			isa = PBXGroup;
 			children = (
-				A19F14BC1D19D38D003D3FE7 /* GoogleService-Info.plist */,
 				A120D0E71D17EA9400F0ACBE /* AppDelegate.swift */,
 				A120D0EE1D17EA9400F0ACBE /* Assets.xcassets */,
 				A120D0F01D17EA9400F0ACBE /* LaunchScreen.storyboard */,
@@ -244,7 +241,6 @@
 			files = (
 				A1B9EA8E1D1AF27E00DDE19A /* MapPopUpViewController.xib in Resources */,
 				A15DC4501D18461E00CC9006 /* ReminderViewController.xib in Resources */,
-				A19F14BD1D19D38D003D3FE7 /* GoogleService-Info.plist in Resources */,
 				A15DC4551D184BEB00CC9006 /* NewReminderViewController.xib in Resources */,
 				A120D1021D17F70400F0ACBE /* LandingViewController.xib in Resources */,
 				A15DC45D1D18546D00CC9006 /* FriendReminderViewController.xib in Resources */,
@@ -299,7 +295,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
