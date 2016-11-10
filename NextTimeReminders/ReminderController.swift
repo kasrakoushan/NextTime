@@ -27,6 +27,7 @@ class ReminderController {
     static let NEARBY_THRESHOLD = 100.0
     
     var reminders = [Reminder]()
+    var reminderViewController: ReminderViewController? = nil
     
     func addLocationReminder(description: String, annotations: [MKAnnotation], region: MKCoordinateRegion) {
         let reminder = Reminder(description: description, type: .Location, annotationList: annotations, region: region)
@@ -56,7 +57,7 @@ class ReminderController {
         var notification: UILocalNotification
         
         // if no one is logged in, don't send notifications
-        if !NSUserDefaults.standardUserDefaults().boolForKey("tutorialFinished") {
+        if !AppSettings.loggedIn {
             print("tutorial not yet finished")
             return
         }
@@ -107,7 +108,7 @@ class ReminderController {
         
         // reload the table if any states changed
         if self.reminders.map({$0.state}) != currentStates {
-            ((UIApplication.sharedApplication().delegate as? AppDelegate)?.mainNavigationController?.viewControllers.first as? ReminderViewController)?.reminderTableView.reloadData()
+            self.reminderViewController?.reminderTableView.reloadData()
         }
         
     }

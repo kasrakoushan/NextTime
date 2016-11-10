@@ -31,10 +31,6 @@
 	</array>
 	<key>CFBundleVersion</key>
 	<string>1</string>
-	<key>FacebookAppID</key>
-	<string>1429974323694664</string>
-	<key>FacebookDisplayName</key>
-	<string>NextTimeReminders</string>
 	<key>LSApplicationQueriesSchemes</key>
 	<array>
 		<string>fbapi</string>

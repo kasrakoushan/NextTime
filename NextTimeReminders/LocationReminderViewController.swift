@@ -51,7 +51,7 @@ class LocationReminderViewController: UIViewController {
         if self.annotationsToSave.count != 0 {
             ReminderController.sharedInstance.addLocationReminder(reminderDescriptionTextField.text!,
                                                                   annotations: self.annotationsToSave, region: self.regionToSave)
-            self.navigationController?.dismissViewControllerAnimated(true, completion: nil)
+            self.navigationController?.popViewControllerAnimated(true)
         } else {
             self.locationDescriptionLabel.text = "No locations found"
         }

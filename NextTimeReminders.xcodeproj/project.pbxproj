@@ -11,8 +11,6 @@
 		A120D0EF1D17EA9400F0ACBE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A120D0EE1D17EA9400F0ACBE /* Assets.xcassets */; };
 		A120D0F21D17EA9400F0ACBE /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A120D0F01D17EA9400F0ACBE /* LaunchScreen.storyboard */; };
 		A120D0FA1D17EB0700F0ACBE /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A120D0F91D17EB0600F0ACBE /* MapKit.framework */; };
-		A120D1011D17F70400F0ACBE /* LandingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A120D0FF1D17F70400F0ACBE /* LandingViewController.swift */; };
-		A120D1021D17F70400F0ACBE /* LandingViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A120D1001D17F70400F0ACBE /* LandingViewController.xib */; };
 		A15DC44F1D18461E00CC9006 /* ReminderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A15DC44D1D18461E00CC9006 /* ReminderViewController.swift */; };
 		A15DC4501D18461E00CC9006 /* ReminderViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A15DC44E1D18461E00CC9006 /* ReminderViewController.xib */; };
 		A15DC4541D184BEB00CC9006 /* NewReminderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A15DC4521D184BEB00CC9006 /* NewReminderViewController.swift */; };
@@ -30,6 +28,12 @@
 		A1B9EA8E1D1AF27E00DDE19A /* MapPopUpViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A1B9EA8C1D1AF27E00DDE19A /* MapPopUpViewController.xib */; };
 		A2497E8B7404A4E4167C55A1 /* Pods_NextTimeReminders.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DDB64DFEF21ADDDFF1CDF5EE /* Pods_NextTimeReminders.framework */; };
 		CA303FCB1DCF73C3003A6753 /* AppLocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA303FCA1DCF73C3003A6753 /* AppLocationManager.swift */; };
+		CA6FA4C81DD4B4B80029754F /* AppSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA6FA4C71DD4B4B80029754F /* AppSettings.swift */; };
+		CA6FA4D31DD4BAD90029754F /* Settings.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CA6FA4D21DD4BAD90029754F /* Settings.storyboard */; };
+		CA6FA4D51DD4BDEA0029754F /* SettingsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA6FA4D41DD4BDEA0029754F /* SettingsTableViewController.swift */; };
+		CAD903FD1DCFAE7A00ED685A /* Tutorial.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CAD903FC1DCFAE7A00ED685A /* Tutorial.storyboard */; };
+		CAD903FF1DCFAFCB00ED685A /* TutorialContentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAD903FE1DCFAFCB00ED685A /* TutorialContentViewController.swift */; };
+		CAD904011DCFB01C00ED685A /* TutorialViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAD904001DCFB01C00ED685A /* TutorialViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -39,8 +43,6 @@
 		A120D0F11D17EA9400F0ACBE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		A120D0F31D17EA9400F0ACBE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A120D0F91D17EB0600F0ACBE /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
-		A120D0FF1D17F70400F0ACBE /* LandingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LandingViewController.swift; sourceTree = "<group>"; };
-		A120D1001D17F70400F0ACBE /* LandingViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LandingViewController.xib; sourceTree = "<group>"; };
 		A15DC44D1D18461E00CC9006 /* ReminderViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReminderViewController.swift; sourceTree = "<group>"; };
 		A15DC44E1D18461E00CC9006 /* ReminderViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ReminderViewController.xib; sourceTree = "<group>"; };
 		A15DC4521D184BEB00CC9006 /* NewReminderViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewReminderViewController.swift; sourceTree = "<group>"; };
@@ -58,6 +60,12 @@
 		A1B9EA8C1D1AF27E00DDE19A /* MapPopUpViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MapPopUpViewController.xib; sourceTree = "<group>"; };
 		C8F9A48805320CBA2D2533A1 /* Pods-NextTimeReminders.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NextTimeReminders.release.xcconfig"; path = "Pods/Target Support Files/Pods-NextTimeReminders/Pods-NextTimeReminders.release.xcconfig"; sourceTree = "<group>"; };
 		CA303FCA1DCF73C3003A6753 /* AppLocationManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppLocationManager.swift; sourceTree = "<group>"; };
+		CA6FA4C71DD4B4B80029754F /* AppSettings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppSettings.swift; sourceTree = "<group>"; };
+		CA6FA4D21DD4BAD90029754F /* Settings.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Settings.storyboard; sourceTree = "<group>"; };
+		CA6FA4D41DD4BDEA0029754F /* SettingsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsTableViewController.swift; sourceTree = "<group>"; };
+		CAD903FC1DCFAE7A00ED685A /* Tutorial.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Tutorial.storyboard; sourceTree = "<group>"; };
+		CAD903FE1DCFAFCB00ED685A /* TutorialContentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TutorialContentViewController.swift; sourceTree = "<group>"; };
+		CAD904001DCFB01C00ED685A /* TutorialViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TutorialViewController.swift; sourceTree = "<group>"; };
 		DDB64DFEF21ADDDFF1CDF5EE /* Pods_NextTimeReminders.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_NextTimeReminders.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		FE9DB73B7DA890776BEF179B /* Pods-NextTimeReminders.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NextTimeReminders.debug.xcconfig"; path = "Pods/Target Support Files/Pods-NextTimeReminders/Pods-NextTimeReminders.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -128,13 +136,13 @@
 		A15DC4511D184BD800CC9006 /* Screens */ = {
 			isa = PBXGroup;
 			children = (
-				A120D0FF1D17F70400F0ACBE /* LandingViewController.swift */,
-				A120D1001D17F70400F0ACBE /* LandingViewController.xib */,
+				CAD904021DCFB32D00ED685A /* Onboarding */,
+				A19F14BB1D198DE3003D3FE7 /* NewReminders */,
+				CA6FA4CD1DD4BA100029754F /* Settings */,
 				A15DC44D1D18461E00CC9006 /* ReminderViewController.swift */,
 				A15DC44E1D18461E00CC9006 /* ReminderViewController.xib */,
 				A15DC4521D184BEB00CC9006 /* NewReminderViewController.swift */,
 				A15DC4531D184BEB00CC9006 /* NewReminderViewController.xib */,
-				A19F14BB1D198DE3003D3FE7 /* NewReminders */,
 			);
 			name = Screens;
 			sourceTree = "<group>";
@@ -159,6 +167,7 @@
 				A1B9EA821D1AAE0800DDE19A /* ReminderController.swift */,
 				A1B9EA841D1AB4FD00DDE19A /* PersistenceManager.swift */,
 				CA303FCA1DCF73C3003A6753 /* AppLocationManager.swift */,
+				CA6FA4C71DD4B4B80029754F /* AppSettings.swift */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -170,6 +179,25 @@
 				C8F9A48805320CBA2D2533A1 /* Pods-NextTimeReminders.release.xcconfig */,
 			);
 			name = Pods;
+			sourceTree = "<group>";
+		};
+		CA6FA4CD1DD4BA100029754F /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+				CA6FA4D21DD4BAD90029754F /* Settings.storyboard */,
+				CA6FA4D41DD4BDEA0029754F /* SettingsTableViewController.swift */,
+			);
+			name = Settings;
+			sourceTree = "<group>";
+		};
+		CAD904021DCFB32D00ED685A /* Onboarding */ = {
+			isa = PBXGroup;
+			children = (
+				CAD903FC1DCFAE7A00ED685A /* Tutorial.storyboard */,
+				CAD903FE1DCFAFCB00ED685A /* TutorialContentViewController.swift */,
+				CAD904001DCFB01C00ED685A /* TutorialViewController.swift */,
+			);
+			name = Onboarding;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -246,13 +274,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				A1B9EA8E1D1AF27E00DDE19A /* MapPopUpViewController.xib in Resources */,
+				CAD903FD1DCFAE7A00ED685A /* Tutorial.storyboard in Resources */,
 				A15DC4501D18461E00CC9006 /* ReminderViewController.xib in Resources */,
 				A15DC4551D184BEB00CC9006 /* NewReminderViewController.xib in Resources */,
-				A120D1021D17F70400F0ACBE /* LandingViewController.xib in Resources */,
 				A15DC45D1D18546D00CC9006 /* FriendReminderViewController.xib in Resources */,
 				A120D0F21D17EA9400F0ACBE /* LaunchScreen.storyboard in Resources */,
 				A120D0EF1D17EA9400F0ACBE /* Assets.xcassets in Resources */,
 				A15DC4591D18537800CC9006 /* LocationReminderViewController.xib in Resources */,
+				CA6FA4D31DD4BAD90029754F /* Settings.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -315,12 +344,15 @@
 				A1B9EA811D1AAB7500DDE19A /* Reminder.swift in Sources */,
 				A1B9EA8D1D1AF27E00DDE19A /* MapPopUpViewController.swift in Sources */,
 				CA303FCB1DCF73C3003A6753 /* AppLocationManager.swift in Sources */,
-				A120D1011D17F70400F0ACBE /* LandingViewController.swift in Sources */,
 				A15DC45C1D18546D00CC9006 /* FriendReminderViewController.swift in Sources */,
 				A15DC4541D184BEB00CC9006 /* NewReminderViewController.swift in Sources */,
+				CAD904011DCFB01C00ED685A /* TutorialViewController.swift in Sources */,
 				A1708BDA1D1C0DEA00AC4B5B /* LocationExtensions.swift in Sources */,
+				CA6FA4C81DD4B4B80029754F /* AppSettings.swift in Sources */,
+				CAD903FF1DCFAFCB00ED685A /* TutorialContentViewController.swift in Sources */,
 				A1B9EA831D1AAE0800DDE19A /* ReminderController.swift in Sources */,
 				A1B9EA851D1AB4FD00DDE19A /* PersistenceManager.swift in Sources */,
+				CA6FA4D51DD4BDEA0029754F /* SettingsTableViewController.swift in Sources */,
 				A120D0E81D17EA9400F0ACBE /* AppDelegate.swift in Sources */,
 				A15DC44F1D18461E00CC9006 /* ReminderViewController.swift in Sources */,
 				A16641DD1D1D390C0071B0CF /* Helper.swift in Sources */,

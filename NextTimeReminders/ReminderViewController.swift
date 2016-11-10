@@ -24,6 +24,9 @@ class ReminderViewController: UIViewController, UITableViewDataSource, UITableVi
         self.navigationItem.rightBarButtonItem = Helper.generateBarButtonWithImage(imageName: "add_new",
                                                                                    action: #selector(ReminderViewController.newReminderButtonTapped),
                                                                                    target: self)
+        self.navigationItem.leftBarButtonItem = Helper.generateBarButtonWithImage(imageName: "edit_button",
+                                                                                   action: #selector(ReminderViewController.settingsButtonTapped),
+                                                                                   target: self)
         // set up the table's delegate and data source
         self.reminderTableView.delegate = self
         self.reminderTableView.dataSource = self
@@ -40,6 +43,17 @@ class ReminderViewController: UIViewController, UITableViewDataSource, UITableVi
         if status == CLAuthorizationStatus.Denied {
             let msg = "NextTime can't send you reminders without your location. Go to Settings and enable location services for this app."
             let alert = UIAlertController(title: "Location Unauthorized", message:msg, preferredStyle: .Alert)
+            alert.addAction(UIAlertAction(title: "OK", style: .Default, handler: {(alert) in self.checkNotificationStatus()}))
+            self.presentViewController(alert, animated: true, completion: nil)
+        }
+    }
+    
+    func checkNotificationStatus() {
+        let notifStatus = UIApplication.sharedApplication().currentUserNotificationSettings()
+        let notificationSettings = UIUserNotificationSettings(forTypes: [.Badge, .Sound, .Alert], categories: nil)
+        if notifStatus != notificationSettings {
+            let msg = "NextTime can't send you reminders. Go to Settings and enable push notifications for this app."
+            let alert = UIAlertController(title: "Notifications Unauthorized", message:msg, preferredStyle: .Alert)
             alert.addAction(UIAlertAction(title: "OK", style: .Default, handler: nil))
             self.presentViewController(alert, animated: true, completion: nil)
         }
@@ -52,12 +66,16 @@ class ReminderViewController: UIViewController, UITableViewDataSource, UITableVi
     
     // add a new reminder
     func newReminderButtonTapped() {
-        // create a view controller for the new reminder page
-        let newReminderViewController = NewReminderViewController(nibName: "NewReminderViewController", bundle: nil)
-        // create a navigation controller to wrap around the new reminder flow
-        let newReminderNavigationController = UINavigationController(rootViewController: newReminderViewController)
-        // present the new reminder view
-        self.navigationController?.presentViewController(newReminderNavigationController, animated: true, completion: nil)
+        // location reminder
+        let locationReminderViewController = LocationReminderViewController(nibName: "LocationReminderViewController", bundle: nil)
+        self.navigationController?.pushViewController(locationReminderViewController, animated: true)
+    }
+    
+    func settingsButtonTapped() {
+        let storyboard = UIStoryboard.init(name: "Settings", bundle: nil)
+        if let settingsViewController = storyboard.instantiateInitialViewController() {
+            self.presentViewController(settingsViewController, animated: true, completion: nil)
+        }
     }
     
     // ************************** TABLEVIEW FUNCTIONS **************************

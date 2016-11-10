@@ -36,7 +36,7 @@ class NewReminderViewController: UIViewController {
         }
     }
     
-    // dismiss this modal controller in the mainNavigationController, go back to reminder list
+    // go back to reminder list
     func cancelButtonTapped() {
         self.presentingViewController?.dismissViewControllerAnimated(true, completion: nil)
     }

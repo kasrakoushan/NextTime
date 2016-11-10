@@ -110,10 +110,18 @@ class MapPopUpViewController: UIViewController, UISearchBarDelegate {
     }
 
     @IBAction func recentreButtonTapped(sender: UIButton) {
-        if let centre = AppLocationManager.sharedInstance.locationManager.location?.coordinate {
+        if let location = AppLocationManager.sharedInstance.locationManager.location where location.timestamp.timeIntervalSinceNow > -30 {
             // #CanadianSpelling
-            let region = MKCoordinateRegion(center: centre, span: MKCoordinateSpan(latitudeDelta: 0.015, longitudeDelta: 0.015))
+            let region = MKCoordinateRegion(center: location.coordinate, span: MKCoordinateSpan(latitudeDelta: 0.015, longitudeDelta: 0.015))
             self.mapView.setRegion(region, animated: true)
+            return
+        } else {
+            // present error
+            let msg = "Current location not found. Ensure that this app has location permissions in Settings."
+            let alert = UIAlertController(title: "Location Not Found", message:msg, preferredStyle: .Alert)
+            alert.addAction(UIAlertAction(title: "OK", style: .Default, handler: nil))
+            self.presentViewController(alert, animated: true, completion: nil)
         }
+        
     }
 }

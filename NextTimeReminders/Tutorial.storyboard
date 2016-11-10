@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15G1004" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="Exb-kd-drE">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+    </dependencies>
+    <scenes>
+        <!--Tutorial View Controller-->
+        <scene sceneID="s9T-tY-k1G">
+            <objects>
+                <viewController id="Exb-kd-drE" customClass="TutorialViewController" customModule="NextTimeReminders" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="PrZ-Cr-76y"/>
+                        <viewControllerLayoutGuide type="bottom" id="wY2-YE-akG"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="hfZ-Lr-KRI">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6yR-Vk-7aM">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                                <color key="backgroundColor" red="1" green="0.71703733790000002" blue="0.55326758539999998" alpha="0.59999999999999998" colorSpace="calibratedRGB"/>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="6yR-Vk-7aM" firstAttribute="leading" secondItem="hfZ-Lr-KRI" secondAttribute="leadingMargin" constant="-20" id="6nw-vg-iEb"/>
+                            <constraint firstItem="6yR-Vk-7aM" firstAttribute="top" secondItem="PrZ-Cr-76y" secondAttribute="bottom" constant="-20" id="GYa-QN-PzE"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="6yR-Vk-7aM" secondAttribute="trailing" constant="-20" id="PlD-f0-1MM"/>
+                            <constraint firstItem="wY2-YE-akG" firstAttribute="top" secondItem="6yR-Vk-7aM" secondAttribute="bottom" id="zcP-jX-cAS"/>
+                        </constraints>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Q4z-7Z-Vaj" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="478" y="320"/>
+        </scene>
+        <!--Tutorial Content View Controller-->
+        <scene sceneID="d7W-9X-5mS">
+            <objects>
+                <viewController storyboardIdentifier="TutorialContentView" id="wiz-og-mQQ" customClass="TutorialContentViewController" customModule="NextTimeReminders" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="NfG-UC-hio"/>
+                        <viewControllerLayoutGuide type="bottom" id="Fqa-kK-aof"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="m58-dv-Qub">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5He-SL-Ebg">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Description" textAlignment="justified" lineBreakMode="wordWrap" numberOfLines="4" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Pcb-8M-d7O">
+                                        <rect key="frame" x="50" y="67" width="499" height="21"/>
+                                        <fontDescription key="fontDescription" name="AppleSDGothicNeo-Regular" family="Apple SD Gothic Neo" pointSize="16"/>
+                                        <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="71y-87-aEO">
+                                        <rect key="frame" x="180" y="236" width="240" height="128"/>
+                                    </imageView>
+                                </subviews>
+                                <color key="backgroundColor" red="1" green="0.71703733790281599" blue="0.5532675853737703" alpha="0.59999999999999998" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstItem="71y-87-aEO" firstAttribute="centerX" secondItem="5He-SL-Ebg" secondAttribute="centerX" id="jd5-8z-5Tq"/>
+                                    <constraint firstItem="Pcb-8M-d7O" firstAttribute="top" secondItem="5He-SL-Ebg" secondAttribute="top" constant="67" id="k0y-iE-3ei"/>
+                                    <constraint firstItem="Pcb-8M-d7O" firstAttribute="leading" secondItem="5He-SL-Ebg" secondAttribute="leading" constant="50" id="kIe-Qn-Koz"/>
+                                    <constraint firstAttribute="trailing" secondItem="Pcb-8M-d7O" secondAttribute="trailing" constant="51" id="okZ-jy-Ptr"/>
+                                    <constraint firstItem="71y-87-aEO" firstAttribute="centerY" secondItem="5He-SL-Ebg" secondAttribute="centerY" id="wAb-yD-1v3"/>
+                                </constraints>
+                            </view>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7tP-sM-Goy">
+                                <rect key="frame" x="260" y="469" width="80" height="30"/>
+                                <state key="normal" title="Get Started"/>
+                                <connections>
+                                    <action selector="getStartedTapped:" destination="wiz-og-mQQ" eventType="touchUpInside" id="nqi-w3-CW6"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="7tP-sM-Goy" firstAttribute="centerX" secondItem="m58-dv-Qub" secondAttribute="centerX" id="9R7-4b-cke"/>
+                            <constraint firstItem="Fqa-kK-aof" firstAttribute="top" secondItem="5He-SL-Ebg" secondAttribute="bottom" id="N94-Zg-Y77"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="5He-SL-Ebg" secondAttribute="trailing" constant="-20" id="WLt-WX-Q0p"/>
+                            <constraint firstItem="Fqa-kK-aof" firstAttribute="top" secondItem="7tP-sM-Goy" secondAttribute="bottom" constant="101" id="eMj-SE-Xjh"/>
+                            <constraint firstItem="5He-SL-Ebg" firstAttribute="top" secondItem="NfG-UC-hio" secondAttribute="bottom" constant="-20" id="g5T-W2-6bX"/>
+                            <constraint firstItem="5He-SL-Ebg" firstAttribute="leading" secondItem="m58-dv-Qub" secondAttribute="leadingMargin" constant="-20" id="vdw-ZM-UWQ"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="getStartedButton" destination="7tP-sM-Goy" id="h6u-Ns-fWL"/>
+                        <outlet property="pageImage" destination="71y-87-aEO" id="9ra-M4-S2Y"/>
+                        <outlet property="pageLabel" destination="Pcb-8M-d7O" id="4b4-jw-3uO"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="zRa-p9-1r2" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1171" y="320"/>
+        </scene>
+    </scenes>
+</document>

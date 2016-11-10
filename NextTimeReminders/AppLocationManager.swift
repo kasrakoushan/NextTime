@@ -32,8 +32,10 @@ class AppLocationManager: NSObject, CLLocationManagerDelegate {
         super.init()
         // configure the location manager
         self.locationManager.delegate = self
-        self.locationManager.desiredAccuracy = kCLLocationAccuracyHundredMeters
-        self.locationManager.startMonitoringSignificantLocationChanges()
+        self.locationManager.desiredAccuracy = AppSettings.locationAccuracy
+        if !AppSettings.ignoreBackground {
+            self.locationManager.startMonitoringSignificantLocationChanges()
+        }
         self.checkStatus()
     }
     
@@ -45,12 +47,6 @@ class AppLocationManager: NSObject, CLLocationManagerDelegate {
             self.locationManager.requestAlwaysAuthorization()
         }
     }
-    
-    
-    // *CLLocationManagerDelegate* function called when the user's authorization status is updated
-//    func locationManager(manager: CLLocationManager, didChangeAuthorizationStatus status: CLAuthorizationStatus) {
-//        self.checkStatus()
-//    }
     
     // *CLLocationManagerDelegate* function called when location is updated
     func locationManager(manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
