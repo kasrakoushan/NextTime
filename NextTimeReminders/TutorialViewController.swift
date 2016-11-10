@@ -17,7 +17,7 @@ class TutorialViewController: UIViewController, UIPageViewControllerDataSource {
                        "See the results, and confirm or search again.",
                        "When you're near a tagged location, NextTime will send you a notification.",
                        "Swipe right and check off when you're done!"]
-    static var pageImages = ["location", "location", "location", "location", "location", "location"]
+    static var pageImages = ["location", "tutorial2", "tutorial3", "tutorial4", "tutorial5", "tutorial6"]
     
     override func viewDidLoad() {
         super.viewDidLoad()

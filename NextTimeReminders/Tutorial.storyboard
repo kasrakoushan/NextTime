@@ -21,6 +21,7 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6yR-Vk-7aM">
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                                 <color key="backgroundColor" red="1" green="0.71703733790000002" blue="0.55326758539999998" alpha="0.59999999999999998" colorSpace="calibratedRGB"/>
+                                <color key="tintColor" red="1" green="0.71703733790000002" blue="0.55326758539999998" alpha="0.59999999999999998" colorSpace="calibratedRGB"/>
                             </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -49,43 +50,52 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5He-SL-Ebg">
-                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                                <rect key="frame" x="4" y="0.0" width="592" height="600"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Description" textAlignment="justified" lineBreakMode="wordWrap" numberOfLines="4" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Pcb-8M-d7O">
-                                        <rect key="frame" x="50" y="67" width="499" height="21"/>
-                                        <fontDescription key="fontDescription" name="AppleSDGothicNeo-Regular" family="Apple SD Gothic Neo" pointSize="16"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Description" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="4" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Pcb-8M-d7O">
+                                        <rect key="frame" x="50" y="67" width="491" height="22"/>
+                                        <fontDescription key="fontDescription" name="AppleSDGothicNeo-Regular" family="Apple SD Gothic Neo" pointSize="18"/>
                                         <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="71y-87-aEO">
-                                        <rect key="frame" x="180" y="236" width="240" height="128"/>
+                                        <rect key="frame" x="180" y="129" width="240" height="128"/>
                                     </imageView>
+                                    <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7tP-sM-Goy">
+                                        <rect key="frame" x="215" y="297" width="170" height="50"/>
+                                        <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="50" id="7Y9-uG-8Je"/>
+                                            <constraint firstAttribute="width" constant="170" id="vmO-Ex-Scg"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" name="AppleSDGothicNeo-Regular" family="Apple SD Gothic Neo" pointSize="22"/>
+                                        <state key="normal" title="Get Started">
+                                            <color key="titleColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="getStartedTapped:" destination="wiz-og-mQQ" eventType="touchUpInside" id="nqi-w3-CW6"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
                                 <color key="backgroundColor" red="1" green="0.71703733790281599" blue="0.5532675853737703" alpha="0.59999999999999998" colorSpace="calibratedRGB"/>
+                                <color key="tintColor" red="1" green="0.71703733790000002" blue="0.55326758539999998" alpha="0.59999999999999998" colorSpace="calibratedRGB"/>
                                 <constraints>
+                                    <constraint firstItem="71y-87-aEO" firstAttribute="top" secondItem="Pcb-8M-d7O" secondAttribute="bottom" constant="40" id="9FZ-dz-lbC"/>
                                     <constraint firstItem="71y-87-aEO" firstAttribute="centerX" secondItem="5He-SL-Ebg" secondAttribute="centerX" id="jd5-8z-5Tq"/>
                                     <constraint firstItem="Pcb-8M-d7O" firstAttribute="top" secondItem="5He-SL-Ebg" secondAttribute="top" constant="67" id="k0y-iE-3ei"/>
                                     <constraint firstItem="Pcb-8M-d7O" firstAttribute="leading" secondItem="5He-SL-Ebg" secondAttribute="leading" constant="50" id="kIe-Qn-Koz"/>
+                                    <constraint firstItem="7tP-sM-Goy" firstAttribute="centerX" secondItem="5He-SL-Ebg" secondAttribute="centerX" id="lyH-B9-VZA"/>
                                     <constraint firstAttribute="trailing" secondItem="Pcb-8M-d7O" secondAttribute="trailing" constant="51" id="okZ-jy-Ptr"/>
-                                    <constraint firstItem="71y-87-aEO" firstAttribute="centerY" secondItem="5He-SL-Ebg" secondAttribute="centerY" id="wAb-yD-1v3"/>
+                                    <constraint firstItem="7tP-sM-Goy" firstAttribute="top" secondItem="71y-87-aEO" secondAttribute="bottom" constant="40" id="zUy-Xm-LZR"/>
                                 </constraints>
                             </view>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7tP-sM-Goy">
-                                <rect key="frame" x="260" y="469" width="80" height="30"/>
-                                <state key="normal" title="Get Started"/>
-                                <connections>
-                                    <action selector="getStartedTapped:" destination="wiz-og-mQQ" eventType="touchUpInside" id="nqi-w3-CW6"/>
-                                </connections>
-                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="7tP-sM-Goy" firstAttribute="centerX" secondItem="m58-dv-Qub" secondAttribute="centerX" id="9R7-4b-cke"/>
                             <constraint firstItem="Fqa-kK-aof" firstAttribute="top" secondItem="5He-SL-Ebg" secondAttribute="bottom" id="N94-Zg-Y77"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="5He-SL-Ebg" secondAttribute="trailing" constant="-20" id="WLt-WX-Q0p"/>
-                            <constraint firstItem="Fqa-kK-aof" firstAttribute="top" secondItem="7tP-sM-Goy" secondAttribute="bottom" constant="101" id="eMj-SE-Xjh"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="5He-SL-Ebg" secondAttribute="trailing" constant="-16" id="WLt-WX-Q0p"/>
                             <constraint firstItem="5He-SL-Ebg" firstAttribute="top" secondItem="NfG-UC-hio" secondAttribute="bottom" constant="-20" id="g5T-W2-6bX"/>
-                            <constraint firstItem="5He-SL-Ebg" firstAttribute="leading" secondItem="m58-dv-Qub" secondAttribute="leadingMargin" constant="-20" id="vdw-ZM-UWQ"/>
+                            <constraint firstItem="5He-SL-Ebg" firstAttribute="leading" secondItem="m58-dv-Qub" secondAttribute="leadingMargin" constant="-16" id="vdw-ZM-UWQ"/>
                         </constraints>
                     </view>
                     <connections>

@@ -16,6 +16,23 @@ class TutorialContentViewController: UIViewController {
     
     var pageIndex: Int?
     
+    override func viewWillLayoutSubviews() {
+        if self.pageIndex == TutorialViewController.pageImages.count - 1 {
+            // customisze get started button -- add shadow, corner radius
+            self.getStartedButton.layer.cornerRadius = 10
+            self.getStartedButton.clipsToBounds = true
+            // shadow
+            self.getStartedButton.layer.masksToBounds = false
+            self.getStartedButton.layer.shadowOffset = CGSizeMake(3, 3)
+            self.getStartedButton.layer.shadowRadius = 5
+            self.getStartedButton.layer.shadowOpacity = 0.3
+        }
+        self.pageImage.layer.masksToBounds = false
+        self.pageImage.layer.shadowOffset = CGSizeMake(3, 3)
+        self.pageImage.layer.shadowRadius = 5
+        self.pageImage.layer.shadowOpacity = 0.3
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
