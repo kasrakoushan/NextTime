@@ -24,7 +24,7 @@ class NewReminderViewController: UIViewController {
     }
     
     // add a new location or friend reminder
-    @IBAction func newReminderButtonTapped(sender: UIButton) {
+    @IBAction func newReminderButtonTapped(_ sender: UIButton) {
         if sender.tag == 0 {
             // location reminder
             let locationReminderViewController = LocationReminderViewController(nibName: "LocationReminderViewController", bundle: nil)
@@ -38,7 +38,7 @@ class NewReminderViewController: UIViewController {
     
     // go back to reminder list
     func cancelButtonTapped() {
-        self.presentingViewController?.dismissViewControllerAnimated(true, completion: nil)
+        self.presentingViewController?.dismiss(animated: true, completion: nil)
     }
 
 }

@@ -33,29 +33,29 @@ class ReminderViewController: UIViewController, UITableViewDataSource, UITableVi
         
     }
     
-    override func viewWillAppear(animated: Bool) {
+    override func viewWillAppear(_ animated: Bool) {
         // reload the table
         self.reminderTableView.reloadData()
     }
     
-    override func viewDidAppear(animated: Bool) {
+    override func viewDidAppear(_ animated: Bool) {
         let status = CLLocationManager.authorizationStatus()
-        if status == CLAuthorizationStatus.Denied {
+        if status == CLAuthorizationStatus.denied {
             let msg = "NextTime can't send you reminders without your location. Go to Settings and enable location services for this app."
-            let alert = UIAlertController(title: "Location Unauthorized", message:msg, preferredStyle: .Alert)
-            alert.addAction(UIAlertAction(title: "OK", style: .Default, handler: {(alert) in self.checkNotificationStatus()}))
-            self.presentViewController(alert, animated: true, completion: nil)
+            let alert = UIAlertController(title: "Location Unauthorized", message:msg, preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "OK", style: .default, handler: {(alert) in self.checkNotificationStatus()}))
+            self.present(alert, animated: true, completion: nil)
         }
     }
     
     func checkNotificationStatus() {
-        let notifStatus = UIApplication.sharedApplication().currentUserNotificationSettings()
-        let notificationSettings = UIUserNotificationSettings(forTypes: [.Badge, .Sound, .Alert], categories: nil)
+        let notifStatus = UIApplication.shared.currentUserNotificationSettings
+        let notificationSettings = UIUserNotificationSettings(types: [.badge, .sound, .alert], categories: nil)
         if notifStatus != notificationSettings {
             let msg = "NextTime can't send you reminders. Go to Settings and enable push notifications for this app."
-            let alert = UIAlertController(title: "Notifications Unauthorized", message:msg, preferredStyle: .Alert)
-            alert.addAction(UIAlertAction(title: "OK", style: .Default, handler: nil))
-            self.presentViewController(alert, animated: true, completion: nil)
+            let alert = UIAlertController(title: "Notifications Unauthorized", message:msg, preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+            self.present(alert, animated: true, completion: nil)
         }
     }
 
@@ -74,27 +74,27 @@ class ReminderViewController: UIViewController, UITableViewDataSource, UITableVi
     func settingsButtonTapped() {
         let storyboard = UIStoryboard.init(name: "Settings", bundle: nil)
         if let settingsViewController = storyboard.instantiateInitialViewController() {
-            self.presentViewController(settingsViewController, animated: true, completion: nil)
+            self.present(settingsViewController, animated: true, completion: nil)
         }
     }
     
     // ************************** TABLEVIEW FUNCTIONS **************************
     
     // *UITableViewDataSource* function: return number of reminders in the table
-    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // TO-DO: eventually divide into separate friend and location sections?
         return ReminderController.sharedInstance.reminders.count
     }
     
     // *UITableViewDataSource* function: return the cell at the given row
-    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cellIdentifier = "Cell"
         
         // dequeue from existing cells if possible
-        var cell: SWTableViewCell! = tableView.dequeueReusableCellWithIdentifier(cellIdentifier) as? SWTableViewCell
+        var cell: SWTableViewCell! = tableView.dequeueReusableCell(withIdentifier: cellIdentifier) as? SWTableViewCell
         if cell == nil {
             // if no cell was provided, initialize one
-            cell = SWTableViewCell(style: .Value1, reuseIdentifier: cellIdentifier)
+            cell = SWTableViewCell(style: .value1, reuseIdentifier: cellIdentifier)
             cell.rightUtilityButtons = [] // no right utility buttons for now
             cell.leftUtilityButtons = self.getLeftUtilityButtons()
             cell.delegate = self
@@ -104,15 +104,15 @@ class ReminderViewController: UIViewController, UITableViewDataSource, UITableVi
         cell.textLabel?.font = UIFont(name: "Kohinoor Bangla", size: 18)
         cell.detailTextLabel?.font = UIFont(name: "Kohinoor Bangla", size: 16)
         // set the textLabel to the reminder's body
-        cell.textLabel?.text = ReminderController.sharedInstance.reminders[indexPath.row].reminderDescription
+        cell.textLabel?.text = ReminderController.sharedInstance.reminders[(indexPath as NSIndexPath).row].reminderDescription
         
         // set the detailTextLabel to the reminder status (either "Saved" or "Nearby")
-        if ReminderController.sharedInstance.reminders[indexPath.row].state == ReminderState.Active {
+        if ReminderController.sharedInstance.reminders[(indexPath as NSIndexPath).row].state == ReminderState.Active {
             cell.detailTextLabel?.text = "Nearby"
-            cell.detailTextLabel?.textColor = UIColor.redColor()
+            cell.detailTextLabel?.textColor = UIColor.red
         } else {
             cell.detailTextLabel?.text = "Saved"
-            cell.detailTextLabel?.textColor = UIColor.lightGrayColor()
+            cell.detailTextLabel?.textColor = UIColor.lightGray
         }
         
         return cell
@@ -120,10 +120,10 @@ class ReminderViewController: UIViewController, UITableViewDataSource, UITableVi
     
     
     // *UITableViewDelegate* function called when selecting a row
-    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         // check if the reminder has annotations and a region (i.e. if it is a location reminder)
-        if let annotations = ReminderController.sharedInstance.reminders[indexPath.row].annotations,
-            region = ReminderController.sharedInstance.reminders[indexPath.row].region {
+        if let annotations = ReminderController.sharedInstance.reminders[(indexPath as NSIndexPath).row].annotations,
+            let region = ReminderController.sharedInstance.reminders[(indexPath as NSIndexPath).row].region {
             // reminder type is location
             
             // generate map that covers the whole screen
@@ -133,7 +133,7 @@ class ReminderViewController: UIViewController, UITableViewDataSource, UITableVi
             
             // add the reminder's annotations to the map, set the map's type, show current location
             map.addAnnotations(annotations)
-            map.mapType = .HybridFlyover
+            map.mapType = .hybridFlyover
             map.showsUserLocation = true
             
             // check if current location is accessible
@@ -159,7 +159,7 @@ class ReminderViewController: UIViewController, UITableViewDataSource, UITableVi
     }
     
     // *UITableViewDelegate* to determine cell heights
-    func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         // somewhat larger than usual
         return 60
     }
@@ -170,20 +170,20 @@ class ReminderViewController: UIViewController, UITableViewDataSource, UITableVi
     // return the utility buttons on the left (only "complete" button for now)
     func getLeftUtilityButtons() -> [AnyObject] {
         let leftUtilityButtons = NSMutableArray()
-        leftUtilityButtons.sw_addUtilityButtonWithColor(UIColor.whiteColor(), icon: UIImage(named: "complete_button"))
+        leftUtilityButtons.sw_addUtilityButton(with: UIColor.white, icon: UIImage(named: "complete_button"))
         return leftUtilityButtons as [AnyObject]
     }
     
     // *SWTableViewCellDelegate* function called when a utility button is tapped
-    func swipeableTableViewCell(cell: SWTableViewCell!, didTriggerLeftUtilityButtonWithIndex index: Int) {
+    func swipeableTableViewCell(_ cell: SWTableViewCell!, didTriggerLeftUtilityButtonWith index: Int) {
         // complete button has been tapped - remove selected reminder
         
         // get the index of the selected cell
-        if let indexPath = self.reminderTableView.indexPathForCell(cell) {
+        if let indexPath = self.reminderTableView.indexPath(for: cell) {
             // remove the reminder from the model
-            ReminderController.sharedInstance.reminders.removeAtIndex(indexPath.row)
+            ReminderController.sharedInstance.reminders.remove(at: (indexPath as NSIndexPath).row)
             // delete the reminder from the table
-            self.reminderTableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: UITableViewRowAnimation.Fade)
+            self.reminderTableView.deleteRows(at: [indexPath], with: UITableViewRowAnimation.fade)
         } else {
             // an index for the cell could not be found
             print("ReminderList: ERROR - checked off cell is not in the table")

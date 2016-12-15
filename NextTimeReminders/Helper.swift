@@ -12,11 +12,11 @@ import UIKit
 class Helper {
     
     // generate a custom navigation bar button with the given image and action
-    class func generateBarButtonWithImage(imageName imageName: String, action: Selector, target: AnyObject?) -> UIBarButtonItem {
-        let button  = UIButton(type: .Custom)
-        button.setImage(UIImage(named: imageName), forState: .Normal)
-        button.frame = CGRectMake(0.0, 0.0, 30.0, 30.0)
-        button.addTarget(target, action: action, forControlEvents: .TouchUpInside)
+    class func generateBarButtonWithImage(imageName: String, action: Selector, target: AnyObject?) -> UIBarButtonItem {
+        let button  = UIButton(type: .custom)
+        button.setImage(UIImage(named: imageName), for: UIControlState())
+        button.frame = CGRect(x: 0.0, y: 0.0, width: 30.0, height: 30.0)
+        button.addTarget(target, action: action, for: .touchUpInside)
         return UIBarButtonItem(customView: button)
     }
 }
@@ -28,6 +28,6 @@ class UIViewControllerWithCustomBackButton: UIViewController {
     }
     
     func backButtonTapped() {
-        self.navigationController?.popViewControllerAnimated(true)
+        self.navigationController?.popViewController(animated: true)
     }
 }

@@ -30,7 +30,7 @@ class LocationReminderViewController: UIViewController {
         self.view.addGestureRecognizer(gestureRecognizer)
     }
     
-    override func viewWillAppear(animated: Bool) {
+    override func viewWillAppear(_ animated: Bool) {
         // update the instructional message above the search for location button
         self.locationDescriptionLabel.text = self.locationMessage
     }
@@ -42,26 +42,26 @@ class LocationReminderViewController: UIViewController {
     
 
     func backButtonTapped() {
-        self.navigationController?.popViewControllerAnimated(true)
+        self.navigationController?.popViewController(animated: true)
     }
     
     
-    @IBAction func addButtonTapped(sender: UIButton) {
+    @IBAction func addButtonTapped(_ sender: UIButton) {
         self.view.endEditing(true)
         if self.annotationsToSave.count != 0 {
             ReminderController.sharedInstance.addLocationReminder(reminderDescriptionTextField.text!,
                                                                   annotations: self.annotationsToSave, region: self.regionToSave)
-            self.navigationController?.popViewControllerAnimated(true)
+            self.navigationController?.popViewController(animated: true)
         } else {
             self.locationDescriptionLabel.text = "No locations found"
         }
     }
     
-    @IBAction func searchForLocationsTapped(sender: UIButton) {
+    @IBAction func searchForLocationsTapped(_ sender: UIButton) {
         self.annotationsToSave = []
         let mapPopUpViewController = MapPopUpViewController(nibName: "MapPopUpViewController", bundle: nil)
         mapPopUpViewController.parentLocationReminderViewController = self
-        self.presentViewController(mapPopUpViewController, animated: true, completion: nil)
+        self.present(mapPopUpViewController, animated: true, completion: nil)
     }
     
     func hideKeyboard() {

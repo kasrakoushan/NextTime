@@ -23,12 +23,12 @@ class TutorialContentViewController: UIViewController {
             self.getStartedButton.clipsToBounds = true
             // shadow
             self.getStartedButton.layer.masksToBounds = false
-            self.getStartedButton.layer.shadowOffset = CGSizeMake(3, 3)
+            self.getStartedButton.layer.shadowOffset = CGSize(width: 3, height: 3)
             self.getStartedButton.layer.shadowRadius = 5
             self.getStartedButton.layer.shadowOpacity = 0.3
         }
         self.pageImage.layer.masksToBounds = false
-        self.pageImage.layer.shadowOffset = CGSizeMake(3, 3)
+        self.pageImage.layer.shadowOffset = CGSize(width: 3, height: 3)
         self.pageImage.layer.shadowRadius = 5
         self.pageImage.layer.shadowOpacity = 0.3
     }
@@ -37,7 +37,7 @@ class TutorialContentViewController: UIViewController {
         super.viewDidLoad()
         
         if self.pageIndex! < TutorialViewController.pagePrompts.count - 1 {
-            self.getStartedButton.hidden = true
+            self.getStartedButton.isHidden = true
         }
     }
     
@@ -46,7 +46,7 @@ class TutorialContentViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-    override func viewWillAppear(animated: Bool) {
+    override func viewWillAppear(_ animated: Bool) {
         if let ind = pageIndex {
             self.pageLabel.text = TutorialViewController.pagePrompts[ind]
             self.pageImage.image = UIImage(named: TutorialViewController.pageImages[ind])
@@ -55,9 +55,9 @@ class TutorialContentViewController: UIViewController {
         }
     }
 
-    @IBAction func getStartedTapped(sender: UIButton) {
+    @IBAction func getStartedTapped(_ sender: UIButton) {
         AppSettings.loggedIn = true
-        (UIApplication.sharedApplication().delegate as! AppDelegate).setupAppLoggedInBackground(false)
+        (UIApplication.shared.delegate as! AppDelegate).setupAppLoggedInBackground(false)
     }
     /*
     // MARK: - Navigation

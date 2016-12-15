@@ -30,19 +30,19 @@ class MapPopUpViewController: UIViewController, UISearchBarDelegate {
             let region = MKCoordinateRegion(center: coordinate, span: MKCoordinateSpan(latitudeDelta: 0.05, longitudeDelta: 0.05))
             self.mapView.setRegion(region, animated: true)
             self.mapView.showsUserLocation = true
-            self.mapView.mapType = .HybridFlyover
+            self.mapView.mapType = .hybridFlyover
         }
 
     }
     
-    override func viewDidAppear(animated: Bool) {
+    override func viewDidAppear(_ animated: Bool) {
         
         // set up map search bar
         self.searchController = UISearchController(searchResultsController: nil)
         self.searchController.hidesNavigationBarDuringPresentation = false
         self.searchController.searchBar.delegate = self
-        (self.searchController.searchBar.valueForKey("searchField") as? UITextField)?.font = UIFont(name: "Kohinoor Bangla", size: 16)
-        self.presentViewController(self.searchController, animated: true, completion: nil)
+        (self.searchController.searchBar.value(forKey: "searchField") as? UITextField)?.font = UIFont(name: "Kohinoor Bangla", size: 16)
+        self.present(self.searchController, animated: true, completion: nil)
     }
 
     override func didReceiveMemoryWarning() {
@@ -50,11 +50,11 @@ class MapPopUpViewController: UIViewController, UISearchBarDelegate {
         // Dispose of any resources that can be recreated.
     }
     
-    func searchBarSearchButtonClicked(searchBar: UISearchBar) {
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         // resign first-responder status of search bar
         searchBar.resignFirstResponder()
         // dismiss the search bar
-        self.dismissViewControllerAnimated(true, completion: nil)
+        self.dismiss(animated: true, completion: nil)
         // remove all current annotations
         for item in self.mapView.annotations {
             self.mapView.removeAnnotation(item)
@@ -68,7 +68,7 @@ class MapPopUpViewController: UIViewController, UISearchBarDelegate {
         // create search
         let localSearch = MKLocalSearch(request: localSearchRequest)
         // execute search
-        localSearch.startWithCompletionHandler() {(searchResponse, error) in
+        localSearch.start() {(searchResponse, error) in
             if error != nil {
                 print("search response error")
                 print("error: \(error!.localizedDescription)")
@@ -88,29 +88,29 @@ class MapPopUpViewController: UIViewController, UISearchBarDelegate {
     }
     
     
-    @IBAction func doneButtonTapped(sender: UIButton) {
+    @IBAction func doneButtonTapped(_ sender: UIButton) {
         if let parent = self.parentLocationReminderViewController,
-            region = self.regionToSave {
+            let region = self.regionToSave {
             // if parent is a LocationReminderViewController, pass along the found locations
             parent.annotationsToSave = self.annotationsToAdd
             parent.regionToSave = region
             parent.locationMessage = self.locationMessage
         }
-        self.presentingViewController?.dismissViewControllerAnimated(true, completion: nil)
+        self.presentingViewController?.dismiss(animated: true, completion: nil)
     }
     
     
-    @IBAction func searchAgainButtonTapped(sender: UIButton) {
-        self.presentViewController(self.searchController, animated: true, completion: nil)
+    @IBAction func searchAgainButtonTapped(_ sender: UIButton) {
+        self.present(self.searchController, animated: true, completion: nil)
     }
     
     
-    @IBAction func cancelButtonTapped(sender: UIButton) {
-        self.presentingViewController?.dismissViewControllerAnimated(true, completion: nil)
+    @IBAction func cancelButtonTapped(_ sender: UIButton) {
+        self.presentingViewController?.dismiss(animated: true, completion: nil)
     }
 
-    @IBAction func recentreButtonTapped(sender: UIButton) {
-        if let location = AppLocationManager.sharedInstance.locationManager.location where location.timestamp.timeIntervalSinceNow > -30 {
+    @IBAction func recentreButtonTapped(_ sender: UIButton) {
+        if let location = AppLocationManager.sharedInstance.locationManager.location , location.timestamp.timeIntervalSinceNow > -30 {
             // #CanadianSpelling
             let region = MKCoordinateRegion(center: location.coordinate, span: MKCoordinateSpan(latitudeDelta: 0.015, longitudeDelta: 0.015))
             self.mapView.setRegion(region, animated: true)
@@ -118,9 +118,9 @@ class MapPopUpViewController: UIViewController, UISearchBarDelegate {
         } else {
             // present error
             let msg = "Current location not found. Ensure that this app has location permissions in Settings."
-            let alert = UIAlertController(title: "Location Not Found", message:msg, preferredStyle: .Alert)
-            alert.addAction(UIAlertAction(title: "OK", style: .Default, handler: nil))
-            self.presentViewController(alert, animated: true, completion: nil)
+            let alert = UIAlertController(title: "Location Not Found", message:msg, preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+            self.present(alert, animated: true, completion: nil)
         }
         
     }

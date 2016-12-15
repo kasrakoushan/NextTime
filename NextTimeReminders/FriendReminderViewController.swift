@@ -32,13 +32,13 @@ class FriendReminderViewController: UIViewController {
     // back button
     func backButtonTapped() {
         // pop back to the new reminder view controller
-        self.navigationController?.popViewControllerAnimated(true)
+        self.navigationController?.popViewController(animated: true)
     }
 
-    @IBAction func addButtonTapped(sender: UIButton) {
+    @IBAction func addButtonTapped(_ sender: UIButton) {
         print("new friend reminder created")
     }
     
-    @IBAction func findFriendsButtonFound(sender: UIButton) {
+    @IBAction func findFriendsButtonFound(_ sender: UIButton) {
     }
 }

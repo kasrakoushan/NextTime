@@ -15,7 +15,7 @@ extension MKLocalSearchResponse {
     
     // create a map region with a bit of padding that covers the search results
     // default padding factor is 1.15
-    func createRegionWithPadding(padding: Double = 1.15) -> MKCoordinateRegion {
+    func createRegionWithPadding(_ padding: Double = 1.15) -> MKCoordinateRegion {
         let paddedLatitudeDelta = self.boundingRegion.span.latitudeDelta * padding
         let paddedLongitudeDelta = self.boundingRegion.span.longitudeDelta * padding
         return MKCoordinateRegion(center: self.boundingRegion.center,
@@ -58,17 +58,17 @@ class AnnotationWrapper: NSObject, NSCoding {
     
     required init?(coder aDecoder: NSCoder) {
         let annotation = MKPointAnnotation()
-        annotation.coordinate = CLLocationCoordinate2D(latitude: aDecoder.decodeDoubleForKey("latitude"),
-                                                       longitude: aDecoder.decodeDoubleForKey("longitude"))
-        annotation.title = aDecoder.decodeObjectForKey("title") as? String
+        annotation.coordinate = CLLocationCoordinate2D(latitude: aDecoder.decodeDouble(forKey: "latitude"),
+                                                       longitude: aDecoder.decodeDouble(forKey: "longitude"))
+        annotation.title = aDecoder.decodeObject(forKey: "title") as? String
         self.annotation = annotation
         
     }
     
-    func encodeWithCoder(aCoder: NSCoder) {
-        aCoder.encodeDouble(self.annotation.coordinate.latitude, forKey: "latitude")
-        aCoder.encodeDouble(self.annotation.coordinate.longitude, forKey: "longitude")
-        aCoder.encodeObject(self.annotation.title!, forKey: "title")
+    func encode(with aCoder: NSCoder) {
+        aCoder.encode(self.annotation.coordinate.latitude, forKey: "latitude")
+        aCoder.encode(self.annotation.coordinate.longitude, forKey: "longitude")
+        aCoder.encode(self.annotation.title!, forKey: "title")
     }
     
 }

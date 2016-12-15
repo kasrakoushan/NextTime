@@ -53,6 +53,7 @@
 		A15DC45B1D18546D00CC9006 /* FriendReminderViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FriendReminderViewController.xib; sourceTree = "<group>"; };
 		A16641DC1D1D390C0071B0CF /* Helper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Helper.swift; sourceTree = "<group>"; };
 		A1708BD91D1C0DEA00AC4B5B /* LocationExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationExtensions.swift; sourceTree = "<group>"; };
+		A18F78921DD6ED0100588BED /* NextTimeReminders.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = NextTimeReminders.entitlements; sourceTree = "<group>"; };
 		A1B9EA801D1AAB7500DDE19A /* Reminder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Reminder.swift; sourceTree = "<group>"; };
 		A1B9EA821D1AAE0800DDE19A /* ReminderController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReminderController.swift; sourceTree = "<group>"; };
 		A1B9EA841D1AB4FD00DDE19A /* PersistenceManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PersistenceManager.swift; sourceTree = "<group>"; };
@@ -113,6 +114,7 @@
 		A120D0E61D17EA9400F0ACBE /* NextTimeReminders */ = {
 			isa = PBXGroup;
 			children = (
+				A18F78921DD6ED0100588BED /* NextTimeReminders.entitlements */,
 				A120D0E71D17EA9400F0ACBE /* AppDelegate.swift */,
 				A120D0EE1D17EA9400F0ACBE /* Assets.xcassets */,
 				A120D0F01D17EA9400F0ACBE /* LaunchScreen.storyboard */,
@@ -236,6 +238,7 @@
 					A120D0E31D17EA9400F0ACBE = {
 						CreatedOnToolsVersion = 7.3.1;
 						DevelopmentTeam = 67454K9MGU;
+						LastSwiftMigration = 0800;
 						SystemCapabilities = {
 							com.apple.BackgroundModes = {
 								enabled = 1;
@@ -461,11 +464,13 @@
 			baseConfigurationReference = FE9DB73B7DA890776BEF179B /* Pods-NextTimeReminders.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = NextTimeReminders/NextTimeReminders.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				INFOPLIST_FILE = NextTimeReminders/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.example.NextTimeApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
 		};
@@ -474,11 +479,13 @@
 			baseConfigurationReference = C8F9A48805320CBA2D2533A1 /* Pods-NextTimeReminders.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = NextTimeReminders/NextTimeReminders.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				INFOPLIST_FILE = NextTimeReminders/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.example.NextTimeApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
 		};

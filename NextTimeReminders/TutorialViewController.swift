@@ -25,18 +25,18 @@ class TutorialViewController: UIViewController, UIPageViewControllerDataSource {
         
         // modify page indicator
         let pageControl = UIPageControl.appearance()
-        pageControl.pageIndicatorTintColor = UIColor.lightGrayColor()
-        pageControl.currentPageIndicatorTintColor = UIColor.blackColor()
-        pageControl.backgroundColor = UIColor.clearColor()
+        pageControl.pageIndicatorTintColor = UIColor.lightGray
+        pageControl.currentPageIndicatorTintColor = UIColor.black
+        pageControl.backgroundColor = UIColor.clear
         
         // set up page view controller
-        pageViewController = UIPageViewController(transitionStyle: .Scroll, navigationOrientation: .Horizontal, options: nil)
+        pageViewController = UIPageViewController(transitionStyle: .scroll, navigationOrientation: .horizontal, options: nil)
         pageViewController.dataSource = self
         let startingViewController: TutorialContentViewController = self.viewControllerAtIndex(0)
-        pageViewController.setViewControllers([startingViewController], direction: .Forward, animated: true, completion: nil)
+        pageViewController.setViewControllers([startingViewController], direction: .forward, animated: true, completion: nil)
         
         // add page view controller as a subview
-        self.pageViewController.view.frame = CGRectMake(0, 0, self.view.frame.width, self.view.frame.height)
+        self.pageViewController.view.frame = CGRect(x: 0, y: 0, width: self.view.frame.width, height: self.view.frame.height)
         self.addChildViewController(self.pageViewController)
         self.view.addSubview(self.pageViewController.view)
         
@@ -48,7 +48,7 @@ class TutorialViewController: UIViewController, UIPageViewControllerDataSource {
     }
     
     
-    func pageViewController(pageViewController: UIPageViewController, viewControllerBeforeViewController viewController: UIViewController) -> UIViewController? {
+    func pageViewController(_ pageViewController: UIPageViewController, viewControllerBefore viewController: UIViewController) -> UIViewController? {
         
         if let index = (viewController as? TutorialContentViewController)?.pageIndex {
             if index == 0 {
@@ -61,7 +61,7 @@ class TutorialViewController: UIViewController, UIPageViewControllerDataSource {
         }
     }
     
-    func pageViewController(pageViewController: UIPageViewController, viewControllerAfterViewController viewController: UIViewController) -> UIViewController? {
+    func pageViewController(_ pageViewController: UIPageViewController, viewControllerAfter viewController: UIViewController) -> UIViewController? {
         
         if let index = (viewController as? TutorialContentViewController)?.pageIndex {
             if index == TutorialViewController.pagePrompts.count - 1 {
@@ -74,18 +74,18 @@ class TutorialViewController: UIViewController, UIPageViewControllerDataSource {
         }
     }
     
-    func viewControllerAtIndex(index: Int) -> TutorialContentViewController {
-        let vc = self.storyboard?.instantiateViewControllerWithIdentifier("TutorialContentView") as! TutorialContentViewController
+    func viewControllerAtIndex(_ index: Int) -> TutorialContentViewController {
+        let vc = self.storyboard?.instantiateViewController(withIdentifier: "TutorialContentView") as! TutorialContentViewController
         vc.pageIndex = index
         
         return vc
     }
     
-    func presentationCountForPageViewController(pageViewController: UIPageViewController) -> Int {
+    func presentationCount(for pageViewController: UIPageViewController) -> Int {
         return TutorialViewController.pagePrompts.count
     }
     
-    func presentationIndexForPageViewController(pageViewController: UIPageViewController) -> Int {
+    func presentationIndex(for pageViewController: UIPageViewController) -> Int {
         return 0
     }
 

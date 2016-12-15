@@ -44,29 +44,29 @@ class Reminder: NSObject, NSCoding {
     }
     
     // NSCoding functions
-    func encodeWithCoder(aCoder: NSCoder) {
-        aCoder.encodeObject(self.reminderDescription, forKey: "reminderDescription")
-        aCoder.encodeObject(self.state.rawValue, forKey: "state")
-        aCoder.encodeObject(self.type.rawValue, forKey: "type")
+    func encode(with aCoder: NSCoder) {
+        aCoder.encode(self.reminderDescription, forKey: "reminderDescription")
+        aCoder.encode(self.state.rawValue, forKey: "state")
+        aCoder.encode(self.type.rawValue, forKey: "type")
         if self.type == .Location {
-            aCoder.encodeObject(self.annotations!.map({$0.produceWrapper()}), forKey: "annotations")
-            aCoder.encodeDouble(self.region!.center.latitude, forKey: "latitude")
-            aCoder.encodeDouble(self.region!.center.longitude, forKey: "longitude")
-            aCoder.encodeDouble(self.region!.span.latitudeDelta, forKey: "latitudeDelta")
-            aCoder.encodeDouble(self.region!.span.longitudeDelta, forKey: "longitudeDelta")
+            aCoder.encode(self.annotations!.map({$0.produceWrapper()}), forKey: "annotations")
+            aCoder.encode(self.region!.center.latitude, forKey: "latitude")
+            aCoder.encode(self.region!.center.longitude, forKey: "longitude")
+            aCoder.encode(self.region!.span.latitudeDelta, forKey: "latitudeDelta")
+            aCoder.encode(self.region!.span.longitudeDelta, forKey: "longitudeDelta")
         }
     }
     
     required init?(coder aDecoder: NSCoder) {
-        self.reminderDescription = aDecoder.decodeObjectForKey("reminderDescription") as! String
-        self.state = ReminderState(rawValue: aDecoder.decodeObjectForKey("state") as! String)!
-        self.type = ReminderType(rawValue: aDecoder.decodeObjectForKey("type") as! String)!
+        self.reminderDescription = aDecoder.decodeObject(forKey: "reminderDescription") as! String
+        self.state = ReminderState(rawValue: aDecoder.decodeObject(forKey: "state") as! String)!
+        self.type = ReminderType(rawValue: aDecoder.decodeObject(forKey: "type") as! String)!
         if self.type == .Location {
-            self.annotations = (aDecoder.decodeObjectForKey("annotations") as! [AnnotationWrapper]).map({$0.annotation})
-            self.region = MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: aDecoder.decodeDoubleForKey("latitude"),
-                                                                            longitude: aDecoder.decodeDoubleForKey("longitude")),
-                                             span: MKCoordinateSpan(latitudeDelta: aDecoder.decodeDoubleForKey("latitudeDelta"),
-                                                                    longitudeDelta: aDecoder.decodeDoubleForKey("longitudeDelta")))
+            self.annotations = (aDecoder.decodeObject(forKey: "annotations") as! [AnnotationWrapper]).map({$0.annotation})
+            self.region = MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: aDecoder.decodeDouble(forKey: "latitude"),
+                                                                            longitude: aDecoder.decodeDouble(forKey: "longitude")),
+                                             span: MKCoordinateSpan(latitudeDelta: aDecoder.decodeDouble(forKey: "latitudeDelta"),
+                                                                    longitudeDelta: aDecoder.decodeDouble(forKey: "longitudeDelta")))
         }
     }
 }

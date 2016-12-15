@@ -30,10 +30,10 @@ class SettingsTableViewController: UITableViewController {
         self.navigationItem.rightBarButtonItem = Helper.generateBarButtonWithImage(imageName: "complete_button",
                                                                                    action: #selector(SettingsTableViewController.doneButtonTapped),
                                                                                    target: self)
-        self.backgroundSwitch.on = !AppSettings.ignoreBackground
+        self.backgroundSwitch.isOn = !AppSettings.ignoreBackground
         
         
-        accuracyIndex = accuracies.indexOf(AppSettings.locationAccuracy)!
+        accuracyIndex = accuracies.index(of: AppSettings.locationAccuracy)!
         cellImages[accuracyIndex].image = UIImage(named: "complete_button")
     }
 
@@ -43,23 +43,23 @@ class SettingsTableViewController: UITableViewController {
     }
     
     func doneButtonTapped() {
-        self.presentingViewController?.dismissViewControllerAnimated(true, completion: nil)
+        self.presentingViewController?.dismiss(animated: true, completion: nil)
     }
     
-    @IBAction func backgroundModeSwitched(sender: UISwitch) {
-        if sender.on {
+    @IBAction func backgroundModeSwitched(_ sender: UISwitch) {
+        if sender.isOn {
             AppSettings.ignoreBackground = false
         } else {
             AppSettings.ignoreBackground = true
         }
     }
     
-    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        if indexPath.section == 1 {
-            self.tableView.deselectRowAtIndexPath(indexPath, animated: true)
-            if indexPath.row != accuracyIndex {
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if (indexPath as NSIndexPath).section == 1 {
+            self.tableView.deselectRow(at: indexPath, animated: true)
+            if (indexPath as NSIndexPath).row != accuracyIndex {
                 cellImages[accuracyIndex].image = nil
-                accuracyIndex = indexPath.row
+                accuracyIndex = (indexPath as NSIndexPath).row
                 cellImages[accuracyIndex].image = UIImage(named: "complete_button")
                 AppSettings.locationAccuracy = accuracies[accuracyIndex]
             }

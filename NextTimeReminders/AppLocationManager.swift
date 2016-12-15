@@ -8,20 +8,35 @@
 
 import Foundation
 import MapKit
+fileprivate func < <T : Comparable>(lhs: T?, rhs: T?) -> Bool {
+  switch (lhs, rhs) {
+  case let (l?, r?):
+    return l < r
+  case (nil, _?):
+    return true
+  default:
+    return false
+  }
+}
+
+fileprivate func > <T : Comparable>(lhs: T?, rhs: T?) -> Bool {
+  switch (lhs, rhs) {
+  case let (l?, r?):
+    return l > r
+  default:
+    return rhs < lhs
+  }
+}
+
 
 class AppLocationManager: NSObject, CLLocationManagerDelegate {
-    // singleton design
-    class var sharedInstance: AppLocationManager {
-        struct Static {
-            static var instance:AppLocationManager?
-            static var token: dispatch_once_t = 0
-        }
+    static let sharedInstance: AppLocationManager = {
+        let instance = AppLocationManager()
         
-        dispatch_once(&Static.token)    {
-            Static.instance = AppLocationManager()
-        }
-        return Static.instance!
-    }
+        // setup code
+        
+        return instance
+    }()
     
     var locationManager: CLLocationManager
     
@@ -42,14 +57,14 @@ class AppLocationManager: NSObject, CLLocationManagerDelegate {
     func checkStatus() {
         // examine status
         let status = CLLocationManager.authorizationStatus()
-        if status == .NotDetermined {
+        if status == .notDetermined {
             // request authorization from user
             self.locationManager.requestAlwaysAuthorization()
         }
     }
     
     // *CLLocationManagerDelegate* function called when location is updated
-    func locationManager(manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         // check reminders with this new location
         if locations.last?.timestamp.timeIntervalSinceNow > -10 {
             // only check recent location updates
@@ -60,7 +75,7 @@ class AppLocationManager: NSObject, CLLocationManagerDelegate {
     }
     
     // *CLLocationManagerDelegate* function called when location fails to update
-    func locationManager(manager: CLLocationManager, didFailWithError error: NSError) {
+    func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
         print("-----------------------Location update failed-----------------------")
         print(error.localizedDescription)
         self.checkStatus()

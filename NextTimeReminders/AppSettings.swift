@@ -13,16 +13,16 @@ class AppSettings {
     
     static var loggedIn: Bool {
         get {
-            return NSUserDefaults.standardUserDefaults().boolForKey("tutorialFinished")
+            return UserDefaults.standard.bool(forKey: "tutorialFinished")
         }
         set (value) {
-            NSUserDefaults.standardUserDefaults().setBool(value, forKey: "tutorialFinished")
+            UserDefaults.standard.set(value, forKey: "tutorialFinished")
         }
     }
     
     static var ignoreBackground: Bool {
         get {
-            return NSUserDefaults.standardUserDefaults().boolForKey("ignoreBackground")
+            return UserDefaults.standard.bool(forKey: "ignoreBackground")
         }
         set (value) {
             if value {
@@ -30,13 +30,13 @@ class AppSettings {
             } else {
                 AppLocationManager.sharedInstance.locationManager.startMonitoringSignificantLocationChanges()
             }
-            NSUserDefaults.standardUserDefaults().setBool(value, forKey: "ignoreBackground")
+            UserDefaults.standard.set(value, forKey: "ignoreBackground")
         }
     }
     
     static var locationAccuracy: CLLocationAccuracy {
         get {
-            let acc = NSUserDefaults.standardUserDefaults().doubleForKey("locationAccuracy")
+            let acc = UserDefaults.standard.double(forKey: "locationAccuracy")
             if acc != 0 {
                 return acc
             } else {
@@ -44,7 +44,7 @@ class AppSettings {
             }
         }
         set (value) {
-            NSUserDefaults.standardUserDefaults().setDouble(value, forKey: "locationAccuracy")
+            UserDefaults.standard.set(value, forKey: "locationAccuracy")
             AppLocationManager.sharedInstance.locationManager.desiredAccuracy = value
         }
     }

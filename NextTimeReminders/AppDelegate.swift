@@ -8,22 +8,23 @@
 
 import UIKit
 import MapKit
+import UserNotifications
 
 @UIApplicationMain
-class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate {
+class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate, UNUserNotificationCenterDelegate {
 
     var window: UIWindow?
 
 
-    func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
+    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
     
         // set up window
-        self.window = UIWindow(frame: UIScreen.mainScreen().bounds)
+        self.window = UIWindow(frame: UIScreen.main.bounds)
         
         if AppSettings.loggedIn {
             // load main screen
-            if let _ = launchOptions?[UIApplicationLaunchOptionsLocationKey] {
+            if let _ = launchOptions?[UIApplicationLaunchOptionsKey.location] {
                 // launched in background
                 self.setupAppLoggedInBackground(true)
             }
@@ -41,12 +42,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
         return true
     }
     
-    func applicationWillResignActive(application: UIApplication) {
+    func applicationWillResignActive(_ application: UIApplication) {
         // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
         // Use this method to pause ongoing tasks, disable timers, and throttle down OpenGL ES frame rates. Games should use this method to pause the game.
     }
 
-    func applicationDidEnterBackground(application: UIApplication) {
+    func applicationDidEnterBackground(_ application: UIApplication) {
         // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later.
         // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
         if AppSettings.loggedIn {
@@ -56,18 +57,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
         
     }
 
-    func applicationWillEnterForeground(application: UIApplication) {
+    func applicationWillEnterForeground(_ application: UIApplication) {
         // Called as part of the transition from the background to the active state; here you can undo many of the changes made on entering the background.
         if AppSettings.loggedIn {
             AppLocationManager.sharedInstance.locationManager.startUpdatingLocation()
         }
     }
 
-    func applicationDidBecomeActive(application: UIApplication) {
+    func applicationDidBecomeActive(_ application: UIApplication) {
         // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
     }
 
-    func applicationWillTerminate(application: UIApplication) {
+    func applicationWillTerminate(_ application: UIApplication) {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
         if AppSettings.loggedIn {
             ReminderController.sharedInstance.saveReminders()
@@ -78,18 +79,37 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
     
     // *helper* function for registering push notification settings
     func managePushNotifications() {
-        // ask for Badge, Sound, and Alert notifications
-        let notificationSettings = UIUserNotificationSettings(
-            forTypes: [.Badge, .Sound, .Alert], categories: nil)
-        if UIApplication.sharedApplication().currentUserNotificationSettings() != notificationSettings {
-            // register these settings
-            UIApplication.sharedApplication().registerUserNotificationSettings(notificationSettings)
+        // check for iOS 10
+        if #available(iOS 10.0, *){
+            UNUserNotificationCenter.current().delegate = self
+            UNUserNotificationCenter.current().requestAuthorization(options: [.badge, .sound, .alert], completionHandler: {(granted, error) in print("requested authorization")})
         }
+            
+        else { //If user is not on iOS 10 use the old methods we've been using
+            // ask for Badge, Sound, and Alert notifications
+            let notificationSettings = UIUserNotificationSettings(
+                types: [.badge, .sound, .alert], categories: nil)
+            if UIApplication.shared.currentUserNotificationSettings != notificationSettings {
+                // register these settings
+                UIApplication.shared.registerUserNotificationSettings(notificationSettings)
+            }
+            
+        }
+    }
+    
+    @nonobjc @available(iOS 10.0, *)
+    func userNotificationCenter(center: UNUserNotificationCenter, willPresent notification: UNNotification, withCompletionHandler completionHandler: (UNNotificationPresentationOptions) -> Void) {
+        //Handle the notification
+    }
+    
+    @nonobjc @available(iOS 10.0, *)
+    func userNotificationCenter(center: UNUserNotificationCenter, didReceive response: UNNotificationResponse, withCompletionHandler completionHandler: () -> Void) {
+        //Handle the notification
     }
     
     // ************************** APP NAVIGATION FUNCTIONS **************************
     // navigate to the main part of the app
-    func setupAppLoggedInBackground(launchedInBackground: Bool) {
+    func setupAppLoggedInBackground(_ launchedInBackground: Bool) {
         // load reminders
         ReminderController.sharedInstance.loadReminders()
         

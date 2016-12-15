@@ -11,8 +11,8 @@ import Foundation
 class PersistenceManager {
     // return the user's documents directory
     class func documentsDirectory() -> NSString {
-        let paths = NSSearchPathForDirectoriesInDomains(NSSearchPathDirectory.DocumentDirectory, NSSearchPathDomainMask.UserDomainMask, true)
+        let paths = NSSearchPathForDirectoriesInDomains(FileManager.SearchPathDirectory.documentDirectory, FileManager.SearchPathDomainMask.userDomainMask, true)
         let documentDirectory = paths[0]
-        return documentDirectory
+        return documentDirectory as NSString
     }
 }
